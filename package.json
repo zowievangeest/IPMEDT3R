@@ -1,0 +1,36 @@
+{
+  "name": "ipmedt3r",
+  "version": "1.0.0",
+  "description": "Project IPMEDT3 Groep R (Real Unreality)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zowie93/IPMEDT3R.git"
+  },
+  "keywords": [
+    "HSL"
+  ],
+  "author": "Zowie van Geest, Bram Valstar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zowie93/IPMEDT3R/issues"
+  },
+  "homepage": "https://github.com/zowie93/IPMEDT3R#readme",
+  "dependencies": {
+    "browser-sync": "^2.18.2",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-ignore": "^2.0.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-rimraf": "^0.2.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-watch": "^4.3.9"
+  }
+}
