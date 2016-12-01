@@ -1,0 +1,27 @@
+{
+  "name": "ipmedt3r",
+  "description": "Project IPMEDT3 Groep R (Real Unreality)",
+  "main": "index.js",
+  "authors": [
+    "Zowie van Geest",
+    "Bram Valstar"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "HSL"
+  ],
+  "homepage": "https://github.com/zowie93/IPMEDT3R",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "Font-Awesome#^4.7.0",
+    "aos": "^2.1.1",
+    "jquery": "^3.1.1"
+  }
+}
