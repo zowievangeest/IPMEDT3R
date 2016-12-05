@@ -55,7 +55,7 @@ gulp.task('sass', function() {
 gulp.task('watch', function (){
     gulp.watch('app/scss/**/*.scss', ['sass'], ['cssnano']);
     gulp.watch('app/scss/style.scss', ['sass'], ['cssnano']);
-    gulp.watch('app/css/style.css', ['cssnano']);
+    gulp.watch('app/css/style.css');
     gulp.watch('app/*.html');
     gulp.watch('app/js/**/*.js');
 });
