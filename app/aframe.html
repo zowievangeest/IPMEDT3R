@@ -8,19 +8,38 @@
 </head>
 <body>
 <a-scene>
+    <!--Aframe ASSETS-->
     <a-assets>
+        <!--Hoverboard base-->
+        <a-asset-item id="hoverboard-base-obj" src="./models/hoverboard_base/hoverboard_base.obj"></a-asset-item>
+        <a-asset-item id="hoverboard-base-mtl" src="./models/hoverboard_base/hoverboard_base.mtl"></a-asset-item>
+
+        <!--Hoverboard stroke-->
+        <a-asset-item id="hoverboard-stroke-blue-obj" src="./models/hoverboard_stroke/hoverboard_stroke.obj"></a-asset-item>
+        <a-asset-item id="hoverboard-stroke-blue-mtl" src="./models/hoverboard_stroke/hoverboard_stroke.mtl"></a-asset-item>
+
+        <!--Floor texture-->
+        <img id="floor" src="./img/textures/floor/texture_floor.jpg"></img>
     </a-assets>
 
+    <!--Camera-->
     <a-camera camera="" position="" rotation="" look-controls="" wasd-controls="" scale="" visible="">
         <a-cursor color="white" material="" raycaster="" cursor="" geometry="" position="" rotation="" scale="" visible=""></a-cursor>
     </a-camera>
 
-    <!--<a-entity id="floor" position="0 0 0" rotation="0 0 0" geometry="height:0.5;depth:40;width:40"-->
-              <!--material="src: #floor; repeat: 40 40"></a-entity>-->
+    <!--Hoverboard base OBJ-->
+    <a-entity id="hoverboard" position="0 0.9 -3.65">
+        <!--Hoverboard base OBJ-->
+        <a-entity id="hoverboard-base" obj-model="obj: #hoverboard-base-obj; mtl: #hoverboard-base-mtl" position="0 0 0" rotation="0 180 0" scale="" visible="" material=""></a-entity>
 
-    <!--<a-obj-model id="gun" src="assets/img/models/model_gun/scr_evo_r.obj" mtl="assets/img/models/model_gun/scr_evo_r.mtl" scale="0.09 0.09 0.09" position="-1.93 1.13 -3.75" material="" obj-model="obj:url(assets/img/models/model_gun/scr_evo_r.obj);mtl:url(assets/img/models/model_gun/scr_evo_r.mtl)" rotation="-89.38141604040842 140.3746598070517 179.9087476710785"></a-obj-model>-->
-    <!--<a-obj-model id="gun2" src="assets/img/models/model_gun/scr_evo_r.obj" mtl="assets/img/models/model_gun/scr_evo_r.mtl" scale="0.09 0.09 0.09" position="1.83 0.28 -2.76" material="" obj-model="obj:url(assets/img/models/model_gun/scr_evo_r.obj);mtl:url(assets/img/models/model_gun/scr_evo_r.mtl)" rotation="-89.38141604040842 -123.75888374825783 179.9087476710785"></a-obj-model>-->
+        <!--Hoverboard stroke OBJ-->
+        <a-entity id="hoverboard-stroke-blue" obj-model="obj: #hoverboard-stroke-blue-obj; mtl: #hoverboard-stroke-blue-mtl" position="0 0 0" rotation="0 180 0" scale="" visible="" material=""></a-entity>
+    </a-entity>
 
+    <!--Floor base Entity-->
+    <a-entity id="floor" position="0 0 0" rotation="0 0 0" geometry="height:0.02;depth:40;width:40" material="src: #floor; repeat: 40 40"></a-entity>
+
+    <!--Skybox-->
     <a-sky id="sky" color="#73d8ed"></a-sky>
 </a-scene>
 </body>
