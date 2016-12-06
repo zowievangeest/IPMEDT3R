@@ -288,14 +288,30 @@ p {
   padding-top: 4%;
   background-color: #fcfcfc;
 }
+
+.colorpicker h3 {
+  color: #3c3c3c;
+  font-family: Source Sans Pro,sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
 .customize-content {
   padding-top: 5%;
+}
+
+.colorpicker {
+  margin-top: 40px;
+  margin-bottom: 60px;
 }
 
 .img-container {
   display: inline-block;
   position: relative;
   width: 100%;
+  height: 400px;
 }
 
 #board-side {
@@ -307,6 +323,37 @@ p {
   position: absolute!important;
   top: 0px;
   left: 0px;
+}
+
+.thumbnail {
+  border: 0!important;
+  background-color: transparent;
+}
+
+.circle {
+  margin: auto;
+  -moz-border-radius: 65px/65px;
+  -webkit-border-radius: 65px 65px;
+  border-radius: 65px/65px;
+  width:65px;
+  height:65px;
+}
+
+.green {
+  background: #7BF32C;
+}
+
+.purple {
+  background: #FF32FF;
+}
+
+.teal {
+  background: #33FFFF;
+}
+
+.none {
+  background: #FFFFFF;
+  border: 3px solid #000000;
 }
 
 /*-----------specifications Section-----------*/

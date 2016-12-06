@@ -88,6 +88,38 @@
         $('.portfolio-box-caption').show();
     });
 
+    /*====================================
+     Toggle customize hoverboard
+     ======================================*/
+
+    $('#board1-green').hide();
+    $('#board1-purple').hide();
+    $('#board1-teal').hide();
+
+
+    $('#circleGreen').on('click', function () {
+        $('#board1-purple').hide();
+        $('#board1-teal').hide();
+        $('#board1-green').show();
+    });
+
+    $('#circlePurple').on('click', function () {
+        $('#board1-teal').hide();
+        $('#board1-green').hide();
+        $('#board1-purple').show();
+    });
+
+    $('#circleTeal').on('click', function () {
+        $('#board1-green').hide();
+        $('#board1-purple').hide();
+        $('#board1-teal').show();
+    });
+
+    $('#circleNone').on('click', function () {
+        $('#board1-green').hide();
+        $('#board1-purple').hide();
+        $('#board1-teal').hide();
+    });
 
     /*====================================
      Initializing AOS
