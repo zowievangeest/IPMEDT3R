@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Groep R - Bram Valstar / Zowie van Geest</title>
+    <script src="js/main.min.js"></script>
     <script src="js/aframe-v0.3.2.min.js"></script>
     <script src="js/aframefunctions.js"></script>
 </head>
@@ -14,9 +15,18 @@
         <a-asset-item id="hoverboard-base-obj" src="./models/hoverboard_base/hoverboard_base.obj"></a-asset-item>
         <a-asset-item id="hoverboard-base-mtl" src="./models/hoverboard_base/hoverboard_base.mtl"></a-asset-item>
 
-        <!--Hoverboard stroke-->
-        <a-asset-item id="hoverboard-stroke-blue-obj" src="./models/hoverboard_stroke/hoverboard_stroke.obj"></a-asset-item>
-        <a-asset-item id="hoverboard-stroke-blue-mtl" src="./models/hoverboard_stroke/hoverboard_stroke.mtl"></a-asset-item>
+        <!--Hoverboard stroke none-->
+        <a-asset-item id="hoverboard-stroke-none-obj" src="./models/hoverboard_stroke_none/hoverboard_stroke_none.obj"></a-asset-item>
+        <a-asset-item id="hoverboard-stroke-none-mtl" src="./models/hoverboard_stroke_none/hoverboard_stroke_none.mtl"></a-asset-item>
+
+        <!--Hoverboard stroke blue-->
+        <a-asset-item id="hoverboard-stroke-blue-obj" src="./models/hoverboard_stroke_blue/hoverboard_stroke_blue.obj"></a-asset-item>
+        <a-asset-item id="hoverboard-stroke-blue-mtl" src="./models/hoverboard_stroke_blue/hoverboard_stroke_blue.mtl"></a-asset-item>
+
+        <!--Hoverboard stroke red-->
+        <a-asset-item id="hoverboard-stroke-red-obj" src="./models/hoverboard_stroke_red/hoverboard_stroke_red.obj"></a-asset-item>
+        <a-asset-item id="hoverboard-stroke-red-mtl" src="./models/hoverboard_stroke_red/hoverboard_stroke_red.mtl"></a-asset-item>
+
 
         <!--Floor texture-->
         <img id="floor" src="./img/textures/floor/texture_floor.jpg"></img>
@@ -27,13 +37,19 @@
         <a-cursor color="white" material="" raycaster="" cursor="" geometry="" position="" rotation="" scale="" visible=""></a-cursor>
     </a-camera>
 
+    <a-entity id="color-picker">
+        <a-entity id="color-none" position="-5.95 7.55 -11.18" geometry="primitive:circle" material="color:#ffffff"></a-entity>
+        <a-entity id="color-blue" position="-2.74 7.55 -11.18" geometry="primitive:circle" material="color:#1B19E7"></a-entity>
+        <a-entity id="color-red" position="0.4 7.55 -11.18" geometry="primitive:circle" material="color:#E70909"></a-entity>
+    </a-entity>
+
     <!--Hoverboard base OBJ-->
     <a-entity id="hoverboard" position="0 0.9 -3.65">
         <!--Hoverboard base OBJ-->
         <a-entity id="hoverboard-base" obj-model="obj: #hoverboard-base-obj; mtl: #hoverboard-base-mtl" position="0 0 0" rotation="0 180 0" scale="" visible="" material=""></a-entity>
 
         <!--Hoverboard stroke OBJ-->
-        <a-entity id="hoverboard-stroke-blue" obj-model="obj: #hoverboard-stroke-blue-obj; mtl: #hoverboard-stroke-blue-mtl" position="0 0 0" rotation="0 180 0" scale="" visible="" material=""></a-entity>
+        <a-entity id="hoverboard-stroke" obj-model="obj: #hoverboard-stroke-none-obj; mtl: #hoverboard-stroke-none-mtl" position="0 0 0" rotation="0 180 0" scale="" visible="" material=""></a-entity>
     </a-entity>
 
     <!--Floor base Entity-->

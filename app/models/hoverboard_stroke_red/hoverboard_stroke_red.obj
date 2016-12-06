@@ -1,6 +1,6 @@
-# Blender v2.78 (sub 0) OBJ File: 'hoverboard_stroke.blend'
+# Blender v2.78 (sub 0) OBJ File: 'hoverboard_stroke_red.blend'
 # www.blender.org
-mtllib hoverboard_stroke.mtl
+mtllib hoverboard_stroke_red.mtl
 o Stroke_Circle.001
 v -0.000567 0.008925 -0.699150
 v 0.000570 0.008927 0.701919
