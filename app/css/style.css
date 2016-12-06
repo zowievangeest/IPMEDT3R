@@ -342,62 +342,27 @@ p {
 #specifications p {
   margin-bottom: 40px; }
 
-#specifications .container-fluid {
-  padding-left: 0;
-  padding-right: 0; }
+.home-center {
+  background-color: #24caff;
+  -webkit-box-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
+  height: 100vh;
+  width: 100%; }
 
-#specifications .container-fluid .col-lg-4 {
-  padding-left: 0;
-  padding-right: 0; }
-
-#specifications .specifications-box {
-  display: block;
+.row-full {
+  width: 100vw;
   position: relative;
-  margin: 0 auto;
-  max-width: 650px; }
-
-#specifications .specifications-box .specifications-box-caption {
-  display: block;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  color: #fff;
-  opacity: 0;
-  background: rgba(13, 13, 13, 0.9);
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out; }
-
-#specifications .specifications-box .specifications-box-caption .specifications-box-caption-content {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  text-align: center;
-  transform: translateY(-50%); }
-
-#specifications .specifications-box .specifications-box-caption .specifications-box-caption-content .project-category,
-#specifications .specifications-box .specifications-box-caption .specifications-box-caption-content .project-name {
-  padding: 0 15px; }
-
-#specifications .specifications-box .specifications-box-caption .specifications-box-caption-content .project-category {
-  text-transform: uppercase;
-  font-size: 22px;
-  font-weight: 700; }
-
-#specifications .specifications-box .specifications-box-caption .specifications-box-caption-content .project-name {
-  font-size: 18px; }
-
-#specifications .specifications-box:hover .specifications-box-caption {
-  opacity: 1; }
+  margin-left: -50vw;
+  height: 600px;
+  margin-top: 100px;
+  left: 50%; }
 
 /*-----------Contact Section-----------*/
 #contact {
   width: 100%;
   min-height: 570px;
-  padding-top: 3%; }
+  padding-top: 400px; }
 
 .line-spacer {
   margin-top: 7%; }
@@ -430,83 +395,6 @@ p {
 
 .form-group {
   margin-top: 4%; }
-
-ul.social-network {
-  list-style: none;
-  display: inline;
-  margin-left: 0 !important;
-  padding: 0; }
-
-ul.social-network li {
-  display: inline;
-  margin-right: 10px; }
-
-.social-network a.icoFacebook:hover {
-  background-color: #3B5998;
-  border: 1px solid #3B5998; }
-
-.social-network a.icoTwitter:hover {
-  background-color: #33ccff;
-  border: 1px solid #33ccff; }
-
-.social-network a.icoGoogle:hover {
-  background-color: #BD3518;
-  border: 1px solid #BD3518; }
-
-.social-network a.icoLinkedin:hover {
-  background-color: #007bb7;
-  border: 1px solid #007bb7; }
-
-.social-network a.icoGithub:hover {
-  background-color: #3c3c3c;
-  border: 1px solid #3c3c3c; }
-
-.social-network a.icoRss:hover i, .social-network a.icoFacebook:hover i, .social-network a.icoTwitter:hover i,
-.social-network a.icoGoogle:hover i, .social-network a.icoGithub:hover i, .social-network a.icoLinkedin:hover i {
-  color: #fff; }
-
-a.socialIcon:hover, .socialHoverClass {
-  color: #44BCDD; }
-
-.social-circle li a {
-  display: inline-block;
-  position: relative;
-  margin: 0 auto 0 auto;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-  border: 1px solid #3c3c3c;
-  text-align: center;
-  width: 45px;
-  height: 45px;
-  font-size: 20px;
-  color: #3c3c3c; }
-
-.social-circle li i {
-  margin: 0;
-  line-height: 45px;
-  text-align: center;
-  color: #3c3c3c;
-  font-size: 18px; }
-
-.social-circle li a:hover i, .triggeredHover {
-  -moz-transform: rotate(360deg);
-  -webkit-transform: rotate(360deg);
-  -ms--transform: rotate(360deg);
-  transform: rotate(360deg);
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  -ms-transition: all 0.3s;
-  transition: all 0.3s; }
-
-.social-circle i {
-  color: #fff;
-  -webkit-transition: all 0.8s;
-  -moz-transition: all 0.8s;
-  -o-transition: all 0.8s;
-  -ms-transition: all 0.8s;
-  transition: all 0.8s; }
 
 /*-----------Footer-----------*/
 .footer-divider {
