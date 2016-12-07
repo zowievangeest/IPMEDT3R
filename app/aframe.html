@@ -6,6 +6,7 @@
     <script src="js/main.min.js"></script>
     <script src="js/aframe-v0.3.2.min.js"></script>
     <script src="js/aframefunctions.js"></script>
+    <script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>
 </head>
 <body>
 <a-scene>
@@ -28,6 +29,7 @@
         <a-asset-item id="hoverboard-stroke-red-mtl" src="./models/hoverboard_stroke_red/hoverboard_stroke_red.mtl"></a-asset-item>
 
 
+
         <!--Floor texture-->
         <img id="floor" src="./img/textures/floor/texture_floor.jpg"></img>
     </a-assets>
@@ -46,11 +48,18 @@
     <!--Hoverboard base OBJ-->
     <a-entity id="hoverboard" position="0 0.9 -3.65">
         <!--Hoverboard base OBJ-->
-        <a-entity id="hoverboard-base" obj-model="obj: #hoverboard-base-obj; mtl: #hoverboard-base-mtl" position="0 0 0" rotation="0 180 0" scale="" visible="" material=""></a-entity>
+        <a-entity id="hoverboard-base" obj-model="obj: #hoverboard-base-obj; mtl: #hoverboard-base-mtl" position="0 0 0" rotation="0 180 0" scale="1 1 1" visible="" material=""></a-entity>
 
         <!--Hoverboard stroke OBJ-->
-        <a-entity id="hoverboard-stroke" obj-model="obj: #hoverboard-stroke-none-obj; mtl: #hoverboard-stroke-none-mtl" position="0 0 0" rotation="0 180 0" scale="" visible="" material=""></a-entity>
+        <a-entity id="hoverboard-stroke" obj-model="obj: #hoverboard-stroke-none-obj; mtl: #hoverboard-stroke-none-mtl" position="0 0 0" rotation="0 180 0" scale="1 1 1" visible="" material=""></a-entity>
     </a-entity>
+
+    <!--Zoombuttons-->
+    <a-entity id="zoomButtons">
+        <a-entity id="zoomInButton" position="-0.88 0.67 -1.75" scale="0.2 0.2 0.2" geometry="primitive:circle" material="color: gray"></a-entity>
+        <a-entity id="zoomOutButton" position="0.9 0.67 -1.75" scale="0.2 0.2 0.2" geometry="primitive:circle" material="color: gray"></a-entity>
+    </a-entity>
+
 
     <!--Floor base Entity-->
     <a-entity id="floor" position="0 0 0" rotation="0 0 0" geometry="height:0.02;depth:40;width:40" material="src: #floor; repeat: 40 40"></a-entity>
