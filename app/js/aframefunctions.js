@@ -47,5 +47,13 @@ $(document).ready(function () {
         });
     }
 
+    for(i = 1; i < 9; i++){
+        var color = document.getElementById("skybox-color" + i);
+        color.addEventListener('mouseenter', function () {
+            var colorCode = $(this).attr('material')['color'];
+            $('#sky').attr('color', colorCode);
+        })
+    }
+
 });
 

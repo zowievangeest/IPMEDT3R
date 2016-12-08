@@ -39,10 +39,11 @@
         <a-cursor color="white" material="" raycaster="" cursor="" geometry="" position="" rotation="" scale="" visible=""></a-cursor>
     </a-camera>
 
-    <a-entity id="color-picker">
-        <a-entity id="color-none" position="-5.95 7.55 -11.18" geometry="primitive:circle" material="color:#ffffff"></a-entity>
-        <a-entity id="color-blue" position="-2.74 7.55 -11.18" geometry="primitive:circle" material="color:#1B19E7"></a-entity>
-        <a-entity id="color-red" position="0.4 7.55 -11.18" geometry="primitive:circle" material="color:#E70909"></a-entity>
+    <a-entity id="color-picker" position="-4.43 3.19 -2.95">
+        <a-entity id="color-picker-text" position="0 0.44 0" bmfont-text="text:Hoverboard color:;letterSpacing:0.54;color:#ffffff"></a-entity>
+        <a-entity id="color-none" position="0 0 0" geometry="primitive:circle;radius:0.3" material="color:#ffffff"></a-entity>
+        <a-entity id="color-blue" position="1.55 0 0" geometry="primitive:circle;radius:0.3" material="color:#1B19E7"></a-entity>
+        <a-entity id="color-red" position="0.78 0 0" geometry="primitive:circle;radius:0.3" material="color:#E70909"></a-entity>
     </a-entity>
 
     <!--Hoverboard base OBJ-->
@@ -63,6 +64,18 @@
 
     <!--Floor base Entity-->
     <a-entity id="floor" position="0 0 0" rotation="0 0 0" geometry="height:0.02;depth:40;width:40" material="src: #floor; repeat: 40 40"></a-entity>
+
+    <a-entity id="skybox-picker" position="3.6 2.74 -2.95">
+        <a-entity id="sky-text" position="-0.31 0.83 0" bmfont-text="text:Sky color:;color:#ffffff;lineHeight:40.18;letterSpacing:2.68;width:1009.6999999999999"></a-entity>
+        <a-entity id="skybox-color1" position="0 0 0.2" geometry="primitive:circle;thetaLength:45;thetaStart:45;segments:8;radius:0.6" material="color:#ff0000"></a-entity>
+        <a-entity id="skybox-color2" position="0 0 0.2" geometry="primitive:circle;thetaLength:45;thetaStart:0;segments:8;radius:0.6" material="color:#00ff40"></a-entity>
+        <a-entity id="skybox-color3" position="0 0 0.2" geometry="primitive:circle;thetaLength:45;thetaStart:-45;segments:8;radius:0.6" material="color:#ffff00"></a-entity>
+        <a-entity id="skybox-color4" position="0 0 0.2" geometry="primitive:circle;thetaLength:45;thetaStart:-90;segments:8;radius:0.6" material="color:#0000ff"></a-entity>
+        <a-entity id="skybox-color5" position="0 0 0.2" geometry="primitive:circle;thetaLength:45;thetaStart:-135;segments:8;radius:0.6" material="color:#f47742"></a-entity>
+        <a-entity id="skybox-color6" position="0 0 0.2" geometry="primitive:circle;thetaLength:45;thetaStart:-180;segments:8;radius:0.6" material="color:#f442ee"></a-entity>
+        <a-entity id="skybox-color7" position="0 0 0.2" geometry="primitive:circle;thetaLength:45;thetaStart:-225;segments:8;radius:0.6" material="color:#42f4ce"></a-entity>
+        <a-entity id="skybox-color8" position="0 0 0.2" geometry="primitive:circle;thetaLength:45;thetaStart:-270;segments:8;radius:0.6" material="color:#2f1f3f"></a-entity>
+    </a-entity>
 
     <!--Skybox-->
     <a-sky id="sky" color="#73d8ed"></a-sky>
