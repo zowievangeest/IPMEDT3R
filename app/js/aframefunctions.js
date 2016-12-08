@@ -19,7 +19,7 @@ $(document).ready(function () {
 // functie voor texture toevoegen op mouseenter
     function addStroke(id, selector, obj, mtl) {
         id.addEventListener('mouseenter', function () {
-            selector.attr('obj-model', 'obj :' + obj + '; mtl: ' + mtl + '');
+            selector.attr('obj-model', 'obj :' + obj + '; mtl: ' + mtl);
         });
     }
 
