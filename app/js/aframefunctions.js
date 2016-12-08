@@ -11,15 +11,6 @@ $(document).ready(function () {
     var $hoverboard_stroke = $('#hoverboard-stroke');
     var $hoverboard_base = $('#hoverboard-base');
 
-//zoombuttons
-    var zoomIn = document.getElementById('zoomInButton');
-    var zoomOut = document.getElementById('zoomOutButton');
-
-//zoom variabelen aanmaken
-    var zoomvar = 1;
-    var zoommin = .1;
-    var zoomplus = -.1
-
 //aanroepen functie om kleur aan te passen
     addStroke(color_none, $hoverboard_stroke, '#hoverboard-stroke-none-obj', '#hoverboard-stroke-none-obj');
     addStroke(color_blue, $hoverboard_stroke, '#hoverboard-stroke-blue-obj', '#hoverboard-stroke-blue-mtl');
@@ -32,22 +23,34 @@ $(document).ready(function () {
         });
     }
 
+//zoombuttons
+    var zoomIn = document.getElementById('zoomInButton');
+    var zoomOut = document.getElementById('zoomOutButton');
+
+//zoom variabelen aanmaken
+    var zoomvar = 1;
+    var zoommin = .1;
+    var zoomplus = -.1
+
 //aanroepen zoomfunctie
-    zoom(zoomIn, $hoverboard_stroke, $hoverboard_base, zoomvar, zoommin);
-    zoom(zoomOut, $hoverboard_stroke, $hoverboard_base, zoomvar, zoomplus);
+    zoom(zoomIn, $hoverboard_stroke, $hoverboard_base, zoommin);
+    zoom(zoomOut, $hoverboard_stroke, $hoverboard_base, zoomplus);
 
 //zoom functie aanmaken
-
-    function zoom(id, stroke, base, zoomvar, zoomAdd) {
+    function zoom(id, stroke, base_hov, zoomAdd) {
         id.addEventListener('mouseenter', function () {
-            zoomvar = zoomvar + zoomAdd;
-            stroke.attr('scale', zoomvar, zoomvar, zoomvar);
-            base.attr('scale', zoomvar, zoomvar, zoomvar);
-
+            controlZoom(zoomAdd, stroke, base_hov);
         });
     }
 
-    for(i = 1; i < 9; i++){
+    function controlZoom(zoomAdd, stroke, base_hov) {
+        zoomvar += zoomAdd;
+        stroke.attr('scale', zoomvar, zoomvar, zoomvar);
+        base_hov.attr('scale', zoomvar, zoomvar, zoomvar);
+        console.log(zoomvar)
+    }
+
+    for (i = 1; i < 9; i++) {
         var color = document.getElementById("skybox-color" + i);
         color.addEventListener('mouseenter', function () {
             var colorCode = $(this).attr('material')['color'];
