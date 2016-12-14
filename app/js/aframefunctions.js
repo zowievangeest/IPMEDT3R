@@ -16,6 +16,13 @@ $(document).ready(function () {
     addStroke(color_blue, $hoverboard_stroke, '#hoverboard-stroke-blue-obj', '#hoverboard-stroke-blue-mtl');
     addStroke(color_red, $hoverboard_stroke, '#hoverboard-stroke-red-obj', '#hoverboard-stroke-red-mtl');
 
+    //variabelen voor rotate buttons
+    var rotate_right = document.getElementById('rotateRight');
+    var rotate_left = document.getElementById('rotateLeft');
+    var $rotAnBoard = $('#rotateAnimationBoard');
+    var $rotAnStroke = $('#rotateAnimationStroke');;
+
+
 // functie voor texture toevoegen op mouseenter
     function addStroke(id, selector, obj, mtl) {
         id.addEventListener('mouseenter', function () {
@@ -57,6 +64,29 @@ $(document).ready(function () {
             $('#sky').attr('color', colorCode);
         })
     }
+
+    //aanroepen functie
+    rotationRight(rotate_right, $rotAnBoard, $rotAnStroke);
+    rotationLeft(rotate_left, $rotAnBoard, $rotAnStroke);
+
+    //rotation function
+    //repeat = 0 werkt niet, blijft rondjes draaien
+    function rotationRight(id, strokeAn, boardAn) {
+        id.addEventListener('mouseenter', function(){
+            console.log("hovered");
+            strokeAn.attr('repeat', 0).attr('dur', 5000);
+            boardAn.attr('repeat', 0).attr('dur', 5000);
+        });
+    }
+
+    function rotationLeft(id, strokeAn, boardAn) {
+        id.addEventListener('mouseenter', function(){
+            console.log("hovered");
+            strokeAn.attr('repeat', '0').attr('dur', 5000).attr('direction', 'reverse');
+            boardAn.attr('repeat', '0').attr('dur', 5000).attr('direction', 'reverse');
+        });
+    }
+
 
 });
 
