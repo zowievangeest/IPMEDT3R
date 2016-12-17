@@ -56,6 +56,8 @@ var hoverboardManager = {
                     $('#sky').attr('color', colorCode);
                 })
             }
+
+            hoverboardManager.functions.getHoverboardImage("hoverboard");
         },
 
         addStroke: function (id, selector, obj, mtl) {
@@ -90,6 +92,27 @@ var hoverboardManager = {
                 console.log("hovered");
                 strokeAn.attr('repeat', '0').attr('dur', 5000).attr('direction', 'reverse');
                 boardAn.attr('repeat', '0').attr('dur', 5000).attr('direction', 'reverse');
+            });
+        },
+
+        getHoverboardImage: function (tag) {
+            $.ajax({
+                url: "http://api.giphy.com/v1/gifs/search?q=" + tag + "&api_key=dc6zaTOxFJmzC",
+                method: "GET", // or GET
+                dataType: "json",
+                success: function (msg) {
+                    var randomItem1 = msg.data[Math.random() * msg.data.length | 0];
+                    var randomItem2 = msg.data[Math.random() * msg.data.length | 0];
+                    var randomItem3 = msg.data[Math.random() * msg.data.length | 0];
+
+                    var video1 = randomItem1.images.fixed_width.mp4;
+                    var video2 = randomItem2.images.fixed_width.mp4;
+                    var video3 = randomItem3.images.fixed_width.mp4;
+
+                    $('#hoverboard-picture-1').attr('material', 'src :' + video1);
+                    $('#hoverboard-picture-2').attr('material', 'src :' + video2);
+                    $('#hoverboard-picture-3').attr('material', 'src :' + video3);
+                }
             });
         }
 

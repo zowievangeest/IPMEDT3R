@@ -41,6 +41,10 @@
 
         <!--Floor texture-->
         <img id="floor" src="./img/textures/floor/texture_floor.jpg"></img>
+
+        <!--gif mixin-->
+        <a-mixin id="gifs" geometry="height:3;depth:0.02;width:3"></a-mixin>
+
     </a-assets>
 
     <!--Light settings-->
@@ -103,6 +107,11 @@
         <a-entity id="skybox-color8" position="0 0 0.2" geometry="primitive:circle;thetaLength:45;thetaStart:-270;segments:8;radius:0.6" material="color:#2f1f3f"></a-entity>
     </a-entity>
 
+    <a-entity id="hoverboard-pictures" position="0 3 6">
+        <a-entity id="hoverboard-picture-1" mixin="gifs" position="3.30 0 0" material="src: "></a-entity>
+        <a-entity id="hoverboard-picture-2" mixin="gifs" material="src: "></a-entity>
+        <a-entity id="hoverboard-picture-3" mixin="gifs" position="-3.30 0 0" material="src: "></a-entity>
+    </a-entity>
     <!--Skybox-->
     <a-sky id="sky" color="#73d8ed"></a-sky>
 </a-scene>
