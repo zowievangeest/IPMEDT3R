@@ -81,12 +81,18 @@ var hoverboardManager = {
         rotationRight: function (id, boardAn) {
             id.addEventListener('mouseenter', function(){
                 $(boardAn).append('<a-animation id="rotateAnimationBoard" attribute="rotation" dur="5000" repeat="0" easing="ease-in-out"  from="0 0 0" to="0 180 0" direction="reverse"></a-animation>');
+                setTimeout(function(){
+                    $('#rotateAnimationBoard').remove();
+                },5000);
             });
         },
 
         rotationLeft: function (id, boardAn) {
             id.addEventListener('mouseenter', function(){
                 $(boardAn).append('<a-animation id="rotateAnimationBoard" attribute="rotation" dur="5000" repeat="0" easing="ease-in-out"  from="0 0 0" to="0 180 0" direction=""></a-animation>');
+                setTimeout(function(){
+                    $('#rotateAnimationBoard').remove();
+                },5000);
             });
         },
 
