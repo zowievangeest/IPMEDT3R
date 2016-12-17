@@ -26,8 +26,7 @@ var hoverboardManager = {
             //variabelen voor rotate buttons
             var rotate_right = document.getElementById('rotateRight');
             var rotate_left = document.getElementById('rotateLeft');
-            var $rotAnBoard = $('#rotateAnimationBoard');
-            var $rotAnStroke = $('#rotateAnimationStroke');
+            var $rotAnBoard = $('#hoverboard');
 
             //zoombuttons
             var zoomIn = document.getElementById('zoomInButton');
@@ -46,8 +45,8 @@ var hoverboardManager = {
             hoverboardManager.functions.zoom(zoomOut, $hoverboard_stroke, $hoverboard_base, zoomplus);
 
             // aanroepen rotation functies
-            hoverboardManager.functions.rotationRight(rotate_right, $rotAnBoard, $rotAnStroke);
-            hoverboardManager.functions.rotationLeft(rotate_left, $rotAnBoard, $rotAnStroke);
+            hoverboardManager.functions.rotationRight(rotate_right, $rotAnBoard);
+            hoverboardManager.functions.rotationLeft(rotate_left, $rotAnBoard);
 
             for (i = 1; i < 9; i++) {
                 var color = document.getElementById("skybox-color" + i);
@@ -79,19 +78,15 @@ var hoverboardManager = {
             console.log(zoomvar)
         },
 
-        rotationRight: function (id, strokeAn, boardAn) {
+        rotationRight: function (id, boardAn) {
             id.addEventListener('mouseenter', function(){
-                console.log("hovered");
-                strokeAn.attr('repeat', 0).attr('dur', 5000);
-                boardAn.attr('repeat', 0).attr('dur', 5000);
+                $(boardAn).append('<a-animation id="rotateAnimationBoard" attribute="rotation" dur="5000" repeat="0" easing="ease-in-out"  from="0 0 0" to="0 180 0" direction="reverse"></a-animation>');
             });
         },
 
-        rotationLeft: function (id, strokeAn, boardAn) {
+        rotationLeft: function (id, boardAn) {
             id.addEventListener('mouseenter', function(){
-                console.log("hovered");
-                strokeAn.attr('repeat', '0').attr('dur', 5000).attr('direction', 'reverse');
-                boardAn.attr('repeat', '0').attr('dur', 5000).attr('direction', 'reverse');
+                $(boardAn).append('<a-animation id="rotateAnimationBoard" attribute="rotation" dur="5000" repeat="0" easing="ease-in-out"  from="0 0 0" to="0 180 0" direction=""></a-animation>');
             });
         },
 
