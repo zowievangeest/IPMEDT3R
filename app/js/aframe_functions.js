@@ -18,6 +18,8 @@ var hoverboardManager = {
             var color_none = document.getElementById('color-none');
             var color_blue = document.getElementById('color-blue');
             var color_red = document.getElementById('color-red');
+            var color_green = document.getElementById('color-green');
+            var color_purple = document.getElementById('color-purple');
 
             //hoverboard stroke en hoverboard base
             var $hoverboard_stroke = $('#hoverboard-stroke');
@@ -39,6 +41,8 @@ var hoverboardManager = {
             hoverboardManager.functions.addStroke(color_none, $hoverboard_stroke, '#hoverboard-stroke-none-obj', '#hoverboard-stroke-none-obj');
             hoverboardManager.functions.addStroke(color_blue, $hoverboard_stroke, '#hoverboard-stroke-blue-obj', '#hoverboard-stroke-blue-mtl');
             hoverboardManager.functions.addStroke(color_red, $hoverboard_stroke, '#hoverboard-stroke-red-obj', '#hoverboard-stroke-red-mtl');
+            hoverboardManager.functions.addStroke(color_green, $hoverboard_stroke, '#hoverboard-stroke-green-obj', '#hoverboard-stroke-green-mtl');
+            hoverboardManager.functions.addStroke(color_purple, $hoverboard_stroke, '#hoverboard-stroke-purple-obj', '#hoverboard-stroke-purple-mtl');
 
             //aanroepen zoomfunctie
             hoverboardManager.functions.zoom(zoomIn, $hoverboard_stroke, $hoverboard_base, zoommin);
