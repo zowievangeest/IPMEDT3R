@@ -20,6 +20,7 @@ var hoverboardManager = {
             var color_red = document.getElementById('color-red');
             var color_green = document.getElementById('color-green');
             var color_purple = document.getElementById('color-purple');
+            var color_black = document.getElementById('color-black');
 
             //hoverboard stroke en hoverboard base
             var $hoverboard_stroke = $('#hoverboard-stroke');
@@ -43,14 +44,15 @@ var hoverboardManager = {
             hoverboardManager.functions.addStroke(color_red, $hoverboard_stroke, '#hoverboard-stroke-red-obj', '#hoverboard-stroke-red-mtl');
             hoverboardManager.functions.addStroke(color_green, $hoverboard_stroke, '#hoverboard-stroke-green-obj', '#hoverboard-stroke-green-mtl');
             hoverboardManager.functions.addStroke(color_purple, $hoverboard_stroke, '#hoverboard-stroke-purple-obj', '#hoverboard-stroke-purple-mtl');
+            hoverboardManager.functions.addStroke(color_black, $hoverboard_stroke, '#hoverboard-stroke-black-obj', '#hoverboard-stroke-black-mtl');
 
             //aanroepen zoomfunctie
             hoverboardManager.functions.zoom(zoomIn, $hoverboard_stroke, $hoverboard_base, zoommin);
             hoverboardManager.functions.zoom(zoomOut, $hoverboard_stroke, $hoverboard_base, zoomplus);
 
             // aanroepen rotation functies
-            hoverboardManager.functions.rotationRight(rotate_right, $rotAnBoard);
-            hoverboardManager.functions.rotationLeft(rotate_left, $rotAnBoard);
+            hoverboardManager.functions.rotationRight(rotate_left, $rotAnBoard);
+            hoverboardManager.functions.rotationLeft(rotate_right, $rotAnBoard);
 
             for (i = 1; i < 9; i++) {
                 var color = document.getElementById("skybox-color" + i);
