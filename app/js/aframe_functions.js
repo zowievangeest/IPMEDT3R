@@ -6,6 +6,7 @@ var zoomvar = 1;
 var hoverboardManager = {
     init: function () {
         hoverboardManager.setListeners();
+
     },
 
     setListeners: function () {
@@ -14,6 +15,8 @@ var hoverboardManager = {
 
     functions: {
         main_functions: function () {
+
+
             //hoverboard stroke colors
             var color_none = document.getElementById('color-none');
             var color_blue = document.getElementById('color-blue');
@@ -31,6 +34,11 @@ var hoverboardManager = {
             var rotate_left = document.getElementById('rotateLeft');
             var $rotAnBoard = $('#hoverboard');
 
+            //colorpicker
+            var color_picker = document.getElementById('color-picker');
+            var color_opener_stroke = document.getElementById('color-stroke-button');
+            var color_closer_stroke = document.getElementById('color-stroke-button-close');
+
             //zoombuttons
             var zoomIn = document.getElementById('zoomInButton');
             var zoomOut = document.getElementById('zoomOutButton');
@@ -38,6 +46,9 @@ var hoverboardManager = {
             //zoom variabelen aanmaken
             var zoommin = .1;
             var zoomplus = -.1;
+
+
+
 
             hoverboardManager.functions.addStroke(color_none, $hoverboard_stroke, '#hoverboard-stroke-none-obj', '#hoverboard-stroke-none-obj');
             hoverboardManager.functions.addStroke(color_blue, $hoverboard_stroke, '#hoverboard-stroke-blue-obj', '#hoverboard-stroke-blue-mtl');
@@ -54,6 +65,10 @@ var hoverboardManager = {
             hoverboardManager.functions.rotationRight(rotate_left, $rotAnBoard);
             hoverboardManager.functions.rotationLeft(rotate_right, $rotAnBoard);
 
+            //aanroepen color opener functies
+            hoverboardManager.functions.showColor(color_opener_stroke);
+            hoverboardManager.functions.hideColor(color_closer_stroke);
+
             for (i = 1; i < 9; i++) {
                 var color = document.getElementById("skybox-color" + i);
                 color.addEventListener('mouseenter', function () {
@@ -65,9 +80,22 @@ var hoverboardManager = {
             hoverboardManager.functions.getHoverboardImage("hoverboard");
         },
 
+        showColor: function(id) {
+            id.addEventListener('mouseenter', function() {
+                $('#color-picker').attr('visible', true);
+            });
+        },
+
+        hideColor: function(id) {
+            id.addEventListener('mouseenter', function () {
+                $('#color-picker').attr('visible', false);
+            });
+        },
+
         addStroke: function (id, selector, obj, mtl) {
             id.addEventListener('mouseenter', function () {
                 selector.attr('obj-model', 'obj :' + obj + '; mtl: ' + mtl);
+
             });
         },
 

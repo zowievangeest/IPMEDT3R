@@ -85,7 +85,14 @@
         <a-cursor color="white" material="" raycaster="" cursor="" geometry="" position="" rotation="" scale="" visible=""></a-cursor>
     </a-camera>
 
-    <a-entity id="color-picker" position="-4.43 3.19 -2.95" rotation="0 45 0">
+    <!--Color openers-->
+    <a-entity id="color-openers" >
+        <a-entity id="color-stroke-button" position="-3.87 1.67 -3.5"  geometry="primitive:circle;radius:0.3" rotation="0 45 0 " material="color: #000000"></a-entity>
+    </a-entity>
+
+    <!--Colorpicker stroke-->
+    <a-entity id="color-picker" position="-4.43 3.19 -2.95" rotation="0 45 0" visible="false">
+        <a-entity id="background" geometry="primitive:plane;height:1.8;width:2.5" position="0.78 -0.29 -0.06" material="color:black; opacity: 0.8"></a-entity>
         <a-entity id="color-picker-text" position="0 0.44 0" bmfont-text="text:Hoverboard color:;letterSpacing:0.54;color:#ffffff; shader: flat"></a-entity>
         <a-entity id="color-none" position="0 0 0" geometry="primitive:circle;radius:0.3" material="color:#ffffff; shader: flat"></a-entity>
         <a-entity id="color-blue" position="1.55 0 0" geometry="primitive:circle;radius:0.3" material="color:#1B19E7; shader: flat"></a-entity>
@@ -93,6 +100,7 @@
         <a-entity id="color-green" position="0 -0.77 0" geometry="primitive:circle;radius:0.3" material="color:#00FF00; shader: flat"></a-entity>
         <a-entity id="color-purple" position="0.78 -0.77 0" geometry="primitive:circle;radius:0.3" material="color:#E70EE1; shader: flat"></a-entity>
         <a-entity id="color-black" position="1.55 -0.77 0" geometry="primitive:circle;radius:0.3" material="color:#000000; shader: flat"></a-entity>
+        <a-entity id="color-stroke-button-close" geometry="primitive:circle;radius:0.1" position="1.92 0.44 -0.02" material="color: yellow"></a-entity>
     </a-entity>
 
     <!--Hoverboard base OBJ-->
@@ -118,6 +126,8 @@
         <a-entity id="rotateRight" position="2.8 0.7 -2.84" scale="0.15 0.15 0.15" geometry="primitive:circle;" material="src:#rotationTexRight;depthTest:true;transparent:true"></a-entity>
         <a-entity id="rotateLeft" position="-2.8 0.7 -2.84" scale="0.15 0.15 0.15" geometry="primitive:circle" rotation="0 180 0" material="transparent:true;src:#rotationTexLeft;visible:true;side:double"></a-entity>
     </a-entity>
+
+
 
     <!--Zoombuttons-->
     <a-entity id="zoomButtons">
