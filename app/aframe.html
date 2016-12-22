@@ -49,10 +49,6 @@
         <!--collada stoot-->
         <a-asset-item id="stoot-dae" src="./models/hoverboard_rubber/hoverboard_stoot_parts.dae"></a-asset-item>
 
-        <!--halfpipe model-->
-        <a-asset-item id="halfpipe-obj" src="./models/halfpipe/halfpipe.obj"></a-asset-item>
-        <a-asset-item id="halfpipe-mtl" src="./models/halfpipe/halfpipe.mtl"></a-asset-item>
-
         <!--Rotation buttons texture-->
         <img id="rotationTexRight" src="/img/textures/rotation_icon/rotate_right.png">
         <img id="rotationTexLeft" src="/img/textures/rotation_icon/rotate_right.png">
@@ -88,19 +84,20 @@
 
     <!--Camera-->
     <a-camera camera="" position="" rotation="" look-controls="" wasd-controls="" scale="" visible="">
-        <a-cursor color="white" material="" raycaster="" cursor="" geometry="" position="" rotation="" scale="2 2" visible=""></a-cursor>
+        <a-cursor color="white" material="" raycaster="" cursor="" geometry="" position="" rotation="" scale="1 1" visible=""></a-cursor>
     </a-camera>
 
     <!--Color openers-->
     <a-entity id="color-openers" position="0.1 0.24 -0.08">
-        <a-entity id="background-color-opener" geometry="primitive:plane" scale="1.5 1.5 1" position="-4.18 1.32 -3.21" rotation="0 45 0" material="color: #000000; opacity: 0.6"></a-entity>
+        <a-entity id="color-opener-text" position="-4.58 2.12 -2.75" rotation ="0 45 0" bmfont-text="text:Modify board;letterSpacing:0.54;color:#ffffff; shader: flat"></a-entity>
+        <a-entity id="background-color-opener" geometry="primitive:plane" scale="1.5 1.75 1" position="-4.18 1.43 -3.21" rotation="0 45 0" material="color: #000000; opacity: 0.6"></a-entity>
         <a-entity id="color-stroke-button" position="-3.87 1.67 -3.5"  geometry="primitive:plane;" scale="0.5 0.5 0.5" rotation="0 45 0 " material="src: #boardicon; transparent: true"></a-entity>
-        <a-entity id="color-wheel-button" position="-4.42 1.67 -2.93"  geometry="primitive:plane;" scale="0.5 0.5 0.5" rotation="0 45 0 " material="src: #wheelicon; transparent: true"></a-entity>
+        <a-entity id="size-wheel-button" position="-4.42 1.67 -2.93"  geometry="primitive:plane;" scale="0.5 0.5 0.5" rotation="0 45 0 " material="src: #wheelicon; transparent: true"></a-entity>
         <a-entity id="color-rubber-button" position="-4.38 0.99 -2.94"  geometry="primitive:plane;" scale="0.5 0.5 0.5" rotation="0 45 0 " material="src: #rubbericon; transparent: true"></a-entity>
     </a-entity>
 
     <!--Colorpicker stroke-->
-    <a-entity id="color-picker" position="-4.64 3.6 -2.71" rotation="0 45 0" visible="false">
+    <a-entity id="color-picker" position="-4.64 3.80 -2.70" rotation="0 45 0" visible="false">
         <a-entity id="background" geometry="primitive:plane;height:1.8;width:2.5" position="0.78 -0.29 -0.06" material="color:black; opacity: 0.8"></a-entity>
         <a-entity id="color-picker-text" position="0 0.44 0" bmfont-text="text:Hoverboard color;letterSpacing:0.54;color:#ffffff; shader: flat"></a-entity>
         <a-entity id="color-none" position="0 0 0" geometry="primitive:circle;radius:0.3" material="color:#ffffff; shader: flat"></a-entity>
@@ -110,6 +107,12 @@
         <a-entity id="color-purple" position="0.78 -0.77 0" geometry="primitive:circle;radius:0.3" material="color:#E70EE1; shader: flat"></a-entity>
         <a-entity id="color-black" position="1.55 -0.77 0" geometry="primitive:circle;radius:0.3" material="color:#000000; shader: flat"></a-entity>
         <a-entity id="color-stroke-button-close" geometry="primitive:circle;radius:0.1"  position="1.88 0.44 -0.02" material="src: #closebtn; transparent:true"></a-entity>
+    </a-entity>
+
+    <!--Wheel size plane-->
+    <a-entity id="wheel-size-plane" visible="false">
+        <a-entity id="backgroundwheelplane" position="-4.08 3.39 -3.27" rotation ="0 45 0" geometry="primitive:plane" scale="1.5 1.5 1" material="color: #000000; opacity: 0.8"></a-entity>
+        <a-entity id="wheel-size-button-close" geometry="primitive:circle;radius:0.1"  position="1.88 0.44 -0.02" material="src: #closebtn; transparent:true"></a-entity>
     </a-entity>
 
     <!--Hoverboard base OBJ-->
