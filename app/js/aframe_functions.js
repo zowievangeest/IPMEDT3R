@@ -3,6 +3,9 @@
  */
 var zoomvar = 1;
 
+var hover_button = new Audio('../sounds/hover_sound.mp3');
+var succes_sound = new Audio('../sounds/succes_sound.mp3');
+
 var hoverboardManager = {
     init: function () {
         hoverboardManager.setListeners();
@@ -15,7 +18,6 @@ var hoverboardManager = {
 
     functions: {
         main_functions: function () {
-
 
             //hoverboard stroke colors
             var color_none = document.getElementById('color-none');
@@ -35,7 +37,6 @@ var hoverboardManager = {
             var $rotAnBoard = $('#hoverboard');
 
             //colorpicker
-            var color_picker = document.getElementById('color-picker');
             var color_opener_stroke = document.getElementById('color-stroke-button');
             var color_closer_stroke = document.getElementById('color-stroke-button-close');
 
@@ -46,8 +47,6 @@ var hoverboardManager = {
             //zoom variabelen aanmaken
             var zoommin = .1;
             var zoomplus = -.1;
-
-
 
 
             hoverboardManager.functions.addStroke(color_none, $hoverboard_stroke, '#hoverboard-stroke-none-obj', '#hoverboard-stroke-none-obj');
@@ -62,12 +61,12 @@ var hoverboardManager = {
             hoverboardManager.functions.zoom(zoomOut, $hoverboard_stroke, $hoverboard_base, zoomplus);
 
             // aanroepen rotation functies
-            hoverboardManager.functions.rotationRight(rotate_left, $rotAnBoard);
-            hoverboardManager.functions.rotationLeft(rotate_right, $rotAnBoard);
+            hoverboardManager.functions.rotationBoard(rotate_left, $rotAnBoard, true);
+            hoverboardManager.functions.rotationBoard(rotate_right, $rotAnBoard, false);
 
             //aanroepen color opener functies
-            hoverboardManager.functions.showColor(color_opener_stroke);
-            hoverboardManager.functions.hideColor(color_closer_stroke);
+            hoverboardManager.functions.togglePanel(color_opener_stroke, "#color-picker", true);
+            hoverboardManager.functions.togglePanel(color_closer_stroke, "#color-picker", false);
 
             for (i = 1; i < 9; i++) {
                 var color = document.getElementById("skybox-color" + i);
@@ -80,22 +79,17 @@ var hoverboardManager = {
             hoverboardManager.functions.getHoverboardImage("hoverboard");
         },
 
-        showColor: function(id) {
-            id.addEventListener('mouseenter', function() {
-                $('#color-picker').attr('visible', true);
-            });
-        },
-
-        hideColor: function(id) {
+        togglePanel: function (id, visibleId, bool) {
             id.addEventListener('mouseenter', function () {
-                $('#color-picker').attr('visible', false);
+                hover_button.play();
+                $(visibleId).attr('visible', bool);
             });
         },
 
         addStroke: function (id, selector, obj, mtl) {
             id.addEventListener('mouseenter', function () {
+                succes_sound.play();
                 selector.attr('obj-model', 'obj :' + obj + '; mtl: ' + mtl);
-
             });
         },
 
@@ -112,21 +106,16 @@ var hoverboardManager = {
             console.log(zoomvar)
         },
 
-        rotationRight: function (id, boardAn) {
-            id.addEventListener('mouseenter', function(){
-                $(boardAn).append('<a-animation id="rotateAnimationBoard" attribute="rotation" dur="5000" repeat="0" easing="ease-in-out"  from="0 0 0" to="0 180 0" direction="reverse"></a-animation>');
-                setTimeout(function(){
+        rotationBoard: function (id, boardAn, bool) {
+            id.addEventListener('mouseenter', function () {
+                if(bool){
+                    $(boardAn).append('<a-animation id="rotateAnimationBoard" attribute="rotation" dur="5000" repeat="0" easing="ease-in-out"  from="0 0 0" to="0 180 0" direction="reverse"></a-animation>');
+                } else {
+                    $(boardAn).append('<a-animation id="rotateAnimationBoard" attribute="rotation" dur="5000" repeat="0" easing="ease-in-out"  from="0 0 0" to="0 180 0" direction=""></a-animation>');
+                }
+                setTimeout(function () {
                     $('#rotateAnimationBoard').remove();
-                },5000);
-            });
-        },
-
-        rotationLeft: function (id, boardAn) {
-            id.addEventListener('mouseenter', function(){
-                $(boardAn).append('<a-animation id="rotateAnimationBoard" attribute="rotation" dur="5000" repeat="0" easing="ease-in-out"  from="0 0 0" to="0 180 0" direction=""></a-animation>');
-                setTimeout(function(){
-                    $('#rotateAnimationBoard').remove();
-                },5000);
+                }, 5000);
             });
         },
 
@@ -149,7 +138,7 @@ var hoverboardManager = {
                     $('#hoverboard-picture-3').attr('material', 'src :' + video3);
                 }
             });
-        }
+        },
 
     }
 };
