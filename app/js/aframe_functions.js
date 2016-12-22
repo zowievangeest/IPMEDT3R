@@ -39,6 +39,8 @@ var hoverboardManager = {
             //colorpicker
             var color_opener_stroke = document.getElementById('color-stroke-button');
             var color_closer_stroke = document.getElementById('color-stroke-button-close');
+            var wheel_size_opener = document.getElementById('size-wheel-button');
+            var wheel_size_closer = document.getElementById('wheel-size-button-close');
 
             //zoombuttons
             var zoomIn = document.getElementById('zoomInButton');
@@ -67,6 +69,8 @@ var hoverboardManager = {
             //aanroepen color opener functies
             hoverboardManager.functions.togglePanel(color_opener_stroke, "#color-picker", true);
             hoverboardManager.functions.togglePanel(color_closer_stroke, "#color-picker", false);
+            hoverboardManager.functions.togglePanel(wheel_size_opener, "#wheel-size-plane", true);
+
 
             for (i = 1; i < 9; i++) {
                 var color = document.getElementById("skybox-color" + i);
