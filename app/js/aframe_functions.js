@@ -58,6 +58,11 @@ hoverboardManager = {
             var rubber_color_opener = document.getElementById('color-rubber-button');
             var rubber_color_closer = document.getElementById('color-rubber-button-close');
 
+            // check if panels are toggled else close them
+            hoverboardManager.functions.checkTogglePanels(color_opener_stroke, "#color-picker-rubber", '#wheel-size-plane');
+            hoverboardManager.functions.checkTogglePanels(wheel_size_opener, "#color-picker", '#color-picker-rubber');
+            hoverboardManager.functions.checkTogglePanels(rubber_color_opener, "#color-picker", '#wheel-size-plane');
+
             //zoombuttons
             var zoomIn = document.getElementById('zoomInButton');
             var zoomOut = document.getElementById('zoomOutButton');
@@ -89,12 +94,12 @@ hoverboardManager = {
             hoverboardManager.functions.addStroke(color_black, $hoverboard_stroke, '#hoverboard-stroke-black-obj', '#hoverboard-stroke-black-mtl');
 
             //colors function for rubber part
-            hoverboardManager.functions.addRubber(color_black_rubber, $rubber_base, '#rubber-dae-black', '-0.03 0.17 0.00');
-            hoverboardManager.functions.addRubber(color_blue_rubber, $rubber_base, '#rubber-dae-blue', '-0.03 0.17 0.00');
-            hoverboardManager.functions.addRubber(color_red_rubber, $rubber_base, '#rubber-dae-red', '-0.03 0.17 0.00');
-            hoverboardManager.functions.addRubber(color_green_rubber, $rubber_base, '#rubber-dae-green', '-0.03 0.17 0.00');
-            hoverboardManager.functions.addRubber(color_purple_rubber, $rubber_base, '#rubber-dae-purple', '-0.03 0.17 0.00');
-            hoverboardManager.functions.addRubber(color_none_rubber, $rubber_base, '#rubber-dae', '0 0 0' );
+            hoverboardManager.functions.addRubber(color_black_rubber, $rubber_base, '#rubber-dae-black', '-0.03 0 0');
+            hoverboardManager.functions.addRubber(color_blue_rubber, $rubber_base, '#rubber-dae-blue', '-0.03 0 0');
+            hoverboardManager.functions.addRubber(color_red_rubber, $rubber_base, '#rubber-dae-red', '-0.03 0 0');
+            hoverboardManager.functions.addRubber(color_green_rubber, $rubber_base, '#rubber-dae-green', '-0.03 0 0');
+            hoverboardManager.functions.addRubber(color_purple_rubber, $rubber_base, '#rubber-dae-purple', '-0.03 0 0');
+            hoverboardManager.functions.addRubber(color_none_rubber, $rubber_base, '#rubber-dae', '0 -0.16 0' );
 
             //aanroepen zoomfunctie
             hoverboardManager.functions.zoom(zoomIn, $hoverboard_stroke, $hoverboard_base, zoommin);
@@ -135,6 +140,14 @@ hoverboardManager = {
             });
         },
 
+        checkTogglePanels : function (picker, atr1, atr2) {
+            picker.addEventListener('mouseenter', function () {
+                $(atr1).attr('visible', false);
+                $(atr2).attr('visible', false);
+            });
+
+        },
+
         addStroke: function (id, selector, obj, mtl) {
             id.addEventListener('mouseenter', function () {
                 succes_sound.play();
@@ -146,7 +159,8 @@ hoverboardManager = {
         addRubber: function (id, selector, dae, position) {
             id.addEventListener('mouseenter', function () {
                 succes_sound.play();
-                selector.attr('collada-model', dae).attr('position', position);
+                $('#rubberp').remove();
+                $('#hoverboard').append('<a-entity id="rubberp" collada-model="'+ dae + '" position="' + position +'" rotation="0 180 0" scale="0.57 0.57 0.57"></a-entity>');
             });
         },
 

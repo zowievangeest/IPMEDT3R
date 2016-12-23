@@ -101,12 +101,12 @@
     </a-camera>
 
     <!--Color openers-->
-    <a-entity id="color-openers" position="0.1 0.24 -0.08">
-        <a-entity id="color-opener-text" position="-4.58 2.12 -2.75" rotation ="0 45 0" bmfont-text="text:Modify board;letterSpacing:0.54;color:#ffffff; shader: flat"></a-entity>
-        <a-entity id="background-color-opener" geometry="primitive:plane" scale="1.5 1.75 1" position="-4.18 1.43 -3.21" rotation="0 45 0" material="color: #000000; opacity: 0.6"></a-entity>
-        <a-entity id="color-stroke-button" position="-3.87 1.67 -3.5"  geometry="primitive:plane;" scale="0.5 0.5 0.5" rotation="0 45 0 " material="src: #boardicon; transparent: true"></a-entity>
-        <a-entity id="size-wheel-button" position="-4.42 1.67 -2.93"  geometry="primitive:plane;" scale="0.5 0.5 0.5" rotation="0 45 0 " material="src: #wheelicon; transparent: true"></a-entity>
-        <a-entity id="color-rubber-button" position="-4.38 0.99 -2.94"  geometry="primitive:plane;" scale="0.5 0.5 0.5" rotation="0 45 0 " material="src: #rubbericon; transparent: true"></a-entity>
+    <a-entity id="color-openers" position="1.15 0 -4" rotation="0 45 0" scale="" visible="">
+        <a-entity id="color-opener-text" position="-4.58 2.12 -2.75" bmfont-text="text:Modify board;letterSpacing:0.54;color:#ffffff; shader: flat" rotation="" scale="" visible=""></a-entity>
+        <a-entity id="background-color-opener" geometry="primitive:plane" scale="3 1.5 1" position="-4.18 1.87 -3.21" material="color: #000000; opacity: 0.6" rotation="" visible=""></a-entity>
+        <a-entity id="color-stroke-button" position="-3.23 1.67 -3" geometry="primitive:plane;" scale="0.5 0.5 0.5" material="src: #boardicon; transparent: true" rotation="" visible=""></a-entity>
+        <a-entity id="size-wheel-button" position="-4.05 1.67 -2.93" geometry="primitive:plane;" scale="0.5 0.5 0.5" material="src: #wheelicon; transparent: true" rotation="" visible=""></a-entity>
+        <a-entity id="color-rubber-button" position="-5.04 1.67 -2.94" geometry="primitive:plane;" scale="0.5 0.5 0.5" material="src: #rubbericon; transparent: true" rotation="" visible=""></a-entity>
     </a-entity>
 
     <!--Colorpicker stroke-->
@@ -158,9 +158,7 @@
         <a-entity id="stootparts" position="0 -0.06 0">
             <a-entity id="stootp" collada-model="#stoot-dae" rotation="0 180 0" scale="0.6 0.6 0.6"></a-entity>
         </a-entity>
-        <a-entity id="rubberpart" position="0 -0.2 0">
-            <a-entity id="rubberp" collada-model="#rubber-dae" position="" rotation="0 180 0" scale="0.57 0.57 0.57"></a-entity>
-        </a-entity>
+        <a-entity id="rubberp" collada-model="#rubber-dae" position="0 -0.2 0" rotation="0 180 0" scale="0.57 0.57 0.57"></a-entity>
     </a-entity>
 
     <!--Rotation buttons-->
