@@ -32,11 +32,11 @@
         <a-asset-item id="hoverboard-stroke-green-obj" src="./models/hoverboard_stroke_green/hoverboard_stroke_green.obj"></a-asset-item>
         <a-asset-item id="hoverboard-stroke-green-mtl" src="./models/hoverboard_stroke_green/hoverboard_stroke_green.mtl"></a-asset-item>
 
-        <!--&lt;!&ndash;&lt;!&ndash;Hoverboard stroke purple&ndash;&gt;&ndash;&gt;-->
+        <!--Hoverboard stroke purple-->
         <a-asset-item id="hoverboard-stroke-purple-obj" src="./models/hoverboard_stroke_purple/hoverboard_stroke_purple.obj"></a-asset-item>
         <a-asset-item id="hoverboard-stroke-purple-mtl" src="./models/hoverboard_stroke_purple/hoverboard_stroke_purple.mtl"></a-asset-item>
 
-        <!--&lt;!&ndash;&lt;!&ndash;Hoverboard strok black&ndash;&gt;&ndash;&gt;-->
+        <!--Hoverboard stroke black-->
         <a-asset-item id="hoverboard-stroke-black-obj" src="./models/hoverboard_stroke_black/hoverboard_stroke_black.obj"></a-asset-item>
         <a-asset-item id="hoverboard-stroke-black-mtl" src="./models/hoverboard_stroke_black/hoverboard_stroke_black.mtl"></a-asset-item>
 
@@ -44,10 +44,16 @@
         <a-asset-item id="wheel-base-dae" src="./models/wheel_base/wheel_base.dae"></a-asset-item>
 
         <!--collada rubber-->
-        <a-asset-item id="rubber-dae" src="./models/hoverboard_rubber/hoverboard_rubber_parts.dae"></a-asset-item>
+        <a-asset-item id="rubber-dae" src="./models/hoverboard_rubber_none/hoverboard_rubber_parts.dae"></a-asset-item>
+        <a-asset-item id="rubber-dae-black" src="./models/hoverboard_rubber_black/hoverboard_rubber_black.dae"></a-asset-item>
+        <a-asset-item id="rubber-dae-green" src="./models/hoverboard_rubber_green/hoverboard_rubber_green.dae"></a-asset-item>
+        <a-asset-item id="rubber-dae-purple" src="./models/hoverboard_rubber_purple/hoverboard_rubber_purple.dae"></a-asset-item>
+        <a-asset-item id="rubber-dae-green" src="./models/hoverboard_rubber_green/hoverboard_rubber_green.dae"></a-asset-item>
+        <a-asset-item id="rubber-dae-red" src="./models/hoverboard_rubber_red/hoverboard_rubber_red.dae"></a-asset-item>
+        <a-asset-item id="rubber-dae-blue" src="./models/hoverboard_rubber_blue/hoverboard_rubber_blue.dae"></a-asset-item>
 
         <!--collada stoot-->
-        <a-asset-item id="stoot-dae" src="./models/hoverboard_rubber/hoverboard_stoot_parts.dae"></a-asset-item>
+        <a-asset-item id="stoot-dae" src="./models/hoverboard_stoot/hoverboard_stoot_parts.dae"></a-asset-item>
 
         <!--Rotation buttons texture-->
         <img id="rotationTexRight" src="/img/textures/rotation_icon/rotate_right.png">
@@ -59,6 +65,10 @@
 
         <!-- save button texture -->
         <img id="save-button-png" src="/img/textures/save_icon/save_button.png">
+
+        <!--size buttons textures-->
+        <img id="sizeplus" src="./img/textures/wheel_size_icon/plus.png">
+        <img id="sizeminus" src="./img/textures/wheel_size_icon/minus.png">
 
         <!--closebutton colorpanel-->
         <img id="closebtn" src="./img/textures/color_panel/closebtn.png">
@@ -112,11 +122,28 @@
         <a-entity id="color-stroke-button-close" geometry="primitive:circle;radius:0.1"  position="1.88 0.44 -0.02" material="src: #closebtn; transparent:true"></a-entity>
     </a-entity>
 
+    <!--Colorpicker rubber-->
+    <a-entity id="color-picker-rubber" position="-4.64 3.80 -2.70" rotation="0 45 0" visible="false">
+        <a-entity id="background-rubber" geometry="primitive:plane;height:1.8;width:2.5" position="0.78 -0.29 -0.06" material="color:black; opacity: 0.8"></a-entity>
+        <a-entity id="color-picker-text-rubber" position="0 0.44 0" bmfont-text="text:Rubber color;letterSpacing:0.54;color:#ffffff; shader: flat"></a-entity>
+        <a-entity id="color-none-rubber" position="0 0 0" geometry="primitive:circle;radius:0.3" material="color:#ffffff; shader: flat"></a-entity>
+        <a-entity id="color-blue-rubber" position="1.55 0 0" geometry="primitive:circle;radius:0.3" material="color:#1B19E7; shader: flat"></a-entity>
+        <a-entity id="color-red-rubber" position="0.78 0 0" geometry="primitive:circle;radius:0.3" material="color:#E70909; shader: flat"></a-entity>
+        <a-entity id="color-green-rubber" position="0 -0.77 0" geometry="primitive:circle;radius:0.3" material="color:#00FF00; shader: flat"></a-entity>
+        <a-entity id="color-purple-rubber" position="0.78 -0.77 0" geometry="primitive:circle;radius:0.3" material="color:#E70EE1; shader: flat"></a-entity>
+        <a-entity id="color-black-rubber" position="1.55 -0.77 0" geometry="primitive:circle;radius:0.3" material="color:#000000; shader: flat"></a-entity>
+        <a-entity id="color-rubber-button-close" geometry="primitive:circle;radius:0.1"  position="1.88 0.44 -0.02" material="src: #closebtn; transparent:true"></a-entity>
+    </a-entity>
+
     <!--Wheel size plane-->
     <a-entity id="wheel-size-plane" visible="false">
+        <a-entity id="text-wheel-plane" position="-4.44 3.9 -2.9" rotation="0 45 0" bmfont-text="text:Wheel size;letterSpacing:0.54;color:#ffffff; shader: flat"></a-entity>
         <a-entity id="backgroundwheelplane" position="-4.08 3.39 -3.27" rotation ="0 45 0" geometry="primitive:plane" scale="1.5 1.5 1" material="color: #000000; opacity: 0.8"></a-entity>
-        <a-entity id="wheel-size-button-close" geometry="primitive:circle;radius:0.1"  position="1.88 0.44 -0.02" material="src: #closebtn; transparent:true"></a-entity>
+        <a-entity id="wheel-size-button-close" geometry="primitive:circle;radius:0.1"  position="-3.66 3.97 -3.68" rotation="0 45 0" material="src: #closebtn; transparent:true"></a-entity>
+        <a-entity id="size-plus-button" geometry="primitive:circle;radius:0.25" position="-4.1 3.6 -3.24" rotation="0 45 0" material="src: #sizeplus; transparent: true"></a-entity>
+        <a-entity id="size-minus-button" geometry="primitive:circle;radius:0.25" position="-4.1 3 -3.24" rotation="0 45 0" material="src: #sizeminus; transparent: true"></a-entity>
     </a-entity>
+
 
     <!--Hoverboard base OBJ-->
     <a-entity id="hoverboard" position="0 0.9 -3.65">
@@ -132,7 +159,7 @@
             <a-entity id="stootp" collada-model="#stoot-dae" rotation="0 180 0" scale="0.6 0.6 0.6"></a-entity>
         </a-entity>
         <a-entity id="rubberpart" position="0 -0.2 0">
-            <a-entity id="rubberp" collada-model="#rubber-dae" rotation="0 180 0" scale="0.57 0.57 0.57"></a-entity>
+            <a-entity id="rubberp" collada-model="#rubber-dae" position="" rotation="0 180 0" scale="0.57 0.57 0.57"></a-entity>
         </a-entity>
     </a-entity>
 
@@ -141,8 +168,6 @@
         <a-entity id="rotateRight" position="2.8 0.7 -2.84" scale="0.15 0.15 0.15" geometry="primitive:circle;" material="src:#rotationTexRight;depthTest:true;transparent:true"></a-entity>
         <a-entity id="rotateLeft" position="-2.8 0.7 -2.84" scale="0.15 0.15 0.15" geometry="primitive:circle" rotation="0 180 0" material="transparent:true;src:#rotationTexLeft;visible:true;side:double"></a-entity>
     </a-entity>
-
-
 
     <!--Zoombuttons-->
     <a-entity id="zoomButtons">
