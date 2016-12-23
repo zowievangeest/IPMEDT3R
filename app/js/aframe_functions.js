@@ -2,6 +2,7 @@
  * Created by Zowie on 12/17/2016.
  */
 var zoomvar = 1;
+var zoomvarWheel = 0.8;
 
 var hover_button = new Audio('../sounds/hover_sound.mp3');
 var succes_sound = new Audio('../sounds/succes_sound.mp3');
@@ -31,26 +32,46 @@ var hoverboardManager = {
             var $hoverboard_stroke = $('#hoverboard-stroke');
             var $hoverboard_base = $('#hoverboard-base');
 
+            //rubber part colors
+            var color_none_rubber = document.getElementById('color-none-rubber');
+            var color_blue_rubber = document.getElementById('color-blue-rubber');
+            var color_red_rubber = document.getElementById('color-red-rubber');
+            var color_green_rubber = document.getElementById('color-green-rubber');
+            var color_purple_rubber = document.getElementById('color-purple-rubber');
+            var color_black_rubber = document.getElementById('color-black-rubber');
+
+            //rubber part base
+            var $rubber_base = $('#rubberp');
+            var $wheel = $('#wheel-base');
+
             //variabelen voor rotate buttons
             var rotate_right = document.getElementById('rotateRight');
             var rotate_left = document.getElementById('rotateLeft');
             var $rotAnBoard = $('#hoverboard');
 
-            //colorpicker
+            //colorpicker and size vars
             var color_opener_stroke = document.getElementById('color-stroke-button');
             var color_closer_stroke = document.getElementById('color-stroke-button-close');
             var wheel_size_opener = document.getElementById('size-wheel-button');
             var wheel_size_closer = document.getElementById('wheel-size-button-close');
+            var rubber_color_opener = document.getElementById('color-rubber-button');
+            var rubber_color_closer = document.getElementById('color-rubber-button-close');
 
             //zoombuttons
             var zoomIn = document.getElementById('zoomInButton');
             var zoomOut = document.getElementById('zoomOutButton');
 
+            //sizebuttons
+            // var sizeplus = document.getElementById('size-plus-button');
+            // var sizeminus = document.getElementById('size-minus-button');
+
             //zoom variabelen aanmaken
             var zoommin = .1;
             var zoomplus = -.1;
+            // var sizeminWheel = -.1;
+            // var sizeplusWheel = .1;
 
-
+            //colors function for stroke
             hoverboardManager.functions.addStroke(color_none, $hoverboard_stroke, '#hoverboard-stroke-none-obj', '#hoverboard-stroke-none-obj');
             hoverboardManager.functions.addStroke(color_blue, $hoverboard_stroke, '#hoverboard-stroke-blue-obj', '#hoverboard-stroke-blue-mtl');
             hoverboardManager.functions.addStroke(color_red, $hoverboard_stroke, '#hoverboard-stroke-red-obj', '#hoverboard-stroke-red-mtl');
@@ -58,9 +79,21 @@ var hoverboardManager = {
             hoverboardManager.functions.addStroke(color_purple, $hoverboard_stroke, '#hoverboard-stroke-purple-obj', '#hoverboard-stroke-purple-mtl');
             hoverboardManager.functions.addStroke(color_black, $hoverboard_stroke, '#hoverboard-stroke-black-obj', '#hoverboard-stroke-black-mtl');
 
+            //colors function for rubber part
+            hoverboardManager.functions.addRubber(color_black_rubber, $rubber_base, '#rubber-dae-black', '-0.03 0.17 0.00');
+            hoverboardManager.functions.addRubber(color_blue_rubber, $rubber_base, '#rubber-dae-blue', '-0.03 0.17 0.00');
+            hoverboardManager.functions.addRubber(color_red_rubber, $rubber_base, '#rubber-dae-red', '-0.03 0.17 0.00');
+            hoverboardManager.functions.addRubber(color_green_rubber, $rubber_base, '#rubber-dae-green', '-0.03 0.17 0.00');
+            hoverboardManager.functions.addRubber(color_purple_rubber, $rubber_base, '#rubber-dae-purple', '-0.03 0.17 0.00');
+            hoverboardManager.functions.addRubber(color_none_rubber, $rubber_base, '#rubber-dae', '0 0 0' );
+
             //aanroepen zoomfunctie
             hoverboardManager.functions.zoom(zoomIn, $hoverboard_stroke, $hoverboard_base, zoommin);
             hoverboardManager.functions.zoom(zoomOut, $hoverboard_stroke, $hoverboard_base, zoomplus);
+
+            //aanroepen scalefunctie
+            // hoverboardManager.functions.adjustSize(sizeminus, $wheel, sizeminWheel);
+            // hoverboardManager.functions.adjustSize(sizeplus, $wheel, sizeplusWheel);
 
             // aanroepen rotation functies
             hoverboardManager.functions.rotationBoard(rotate_left, $rotAnBoard, true);
@@ -70,6 +103,9 @@ var hoverboardManager = {
             hoverboardManager.functions.togglePanel(color_opener_stroke, "#color-picker", true);
             hoverboardManager.functions.togglePanel(color_closer_stroke, "#color-picker", false);
             hoverboardManager.functions.togglePanel(wheel_size_opener, "#wheel-size-plane", true);
+            hoverboardManager.functions.togglePanel(wheel_size_closer, "#wheel-size-plane", false);
+            hoverboardManager.functions.togglePanel(rubber_color_opener, "#color-picker-rubber", true);
+            hoverboardManager.functions.togglePanel(rubber_color_closer, "#color-picker-rubber", false);
 
 
             for (i = 1; i < 9; i++) {
@@ -97,18 +133,41 @@ var hoverboardManager = {
             });
         },
 
+        addRubber: function (id, selector, dae, position) {
+            id.addEventListener('mouseenter', function () {
+                succes_sound.play();
+                selector.attr('collada-model', dae).attr('position', position);
+            });
+        },
+
         zoom: function (id, stroke, base_hov, zoomAdd) {
             id.addEventListener('mouseenter', function () {
                 hoverboardManager.functions.controlZoom(zoomAdd, stroke, base_hov);
             });
         },
 
-        controlZoom: function (zoomAdd, stroke, base_hov) {
-            zoomvar += zoomAdd;
-            stroke.attr('scale', zoomvar, zoomvar, zoomvar);
-            base_hov.attr('scale', zoomvar, zoomvar, zoomvar);
-            console.log(zoomvar)
+        // adjustSize: function (id, wheel, zoomAddWheel) {
+        //     id.addEventListener('mouseenter', function () {
+        //         console.log('hover');
+        //         hoverboardManager.functions.controlScale(wheel, zoomAddWheel);
+        //     });
+        // },
+
+        controlScale: function (wheel, zoomAddWheel) {
+            zoomvarWheel += zoomAddWheel;
+            if (zoomvarWheel <= 1)
+            {
+                wheel.attr('scale', zoomvarWheel, zoomvarWheel, zoomvarWheel);
+                console.log(zoomvarWheel)
+            }
         },
+
+        // controlZoom: function (zoomAdd, stroke, base_hov) {
+        //     zoomvar += zoomAdd;
+        //     stroke.attr('scale', zoomvar, zoomvar, zoomvar);
+        //     base_hov.attr('scale', zoomvar, zoomvar, zoomvar);
+        //     console.log(zoomvar)
+        // },
 
         rotationBoard: function (id, boardAn, bool) {
             id.addEventListener('mouseenter', function () {
