@@ -11,7 +11,7 @@
 <body>
 <a-scene>
     <!--Aframe ASSETS-->
-    <a-assets stats>
+    <a-assets>
         <!--Hoverboard base-->
         <a-asset-item id="hoverboard-base-obj" src="./models/hoverboard_base/hoverboard_base.obj"></a-asset-item>
         <a-asset-item id="hoverboard-base-mtl" src="./models/hoverboard_base/hoverboard_base.mtl"></a-asset-item>
@@ -57,6 +57,9 @@
         <img id="lengthPlus" src="/img/textures/length_icon/length_plus.png">
         <img id="lengthMinus" src="/img/textures/length_icon/length_minus.png">
 
+        <!-- save button texture -->
+        <img id="save-button-png" src="/img/textures/save_icon/save_button.png">
+
         <!--closebutton colorpanel-->
         <img id="closebtn" src="./img/textures/color_panel/closebtn.png">
         <img id="boardicon" src="./img/textures/color_panel/board.png">
@@ -83,7 +86,7 @@
     <a-entity id="light2" light="intensity:1.4;target:null" position="0 10 -30"></a-entity>
 
     <!--Camera-->
-    <a-camera camera="" position="" rotation="" look-controls="" wasd-controls="" scale="" visible="">
+    <a-camera id="camera" camera="" position="" rotation="" look-controls="" wasd-controls="" scale="" visible="">
         <a-cursor color="white" material="" raycaster="" cursor="" geometry="" position="" rotation="" scale="1 1" visible=""></a-cursor>
     </a-camera>
 
@@ -176,6 +179,7 @@
     <!--Floor base Entity-->
     <a-entity id="floor" geometry="mergeTo:null;depth:40;height:0.02;width:40" material="shader:flat;repeat:  40 40;src:./img/textures/floor/texture_floor.jpg"></a-entity>
 
+    <!-- skybox Picker -->
     <a-entity id="skybox-picker" position="3.6 2.74 -2.95" rotation="0 -45 0">
         <a-entity id="sky-text" position="-0.31 0.83 0" bmfont-text="text:Sky color:;color:#ffffff;lineHeight:40.18;letterSpacing:2.68;width:1009.6999999999999"></a-entity>
         <a-entity id="skybox-color1" position="0 0 0.2" geometry="primitive:circle;thetaLength:45;thetaStart:45;segments:8;radius:0.6" material="color:#ff0000; shader: flat"></a-entity>
@@ -188,10 +192,21 @@
         <a-entity id="skybox-color8" position="0 0 0.2" geometry="primitive:circle;thetaLength:45;thetaStart:-270;segments:8;radius:0.6" material="color:#2f1f3f; shader: flat"></a-entity>
     </a-entity>
 
+    <!-- hoverboard api pictures -->
     <a-entity id="hoverboard-pictures" position="0 3 6">
         <a-entity id="hoverboard-picture-1" mixin="gifs" position="3.30 0 0" material="src: "></a-entity>
         <a-entity id="hoverboard-picture-2" mixin="gifs" material="src: "></a-entity>
         <a-entity id="hoverboard-picture-3" mixin="gifs" position="-3.30 0 0" material="src: "></a-entity>
+    </a-entity>
+
+    <!-- hoverboard save -->
+    <a-entity id="save-hoverboard" position="-2.2 0.50 -1.75" rotation="0 20 0">
+        <a-entity id="saveButton" scale="0.8 0.4 0.4" geometry="primitive:plane" material="src:#save-button-png;"></a-entity>
+    </a-entity>
+
+    <!-- cloned hoverboard -->
+    <a-entity id="cloned-hoverboard" position="0 0 7">
+
     </a-entity>
     <!--Skybox-->
     <a-sky id="sky" color="#73d8ed"></a-sky>
