@@ -4,8 +4,8 @@
 var zoomvar = 1;
 var zoomvarWheel = 0.8;
 
-var hover_button = new Audio('../sounds/hover_sound.mp3');
-var succes_sound = new Audio('../sounds/succes_sound.mp3');
+var hover_button = new Audio('./sounds/hover_sound.mp3');
+var succes_sound = new Audio('./sounds/succes_sound.mp3');
 
 var hoverboardManager;
 hoverboardManager = {
