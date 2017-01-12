@@ -65,6 +65,10 @@
         <!--collada stoot-->
         <a-asset-item id="stoot-dae" src="./models/hoverboard_stoot/hoverboard_stoot_parts.dae"></a-asset-item>
 
+        <!--collada billboard-->
+        <a-asset-item id="billboard-dae" src="./models/billboard/billboard.dae"></a-asset-item>
+        <a-asset-item id="billboard-dae-2" src="./models/billboard/billboard2.dae"></a-asset-item>
+
         <!--Rotation buttons texture-->
         <img id="rotationTexRight" src="./img/textures/rotation_icon/rotate_right.png">
         <img id="rotationTexLeft" src="./img/textures/rotation_icon/rotate_right.png">
@@ -102,61 +106,77 @@
     </a-assets>
 
     <!--Light settings-->
-    <a-entity id ="light1" light="intensity:1.4;target:null" position="0 10 8.5"></a-entity>
-    <a-entity id="light2" light="intensity:1.4;target:null" position="0 10 -30"></a-entity>
+    <a-entity id ="light1" light="intensity:1.4;target:null" position="0 10 13.29" visible="true"></a-entity>
+    <a-entity id="light2" light="intensity:1.4;target:null" position="-23.80 10 -20.16" visible="true"></a-entity>
 
     <!--Camera-->
     <a-camera id="camera" camera="" position="" rotation="" look-controls="" wasd-controls="" scale="" visible="">
         <a-cursor color="white" material="" raycaster="" cursor="" geometry="" position="" rotation="" scale="1 1" visible=""></a-cursor>
     </a-camera>
 
-    <!--Color openers-->
-    <a-entity id="color-openers" position="1.15 0 -4" rotation="0 45 0" scale="" visible="">
-        <a-entity id="color-opener-text" position="-4.58 2.12 -2.75" bmfont-text="text:Modify board;letterSpacing:0.54;color:#ffffff; shader: flat" rotation="" scale="" visible=""></a-entity>
-        <a-entity id="background-color-opener" geometry="primitive:plane" scale="3 1.5 1" position="-4.18 1.87 -3.21" material="color: #000000; opacity: 0.6" rotation="" visible=""></a-entity>
-        <a-entity id="color-stroke-button" position="-3.23 1.67 -3" geometry="primitive:plane;" scale="0.5 0.5 0.5" material="src: #boardicon; transparent: true" rotation="" visible=""></a-entity>
-        <a-entity id="size-wheel-button" position="-4.05 1.67 -2.93" geometry="primitive:plane;" scale="0.5 0.5 0.5" material="src: #wheelicon; transparent: true" rotation="" visible=""></a-entity>
-        <a-entity id="color-rubber-button" position="-5.04 1.67 -2.94" geometry="primitive:plane;" scale="0.5 0.5 0.5" material="src: #rubbericon; transparent: true" rotation="" visible=""></a-entity>
+    <!--Modify menu-->
+    <a-entity id="modify-menu" position="4.23 0.59 -0.15" rotation="0 0 0" scale="" visible="">
+        <a-entity id="stroke-text" position="-8.04 3.52 -3.2" bmfont-text="text:Stroke Color;letterSpacing:0.4;color:#ffffff; shader: flat" rotation="" scale="" visible=""></a-entity>
+        <a-entity id="rubber-text" position="-4.75 3.52 -3.2" bmfont-text="text:Rubber Color;letterSpacing:0.4;color:#ffffff; shader: flat" rotation="" scale="" visible=""></a-entity>
+        <a-entity id="wheel-text" position="-1.5 3.52 -3.2" bmfont-text="text:Wheel size;letterSpacing:0.4;color:#ffffff; shader: flat" rotation="" scale="" visible=""></a-entity>
+        <a-entity id="board-text" position="-1.5 1.8 -3.2" bmfont-text="text:Board length;letterSpacing:0.54;color:#ffffff; shader: flat" rotation="" scale="" visible=""></a-entity>
+        <a-entity id="rubber-example" collada-model="#rubber-dae" rotation="0 180 0" scale="0.2 0.2 0.2" position="-4.18 2.97 -3.18"></a-entity>
+        <a-entity id="stroke-example" obj-model="obj: #hoverboard-stroke-none-obj; mtl: #hoverboard-stroke-none-mtl" position="-7.52 3.12 -3.21" rotation="-32.09 179.91 0" scale="0.2 1.36 0.1" material=""></a-entity>
+        <a-entity id="background-color-opener" geometry="primitive:plane" scale="9.72 4 1" position="-4.18 1.77 -3.21" material="color: #000000; opacity: 0.6" rotation="" visible=""></a-entity>
+        <a-entity id="color-stroke-button" position="-3.23 1.67 -3" geometry="primitive:plane;" scale="0.5 0.5 0.5" material="src: #boardicon; transparent: true" rotation="" visible="false"></a-entity>
+        <a-entity id="size-wheel-button" position="-4.05 1.67 -2.93" geometry="primitive:plane;" scale="0.5 0.5 0.5" material="src: #wheelicon; transparent: true" rotation="" visible="false"></a-entity>
+        <a-entity id="color-rubber-button" position="-5.04 1.67 -2.94" geometry="primitive:plane;" scale="0.5 0.5 0.5" material="src: #rubbericon; transparent: true" rotation="" visible="false"></a-entity>
     </a-entity>
 
-    <!--Colorpicker stroke-->
-    <a-entity id="color-picker" position="-4.64 3.80 -2.70" rotation="0 45 0" visible="false">
-        <a-entity id="background" geometry="primitive:plane;height:1.8;width:2.5" position="0.78 -0.29 -0.06" material="color:black; opacity: 0.8"></a-entity>
-        <a-entity id="color-picker-text" position="0 0.44 0" bmfont-text="text:Hoverboard color;letterSpacing:0.54;color:#ffffff; shader: flat"></a-entity>
-        <a-entity id="color-none" position="0 0 0" geometry="primitive:circle;radius:0.3" material="color:#ffffff; shader: flat"></a-entity>
-        <a-entity id="color-blue" position="1.55 0 0" geometry="primitive:circle;radius:0.3" material="color:#1B19E7; shader: flat"></a-entity>
-        <a-entity id="color-red" position="0.78 0 0" geometry="primitive:circle;radius:0.3" material="color:#E70909; shader: flat"></a-entity>
-        <a-entity id="color-green" position="0 -0.77 0" geometry="primitive:circle;radius:0.3" material="color:#00FF00; shader: flat"></a-entity>
-        <a-entity id="color-purple" position="0.78 -0.77 0" geometry="primitive:circle;radius:0.3" material="color:#E70EE1; shader: flat"></a-entity>
-        <a-entity id="color-black" position="1.55 -0.77 0" geometry="primitive:circle;radius:0.3" material="color:#000000; shader: flat"></a-entity>
-        <a-entity id="color-stroke-button-close" geometry="primitive:circle;radius:0.1"  position="1.88 0.44 -0.02" material="src: #closebtn; transparent:true"></a-entity>
+    <!--stroke color list-->
+    <a-entity id="color-stroke-list">
+        <a-entity id="stroke-white" position="-4.16 3.22 -3.31" geometry="primitive:circle;radius:0.2" material="color:white"></a-entity>
+        <a-entity id="stroke-blue" position="-4.16 2.72 -3.31" geometry="primitive:circle;radius:0.2" material="color:blue"></a-entity>
+        <a-entity id="stroke-purple" position="-4.16 2.22 -3.31" geometry="primitive:circle;radius:0.2" material="color:purple"></a-entity>
+        <a-entity id="stroke-black" position="-4.16 1.72 -3.31" geometry="primitive:circle;radius:0.2" material="color:black"></a-entity>
+        <a-entity id="stroke-green" position="-4.16 1.22 -3.31" geometry="primitive:circle;radius:0.2" material="color:green"></a-entity>
+        <a-entity id="stroke-red" position="-4.16 0.72 -3.31" geometry="primitive:circle;radius:0.2" material="color:red"></a-entity>
     </a-entity>
 
-    <!--Colorpicker rubber-->
-    <a-entity id="color-picker-rubber" position="-4.64 3.80 -2.70" rotation="0 45 0" visible="false">
-        <a-entity id="background-rubber" geometry="primitive:plane;height:1.8;width:2.5" position="0.78 -0.29 -0.06" material="color:black; opacity: 0.8"></a-entity>
-        <a-entity id="color-picker-text-rubber" position="0 0.44 0" bmfont-text="text:Rubber color;letterSpacing:0.54;color:#ffffff; shader: flat"></a-entity>
-        <a-entity id="color-none-rubber" position="0 0 0" geometry="primitive:circle;radius:0.3" material="color:#ffffff; shader: flat"></a-entity>
-        <a-entity id="color-blue-rubber" position="1.55 0 0" geometry="primitive:circle;radius:0.3" material="color:#1B19E7; shader: flat"></a-entity>
-        <a-entity id="color-red-rubber" position="0.78 0 0" geometry="primitive:circle;radius:0.3" material="color:#E70909; shader: flat"></a-entity>
-        <a-entity id="color-green-rubber" position="0 -0.77 0" geometry="primitive:circle;radius:0.3" material="color:#00FF00; shader: flat"></a-entity>
-        <a-entity id="color-purple-rubber" position="0.78 -0.77 0" geometry="primitive:circle;radius:0.3" material="color:#E70EE1; shader: flat"></a-entity>
-        <a-entity id="color-black-rubber" position="1.55 -0.77 0" geometry="primitive:circle;radius:0.3" material="color:#000000; shader: flat"></a-entity>
-        <a-entity id="color-rubber-button-close" geometry="primitive:circle;radius:0.1"  position="1.88 0.44 -0.02" material="src: #closebtn; transparent:true"></a-entity>
+    <!--rubber color list-->
+    <a-entity id="color-rubber-list" position="3.2  0 0">
+        <a-entity id="rubber-white" position="-4.16 3.22 -3.31" geometry="primitive:circle;radius:0.2" material="color:white"></a-entity>
+        <a-entity id="rubber-blue" position="-4.16 2.72 -3.31" geometry="primitive:circle;radius:0.2" material="color:blue"></a-entity>
+        <a-entity id="rubber-purple" position="-4.16 2.22 -3.31" geometry="primitive:circle;radius:0.2" material="color:purple"></a-entity>
+        <a-entity id="rubber-black" position="-4.16 1.72 -3.31" geometry="primitive:circle;radius:0.2" material="color:black"></a-entity>
+        <a-entity id="rubber-green" position="-4.16 1.22 -3.31" geometry="primitive:circle;radius:0.2" material="color:green"></a-entity>
+        <a-entity id="rubber-red" position="-4.16 0.72 -3.31" geometry="primitive:circle;radius:0.2" material="color:red"></a-entity>
     </a-entity>
 
-    <!--Wheel size plane-->
-    <a-entity id="wheel-size-plane" visible="false">
-        <a-entity id="text-wheel-plane" position="-4.44 3.9 -2.9" rotation="0 45 0" bmfont-text="text:Wheel size;letterSpacing:0.54;color:#ffffff; shader: flat"></a-entity>
-        <a-entity id="backgroundwheelplane" position="-4.08 3.39 -3.27" rotation ="0 45 0" geometry="primitive:plane" scale="1.5 1.5 1" material="color: #000000; opacity: 0.8"></a-entity>
-        <a-entity id="wheel-size-button-close" geometry="primitive:circle;radius:0.1"  position="-3.66 3.97 -3.68" rotation="0 45 0" material="src: #closebtn; transparent:true"></a-entity>
-        <a-entity id="size-plus-button" geometry="primitive:circle;radius:0.25" position="-4.1 3.6 -3.24" rotation="0 45 0" material="src: #sizeplus; transparent: true"></a-entity>
-        <a-entity id="size-minus-button" geometry="primitive:circle;radius:0.25" position="-4.1 3 -3.24" rotation="0 45 0" material="src: #sizeminus; transparent: true"></a-entity>
+    <!--name of colors list-->
+    <a-entity id="color-name-list" position="0.3 0 0">
+        <a-entity id="name-white" bmfont-text="text:White                            White;letterSpacing:0.54;color:#ffffff; shader: flat" position="-3.66 3.15 -3.32"></a-entity>
+        <a-entity id="name-blue" bmfont-text="text:Blue                             Blue;letterSpacing:0.54;color:#ffffff; shader: flat" position="-3.66 2.65 -3.32"></a-entity>
+        <a-entity id="name-purple" bmfont-text="text:Purple                           Purple;letterSpacing:0.54;color:#ffffff; shader: flat" position="-3.66 2.15 -3.32"></a-entity>
+        <a-entity id="name-black" bmfont-text="text:Black                            Black;letterSpacing:0.54;color:#ffffff; shader: flat" position="-3.66 1.65 -3.32"></a-entity>
+        <a-entity id="name-green" bmfont-text="text:Green                            Green;letterSpacing:0.54;color:#ffffff; shader: flat" position="-3.66 1.15 -3.32"></a-entity>
+        <a-entity id="name-red" bmfont-text="text:Red                              Red;letterSpacing:0.54;color:#ffffff; shader: flat" position="-3.66 0.65 -3.32"></a-entity>
     </a-entity>
 
+    <!--Summary selection-->
+    <a-entity id="summary-list" position="-2.24 3.01 5.89" rotation="0 180 0">
+        <a-entity id="summary-background"  geometry="primitive:plane;height:3.04;width:3.02" material="color:black;opacity:0.8"></a-entity>
+        <a-entity id="summary-text" scale="1.4 1.4 1.4" position="-0.44 1.25 0.01" bmfont-text="text:Summary;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+        <a-entity id="summary-board-text" scale="1.1 1.1 1.1" position="-1.41 0.83 0.01" bmfont-text="text:Boardtesttest;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+        <a-entity id="summary-board-price" scale="1.1 1.1 1.1" position="0.85 0.83 0.01" bmfont-text="text:100;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+        <a-entity id="summary-stroke-text" scale="1.1 1.1 1.1" position="-1.41 0.53 0.01" bmfont-text="text:Stroketesttest;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+        <a-entity id="summary-stroke-price" scale="1.1 1.1 1.1" position="0.85 0.53 0.01" bmfont-text="text:100;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+        <a-entity id="summary-rubber-text" scale="1.1 1.1 1.1" position="-1.41 0.21 0.01" bmfont-text="text:Rubbertesttest;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+        <a-entity id="summary-rubber-price" scale="1.1 1.1 1.1" position="0.85 0.21 0.01" bmfont-text="text:100;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+        <a-entity id="summary-wheelsize-text" scale="1.1 1.1 1.1" position="-1.41 -0.1 0.01" bmfont-text="text:Wheeltesttest;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+        <a-entity id="summary-wheel-price" scale="1.1 1.1 1.1" position="0.85 -0.1 0.01" bmfont-text="text:100;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+        <a-entity id="summary-boardlength-text" scale="1.1 1.1 1.1" position="-1.41 -0.43 0.01" bmfont-text="text:Lengthtesttest;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+        <a-entity id="summary-length-price" scale="1.1 1.1 1.1" position="0.85 -0.43 0.01" bmfont-text="text:100;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+        <a-entity id="summary-total-text" scale="1.3 1.3 1.3" position="-1.41 -1.0 0.01" bmfont-text="text:Total:;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+    </a-entity>
 
     <!--Hoverboard base OBJ-->
-    <a-entity id="hoverboard" position="0 0.9 -3.65">
+    <a-entity id="hoverboard" position="0 0.9 2.79" visible="">
         <!--Hoverboard base OBJ-->
         <a-entity id="hoverboard-base" obj-model="obj: #hoverboard-base-obj; mtl: #hoverboard-base-mtl" position="0 0 0" rotation="0 180 0" scale="1 1 1" visible="" material=""></a-entity>
         <!--Hoverboard stroke OBJ-->
@@ -172,15 +192,21 @@
     </a-entity>
 
     <!--Rotation buttons-->
-    <a-entity id="rotateButtons">
-        <a-entity id="rotateRight" position="2.8 0.7 -2.84" scale="0.15 0.15 0.15" geometry="primitive:circle;" material="src:#rotationTexRight;depthTest:true;transparent:true"></a-entity>
+    <a-entity id="rotateButtons" position="0 0 4.7">
+        <a-entity id="rotateRight" position="2.8 0.7 -2.84" scale="0.15 0.15 0.15" geometry="primitive:circle;" material="src:#rotationTexRight;depthTest:true;transparent:true;side:double"></a-entity>
         <a-entity id="rotateLeft" position="-2.8 0.7 -2.84" scale="0.15 0.15 0.15" geometry="primitive:circle" rotation="0 180 0" material="transparent:true;src:#rotationTexLeft;visible:true;side:double"></a-entity>
     </a-entity>
 
-    <!--Zoombuttons-->
-    <a-entity id="zoomButtons">
-        <a-entity id="zoomInButton" position="-0.88 0.67 -1.75" scale="0.2 0.2 0.2" geometry="primitive:circle" material="src:#lengthPlus; transparent: true;"></a-entity>
-        <a-entity id="zoomOutButton" position="0.9 0.67 -1.75" scale="0.2 0.2 0.2" geometry="primitive:circle" material="src:#lengthMinus; transparent: true;"></a-entity>
+    <!--Length buttons-->
+    <a-entity id="zoomButtons" visible="">
+        <a-entity id="zoomInButton" position="2.88 1.53 -3.3" scale="0.3 0.3 0.3" geometry="primitive:circle" material="src:#lengthPlus; transparent: true;"></a-entity>
+        <a-entity id="zoomOutButton" position="3.88 1.53 -3.34" scale="0.3 0.3 0.3" geometry="primitive:circle" material="src:#lengthMinus; transparent: true;"></a-entity>
+    </a-entity>
+
+    <!--Wheel size buttons-->
+    <a-entity id="wheelButtons" visible="">
+        <a-entity id="sizePlusButton" position="2.88 3.23 -3.3" scale="0.3 0.3 0.3" geometry="primitive:circle" material="src:#lengthPlus; transparent: true;"></a-entity>
+        <a-entity id="sizeMinusButton" position="3.88 3.23 -3.34" scale="0.3 0.3 0.3" geometry="primitive:circle" material="src:#lengthMinus; transparent: true;"></a-entity>
     </a-entity>
 
     <!--Environment entities-->
@@ -196,44 +222,34 @@
         <a-entity id="rampp1" geometry="primitive:box" position="5.9 -0.21 -7.25" rotation="0 45 0" scale="2 2 2" material="src: #plywood"></a-entity>
         <a-entity id="rampp2" geometry="primitive:box" position="7.96 -0.58 -5.21" rotation="0 135 10" scale="4.35 2 2" material="src: #plywood"></a-entity>
     </a-entity>
+    <!--billboards-->
+    <a-entity id="billboard" collada-model="#billboard-dae" position="13.88 0 -3.68" rotation="0 20 0"></a-entity>
+    <a-entity id="billboard2" collada-model="#billboard-dae-2" position="-15.7 0 -8.8" rotation="0 140 0"></a-entity>
+
     <!--walls-->
-    <a-entity id="walls">
-        <a-entity id="gif-wall" mixin="wallmix" position="0 2.4 6.5" ></a-entity>
-        <a-entity id="wall1" mixin="wallmix" position="-8.7 2.4 2.95" rotation="0 -45 0"></a-entity>
-        <a-entity id="wall2" mixin="wallmix" position="8.7 2.4 2.95" rotation="0 45 0"></a-entity>
-        <a-entity id="wall3" mixin="wallmix" position="12.3 2.4 -5.9" rotation="0 90 0" material="shader:flat; "></a-entity>
-        <a-entity id="wall4" mixin="wallmix" position="-12.3 2.4 -5.9" rotation="0 90 0" material="shader:flat; "></a-entity>
-        <a-entity id="wall5" mixin="wallmix" position="0 2.58 -18.2" material="shader:flat"></a-entity>
-        <a-entity id="wall6" mixin="wallmix" position="0 2.58 -18.2" material="shader:flat"></a-entity>
-        <a-entity id="wall7" mixin="wallmix" position="8.4 2.6 -14.5" material="shader:flat;" rotation="0 135 0"></a-entity>
-        <a-entity id="wall8" mixin="wallmix" position="-8.58 2.45 -14.48" material="shader:flat;" rotation="0 45 0"></a-entity>
-    </a-entity>
+    <a-entity id="gif-wall" mixin="wallmix" position="0 2.4 6.5" ></a-entity>
+    <!--<a-entity id="wall1" mixin="wallmix" position="-8.7 2.4 2.95" rotation="0 -45 0"></a-entity>-->
+    <!--<a-entity id="wall2" mixin="wallmix" position="8.7 2.4 2.95" rotation="0 45 0"></a-entity>-->
+    <!--<a-entity id="wall3" mixin="wallmix" position="12.3 2.4 -5.9" rotation="0 90 0" material="shader:flat; "></a-entity>-->
+    <!--<a-entity id="wall4" mixin="wallmix" position="-12.3 2.4 -5.9" rotation="0 90 0" material="shader:flat; "></a-entity>-->
+    <!--<a-entity id="wall5" mixin="wallmix" position="0 2.58 -18.2" material="shader:flat"></a-entity>-->
+    <!--<a-entity id="wall6" mixin="wallmix" position="0 2.58 -18.2" material="shader:flat"></a-entity>-->
+    <!--<a-entity id="wall7" mixin="wallmix" position="8.4 2.6 -14.5" material="shader:flat;" rotation="0 135 0"></a-entity>-->
+    <!--<a-entity id="wall8" mixin="wallmix" position="-8.58 2.45 -14.48" material="shader:flat;" rotation="0 45 0"></a-entity>-->
+
 
     <!--Floor base Entity-->
     <a-entity id="floor" geometry="mergeTo:null;depth:40;height:0.02;width:40" material="shader:flat;repeat:  40 40;src:./img/textures/floor/texture_floor.jpg"></a-entity>
 
-    <!-- skybox Picker -->
-    <a-entity id="skybox-picker" position="3.6 2.74 -2.95" rotation="0 -45 0">
-        <a-entity id="sky-text" position="-0.31 0.83 0" bmfont-text="text:Sky color:;color:#ffffff;lineHeight:40.18;letterSpacing:2.68;width:1009.6999999999999"></a-entity>
-        <a-entity id="skybox-color1" position="0 0 0.2" geometry="primitive:circle;thetaLength:45;thetaStart:45;segments:8;radius:0.6" material="color:#ff0000; shader: flat"></a-entity>
-        <a-entity id="skybox-color2" position="0 0 0.2" geometry="primitive:circle;thetaLength:45;thetaStart:0;segments:8;radius:0.6" material="color:#00ff40; shader: flat"></a-entity>
-        <a-entity id="skybox-color3" position="0 0 0.2" geometry="primitive:circle;thetaLength:45;thetaStart:-45;segments:8;radius:0.6" material="color:#ffff00; shader: flat"></a-entity>
-        <a-entity id="skybox-color4" position="0 0 0.2" geometry="primitive:circle;thetaLength:45;thetaStart:-90;segments:8;radius:0.6" material="color:#0000ff; shader: flat"></a-entity>
-        <a-entity id="skybox-color5" position="0 0 0.2" geometry="primitive:circle;thetaLength:45;thetaStart:-135;segments:8;radius:0.6" material="color:#f47742; shader: flat"></a-entity>
-        <a-entity id="skybox-color6" position="0 0 0.2" geometry="primitive:circle;thetaLength:45;thetaStart:-180;segments:8;radius:0.6" material="color:#f442ee; shader: flat"></a-entity>
-        <a-entity id="skybox-color7" position="0 0 0.2" geometry="primitive:circle;thetaLength:45;thetaStart:-225;segments:8;radius:0.6" material="color:#42f4ce; shader: flat"></a-entity>
-        <a-entity id="skybox-color8" position="0 0 0.2" geometry="primitive:circle;thetaLength:45;thetaStart:-270;segments:8;radius:0.6" material="color:#2f1f3f; shader: flat"></a-entity>
-    </a-entity>
-
     <!-- hoverboard api pictures -->
     <a-entity id="hoverboard-pictures" position="0 3 6">
-        <a-entity id="hoverboard-picture-1" mixin="gifs" position="3.30 0 0" material="src: "></a-entity>
-        <a-entity id="hoverboard-picture-2" mixin="gifs" material="src: "></a-entity>
-        <a-entity id="hoverboard-picture-3" mixin="gifs" position="-3.30 0 0" material="src: "></a-entity>
+        <a-entity id="hoverboard-picture-1" mixin="gifs" position="13.61 3.96 -9.61" scale="1.32 1.3 1" rotation ="0 110 0" material="shader:flat;src: "></a-entity>
+        <a-entity id="hoverboard-picture-2" mixin="gifs" position="-15.59 3.92 -14.64" scale="1.46 1.26 1" rotation="0 50 0 "material="shader:flat;src: "></a-entity>
+        <a-entity id="hoverboard-picture-3" mixin="gifs" position="2.36 0 0" material="shader:flat;src: "></a-entity>
     </a-entity>
 
     <!-- hoverboard save -->
-    <a-entity id="save-hoverboard" position="-2.2 0.50 -1.75" rotation="0 20 0">
+    <a-entity id="save-hoverboard" position="0.13 0.24 -3.27" rotation="0 0 0">
         <a-entity id="saveButton" scale="0.8 0.4 0.4" geometry="primitive:plane" material="src:#save-button-png;"></a-entity>
     </a-entity>
 
@@ -243,6 +259,8 @@
     </a-entity>
     <!--Skybox-->
     <a-sky id="sky" color="#73d8ed"></a-sky>
+
+
 </a-scene>
 </body>
 </html>

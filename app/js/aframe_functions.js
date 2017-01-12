@@ -22,24 +22,25 @@ hoverboardManager = {
         main_functions: function () {
 
             //hoverboard stroke colors
-            var color_none = document.getElementById('color-none');
-            var color_blue = document.getElementById('color-blue');
-            var color_red = document.getElementById('color-red');
-            var color_green = document.getElementById('color-green');
-            var color_purple = document.getElementById('color-purple');
-            var color_black = document.getElementById('color-black');
+            var color_none = document.getElementById('stroke-white');
+            var color_blue = document.getElementById('stroke-blue');
+            var color_red = document.getElementById('stroke-red');
+            var color_green = document.getElementById('stroke-green');
+            var color_purple = document.getElementById('stroke-purple');
+            var color_black = document.getElementById('stroke-black');
 
             //hoverboard stroke en hoverboard base
             var $hoverboard_stroke = $('#hoverboard-stroke');
             var $hoverboard_base = $('#hoverboard-base');
 
+
             //rubber part colors
-            var color_none_rubber = document.getElementById('color-none-rubber');
-            var color_blue_rubber = document.getElementById('color-blue-rubber');
-            var color_red_rubber = document.getElementById('color-red-rubber');
-            var color_green_rubber = document.getElementById('color-green-rubber');
-            var color_purple_rubber = document.getElementById('color-purple-rubber');
-            var color_black_rubber = document.getElementById('color-black-rubber');
+            var color_none_rubber = document.getElementById('rubber-white');
+            var color_blue_rubber = document.getElementById('rubber-blue');
+            var color_red_rubber = document.getElementById('rubber-red');
+            var color_green_rubber = document.getElementById('rubber-green');
+            var color_purple_rubber = document.getElementById('rubber-purple');
+            var color_black_rubber = document.getElementById('rubber-black');
 
             //rubber part base
             var $rubber_base = $('#rubberp');
@@ -105,40 +106,14 @@ hoverboardManager = {
             hoverboardManager.functions.zoom(zoomIn, $hoverboard_stroke, $hoverboard_base, zoommin);
             hoverboardManager.functions.zoom(zoomOut, $hoverboard_stroke, $hoverboard_base, zoomplus);
 
-            //aanroepen scalefunctie
-            // hoverboardManager.functions.adjustSize(sizeminus, $wheel, sizeminWheel);
-            // hoverboardManager.functions.adjustSize(sizeplus, $wheel, sizeplusWheel);
 
             // aanroepen rotation functies
             hoverboardManager.functions.rotationBoard(rotate_left, $rotAnBoard, true);
             hoverboardManager.functions.rotationBoard(rotate_right, $rotAnBoard, false);
 
-            //aanroepen color opener functies
-            hoverboardManager.functions.togglePanel(color_opener_stroke, "#color-picker", true);
-            hoverboardManager.functions.togglePanel(color_closer_stroke, "#color-picker", false);
-            hoverboardManager.functions.togglePanel(wheel_size_opener, "#wheel-size-plane", true);
-            hoverboardManager.functions.togglePanel(wheel_size_closer, "#wheel-size-plane", false);
-            hoverboardManager.functions.togglePanel(rubber_color_opener, "#color-picker-rubber", true);
-            hoverboardManager.functions.togglePanel(rubber_color_closer, "#color-picker-rubber", false);
-
-
-            for (i = 1; i < 9; i++) {
-                var color = document.getElementById("skybox-color" + i);
-                color.addEventListener('mouseenter', function () {
-                    var colorCode = $(this).attr('material')['color'];
-                    $('#sky').attr('color', colorCode);
-                })
-            }
-
             hoverboardManager.functions.getHoverboardImage("hoverboard");
         },
 
-        togglePanel: function (id, visibleId, bool) {
-            id.addEventListener('mouseenter', function () {
-                hover_button.play();
-                $(visibleId).attr('visible', bool);
-            });
-        },
 
         checkTogglePanels : function (picker, atr1, atr2) {
             picker.addEventListener('mouseenter', function () {
@@ -150,9 +125,12 @@ hoverboardManager = {
 
         addStroke: function (id, selector, obj, mtl) {
             id.addEventListener('mouseenter', function () {
+                timer = setTimeout
                 succes_sound.play();
                 $('#hoverboard-stroke').remove();
-                $('#hoverboard').append('<a-entity id="hoverboard-stroke" obj-model="obj: ' + obj + '; mtl: ' + mtl + '" position="0 0 0" rotation="0 180 0" scale="1 1 1" visible="" material=""></a-entity>')
+                $('#hoverboard').append('<a-entity id="hoverboard-stroke" obj-model="obj: ' + obj + '; mtl: ' + mtl + '" position="0 0 0" rotation="0 180 0" scale="1 1 1" visible="" material=""></a-entity>');
+                $('#stroke-example').remove()
+                $('#modify-menu').append('<a-entity id="stroke-example" obj-model="obj: ' + obj + '; mtl: ' + mtl + '" position="-7.52 3.12 -3.21" rotation="-32.09 179.91 0" scale="0.2 1.36 0.1" visible="" material=""></a-entity>');
             });
         },
 
@@ -161,6 +139,8 @@ hoverboardManager = {
                 succes_sound.play();
                 $('#rubberp').remove();
                 $('#hoverboard').append('<a-entity id="rubberp" collada-model="'+ dae + '" position="' + position +'" rotation="0 180 0" scale="0.57 0.57 0.57"></a-entity>');
+                $('#rubber-example').remove();
+                $('#modify-menu').append('<a-entity id="rubber-example" collada-model="'+ dae +'" rotation="0 180 0" scale="0.2 0.2 0.2" position="-4.18 2.97 -3.18"></a-entity>');
             });
         },
 
