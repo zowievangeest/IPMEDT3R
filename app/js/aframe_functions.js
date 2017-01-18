@@ -284,6 +284,21 @@ var priceManager = {
             var data = priceManager.functions.makeArray();
             var total = priceManager.functions.countTotal();
 
+            // console.log(data);
+
+            var y = 0.83;
+            var i = 0
+
+            for (var k in data){
+                if (data.hasOwnProperty(k)) {
+                    $('#summary-list').append('<a-entity id="summary-board-text" scale="1.1 1.1 1.1" position="-1.41 '+ (y - (i * 0.30)) +' 0.01" bmfont-text="text:'+ k +';letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity><a-entity id="summary-board-price" scale="1.1 1.1 1.1" position="0.85 '+ (y - (i * 0.30)) +' 0.01" bmfont-text="text: €'+ data[k] +';letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>')
+                    i += 1;
+                }
+            }
+
+            $('#summary-list').append('<a-entity id="summary-total-text" scale="1.3 1.3 1.3" position="-1.41 -1.0 0.01" bmfont-text="text:Total: €'+ total +';letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>');
+
+
             for (var key in data){
                 $('.pricing-list').prepend('<li class="text-left">1 x ' + key + '<span class="text-right li-right-bold">€' + data[key] + '</span></li>');
             }
