@@ -284,7 +284,7 @@ var priceManager = {
             var data = priceManager.functions.makeArray();
             var total = priceManager.functions.countTotal();
 
-            // console.log(data);
+            $('#paypal-link').attr('href', 'https://www.paypal.me/zowie93/' + total);
 
             var y = 0.83;
             var i = 0
