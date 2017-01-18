@@ -256,7 +256,7 @@ var priceManager = {
 
     setListeners: function () {
         var preview = document.getElementById('preview-hoverboard');
-
+        priceManager.functions.toggleVisible("#checkoutButton", false);
         preview.addEventListener('mouseenter', function () {
             setTimeout(function(){
                 priceManager.functions.websiteCalculation()
@@ -309,11 +309,49 @@ var priceManager = {
             }
             $('.pricing-list').append('<li>&nbsp;</li>');
             $('.pricing-list').append('<li class="text-left">TOTAL: <span class="text-right li-right-bold">€' + total + '</span></li>');
+
+            priceManager.functions.toggleVisible("#checkoutButton", true);
+        },
+
+        toggleVisible: function (name, bool) {
+            $(name).attr('visible', bool);
         }
     }
+};
+
+var checkoutManager = {
+    init: function () {
+        checkoutManager.setListeners();
+    },
+
+    setListeners: function () {
+        var checkout = document.getElementById('checkout-hoverboard');
+        checkout.addEventListener('mouseenter', function () {
+            setTimeout(function(){
+                succes_sound.play();
+                console.log('checkout activated');
+                setTimeout(function () {
+                    checkoutManager.functions.scrollToDiv('.thumbnail', 1600);
+                }, 400);
+            }, 1000);
+        });
+
+        $('a-scene').on('exit-vr', function () {
+            checkoutManager.functions.scrollToDiv('.thumbnail', 1500);
+        });
+    },
+
+    functions: {
+        scrollToDiv: function (id, offset) {
+            $('html, body').animate({
+                scrollTop: $(id).offset().top + offset
+            }, 2000);
+        }
+    },
 };
 
 $(document).ready(function () {
     hoverboardManager.init();
     priceManager.init();
+    checkoutManager.init();
 });
