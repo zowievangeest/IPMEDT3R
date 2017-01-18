@@ -229,7 +229,13 @@
                             <img id="concretefloor" src="./img/textures/objects/texture_floor_object.jpg">
                             <img id="chrometexture" src="./img/textures/objects/chrome.jpg">
                             <img id="plywood" src="./img/textures/objects/plywood.jpg">
+                            <!--halfpipe dae, obj and mtl-->
+                            <a-asset-item id="halfpipe-dae" src="./models/halfpipe/halfpipe.dae"></a-asset-item>
+                            <a-asset-item id="halfpipe-obj" src="./models/halfpipe/halfpipe.obj"></a-asset-item>
+                            <a-asset-item id="halfpipe-mtl" src="./models/halfpipe/halfpipe.mtl"></a-asset-item>
 
+                            <!--sky image-->
+                            <img id="sky" src="./img/textures/sky/sky.jpg">
                             <!--gif mixin-->
                             <a-mixin id="gifs" geometry="height:3;depth:0.02;width:3"></a-mixin>
                             <!--wall mixin-->
@@ -296,17 +302,21 @@
 
                         <!--Hoverboard base OBJ-->
                         <a-entity id="hoverboard" position="0 0.9 2.79" visible="">
+
+                        <a-entity id="board-stroke" position="0 0 0">
                             <!--Hoverboard base OBJ-->
                             <a-entity class="price" data-price="100" data-part-name="Hoverboard Base" id="hoverboard-base" obj-model="obj: #hoverboard-base-obj; mtl: #hoverboard-base-mtl" position="0 0 0" rotation="0 180 0" scale="1 1 1" visible="" material=""></a-entity>
                             <!--Hoverboard stroke OBJ-->
                             <a-entity class="price" data-price="50" data-part-name="Stroke" id="hoverboard-stroke" obj-model="obj: #hoverboard-stroke-none-obj; mtl: #hoverboard-stroke-none-mtl" position="0 0 0" rotation="0 180 0" scale="1 1 1" visible="" material=""></a-entity>
+                            <a-entity class="price" data-price="20" data-part-name="Protecting Rubbers" id="stootparts" position="0 -0.09 0">
+                                <a-entity id="stootp" collada-model="#stoot-dae" rotation="0 180 0" scale="0.6 0.6 0.6"></a-entity>
+                            </a-entity>
+                        </a-entity>
                             <!--Wheel OBJ-->
                             <a-entity class="price" data-price="30" data-part-name="Wheel" id="wheel" position="0 -0.78 0">
                                 <a-entity id="wheel-base" collada-model="#wheel-base-dae" rotation="0 90 0" scale="0.8 0.8 0.8" visible="true" material=""></a-entity>
                             </a-entity>
-                            <a-entity class="price" data-price="20" data-part-name="Protecting Rubbers" id="stootparts" position="0 -0.06 0">
-                                <a-entity id="stootp" collada-model="#stoot-dae" rotation="0 180 0" scale="0.6 0.6 0.6"></a-entity>
-                            </a-entity>
+
                             <a-entity class="price" data-price="25" data-part-name="Rubber Parts" id="rubberp" collada-model="#rubber-dae" position="0 -0.2 0" rotation="0 180 0" scale="0.57 0.57 0.57"></a-entity>
                         </a-entity>
 
@@ -317,13 +327,13 @@
                         </a-entity>
 
                         <!--Length buttons-->
-                        <a-entity id="zoomButtons" visible="">
+                        <a-entity id="zoomButtons">
                             <a-entity id="zoomInButton" position="2.88 1.53 -3.3" scale="0.3 0.3 0.3" geometry="primitive:circle" material="src:#lengthPlus; transparent: true;"></a-entity>
                             <a-entity id="zoomOutButton" position="3.88 1.53 -3.34" scale="0.3 0.3 0.3" geometry="primitive:circle" material="src:#lengthMinus; transparent: true;"></a-entity>
                         </a-entity>
 
                         <!--Wheel size buttons-->
-                        <a-entity id="wheelButtons" visible="">
+                        <a-entity id="wheelButtons">
                             <a-entity id="sizePlusButton" position="2.88 3.23 -3.3" scale="0.3 0.3 0.3" geometry="primitive:circle" material="src:#lengthPlus; transparent: true;"></a-entity>
                             <a-entity id="sizeMinusButton" position="3.88 3.23 -3.34" scale="0.3 0.3 0.3" geometry="primitive:circle" material="src:#lengthMinus; transparent: true;"></a-entity>
                         </a-entity>
@@ -344,21 +354,16 @@
                         <!--billboards-->
                         <a-entity id="billboard" collada-model="#billboard-dae" position="13.88 0 -3.68" rotation="0 20 0"></a-entity>
                         <a-entity id="billboard2" collada-model="#billboard-dae-2" position="-15.7 0 -8.8" rotation="0 140 0"></a-entity>
+                        <!--halfpipe-->
+                        <a-entity id="halfpipe" collada-model="#halfpipe-dae" scale="0.1 0.1 0.1" position="-0.2 0 -10" rotation="0 20 0"></a-entity>
 
                         <!--walls-->
                         <a-entity id="gif-wall" mixin="wallmix" position="0 2.4 6.5" ></a-entity>
-                        <!--<a-entity id="wall1" mixin="wallmix" position="-8.7 2.4 2.95" rotation="0 -45 0"></a-entity>-->
-                        <!--<a-entity id="wall2" mixin="wallmix" position="8.7 2.4 2.95" rotation="0 45 0"></a-entity>-->
-                        <!--<a-entity id="wall3" mixin="wallmix" position="12.3 2.4 -5.9" rotation="0 90 0" material="shader:flat; "></a-entity>-->
-                        <!--<a-entity id="wall4" mixin="wallmix" position="-12.3 2.4 -5.9" rotation="0 90 0" material="shader:flat; "></a-entity>-->
-                        <!--<a-entity id="wall5" mixin="wallmix" position="0 2.58 -18.2" material="shader:flat"></a-entity>-->
-                        <!--<a-entity id="wall6" mixin="wallmix" position="0 2.58 -18.2" material="shader:flat"></a-entity>-->
-                        <!--<a-entity id="wall7" mixin="wallmix" position="8.4 2.6 -14.5" material="shader:flat;" rotation="0 135 0"></a-entity>-->
-                        <!--<a-entity id="wall8" mixin="wallmix" position="-8.58 2.45 -14.48" material="shader:flat;" rotation="0 45 0"></a-entity>-->
-
 
                         <!--Floor base Entity-->
                         <a-entity id="floor" geometry="mergeTo:null;depth:40;height:0.02;width:40" material="shader:flat;repeat:  40 40;src:./img/textures/floor/texture_floor.jpg"></a-entity>
+
+
 
                         <!-- hoverboard api pictures -->
                         <a-entity id="hoverboard-pictures" position="0 3 6">
@@ -375,7 +380,7 @@
 
                         </a-entity>
                         <!--Skybox-->
-                        <a-sky id="sky" color="#73d8ed"></a-sky>
+                        <a-sky id="sky" src="#sky"></a-sky>
 
 
                     </a-scene>

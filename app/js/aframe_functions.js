@@ -31,6 +31,7 @@ hoverboardManager = {
 
             //hoverboard stroke en hoverboard base
             var $hoverboard_stroke = $('#hoverboard-stroke');
+            var $hoverboard_base_stroke = $('#board-stroke');
             var $hoverboard_base = $('#hoverboard-base');
 
 
@@ -68,15 +69,16 @@ hoverboardManager = {
             var zoomIn = document.getElementById('zoomInButton');
             var zoomOut = document.getElementById('zoomOutButton');
 
-            //sizebuttons
-            // var sizeplus = document.getElementById('size-plus-button');
-            // var sizeminus = document.getElementById('size-minus-button');
+
+            //wheelsizebuttons
+            var wheelPlus = document.getElementById('sizePlusButton');
+            var wheelMinus = document.getElementById('sizeMinusButton');
 
             //zoom variabelen aanmaken
-            var zoommin = .1;
-            var zoomplus = -.1;
-            // var sizeminWheel = -.1;
-            // var sizeplusWheel = .1;
+            var zoommin = .05;
+            var zoomplus = -.05;
+            var sizeminWheel = -.05;
+            var sizeplusWheel = .05;
             
 
 
@@ -102,9 +104,12 @@ hoverboardManager = {
             hoverboardManager.functions.addRubber(color_none_rubber, $rubber_base, '#rubber-dae', '0 -0.16 0' );
 
             //aanroepen zoomfunctie
-            hoverboardManager.functions.zoom(zoomIn, $hoverboard_stroke, $hoverboard_base, zoommin);
-            hoverboardManager.functions.zoom(zoomOut, $hoverboard_stroke, $hoverboard_base, zoomplus);
+            hoverboardManager.functions.zoom(zoomIn, $hoverboard_base_stroke, zoommin);
+            hoverboardManager.functions.zoom(zoomOut, $hoverboard_base_stroke, zoomplus);
 
+            //aanroepen wheelsizefunction
+            hoverboardManager.functions.adjustSize(wheelPlus, $wheel, sizeplusWheel);
+            hoverboardManager.functions.adjustSize(wheelMinus, $wheel, sizeminWheel);
 
             // aanroepen rotation functies
             hoverboardManager.functions.rotationBoard(rotate_left, $rotAnBoard, true);
@@ -127,7 +132,7 @@ hoverboardManager = {
                 timer = setTimeout
                 succes_sound.play();
                 $('#hoverboard-stroke').remove();
-                $('#hoverboard').append('<a-entity class="price" data-price="50" data-part-name="Stroke" id="hoverboard-stroke" obj-model="obj: ' + obj + '; mtl: ' + mtl + '" position="0 0 0" rotation="0 180 0" scale="1 1 1" visible="" material=""></a-entity>');
+                $('#board-stroke').append('<a-entity class="price" data-price="50" data-part-name="Stroke" id="hoverboard-stroke" obj-model="obj: ' + obj + '; mtl: ' + mtl + '" position="0 0 0" rotation="0 180 0" scale="1 1 1" visible="" material=""></a-entity>');
                 $('#stroke-example').remove()
                 $('#modify-menu').append('<a-entity id="stroke-example" obj-model="obj: ' + obj + '; mtl: ' + mtl + '" position="-7.52 3.12 -3.21" rotation="-32.09 179.91 0" scale="0.2 1.36 0.1" visible="" material=""></a-entity>');
             });
@@ -143,33 +148,33 @@ hoverboardManager = {
             });
         },
 
-        zoom: function (id, stroke, base_hov, zoomAdd) {
+        zoom: function (id, base_hov, zoomAdd) {
             id.addEventListener('mouseenter', function () {
-                hoverboardManager.functions.controlZoom(zoomAdd, stroke, base_hov);
+                hoverboardManager.functions.controlZoom(zoomAdd, base_hov);
             });
         },
 
-        // adjustSize: function (id, wheel, zoomAddWheel) {
-        //     id.addEventListener('mouseenter', function () {
-        //         console.log('hover');
-        //         hoverboardManager.functions.controlScale(wheel, zoomAddWheel);
-        //     });
-        // },
+        adjustSize: function (id, wheel, zoomAddWheel) {
+            id.addEventListener('mouseenter', function () {
+                hoverboardManager.functions.controlScale(wheel, zoomAddWheel);
+            });
+        },
 
-        // controlScale: function (wheel, zoomAddWheel) {
-        //     zoomvarWheel += zoomAddWheel;
-        //     if (zoomvarWheel <= 1)
-        //     {
-        //         wheel.attr('scale', zoomvarWheel, zoomvarWheel, zoomvarWheel);
-        //         console.log(zoomvarWheel)
-        //     }
-        // },
+        controlScale: function (wheel, zoomAddWheel) {
+            zoomvarWheel += zoomAddWheel;
+            if (zoomvarWheel <= 0.9 && zoomvarWheel >= 0.7)
+            {
+                wheel.attr('scale', zoomvarWheel + ' ' + zoomvarWheel + ' ' + zoomvarWheel);
+                console.log(zoomvarWheel)
+            }
+        },
 
-        controlZoom: function (zoomAdd, stroke, base_hov) {
+        controlZoom: function (zoomAdd, base_hov) {
             zoomvar += zoomAdd;
-            stroke.attr('scale', zoomvar, zoomvar, zoomvar);
-            base_hov.attr('scale', zoomvar, zoomvar, zoomvar);
-            console.log(zoomvar)
+            if (zoomvar <= 1.31 && zoomvar >= 0.9) {
+                base_hov.attr('scale', zoomvar, zoomvar, zoomvar);
+                console.log(zoomvar)
+            }
         },
 
         rotationBoard: function (id, boardAn, bool) {
