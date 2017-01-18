@@ -81,10 +81,10 @@ hoverboardManager = {
 
 
             // save hoverboard
-            var saveButton = document.getElementById('save-hoverboard');
-
-            // save button function
-            hoverboardManager.functions.saveHoverboard(saveButton);
+            // var saveButton = document.getElementById('save-hoverboard');
+            //
+            // // save button function
+            // hoverboardManager.functions.saveHoverboard(saveButton);
 
             //color functions for strokes
             hoverboardManager.functions.addStroke(color_blue, $hoverboard_stroke, '#hoverboard-stroke-blue-obj', '#hoverboard-stroke-blue-mtl');
@@ -127,7 +127,7 @@ hoverboardManager = {
                 timer = setTimeout
                 succes_sound.play();
                 $('#hoverboard-stroke').remove();
-                $('#hoverboard').append('<a-entity id="hoverboard-stroke" obj-model="obj: ' + obj + '; mtl: ' + mtl + '" position="0 0 0" rotation="0 180 0" scale="1 1 1" visible="" material=""></a-entity>');
+                $('#hoverboard').append('<a-entity class="price" data-price="50" data-part-name="Stroke" id="hoverboard-stroke" obj-model="obj: ' + obj + '; mtl: ' + mtl + '" position="0 0 0" rotation="0 180 0" scale="1 1 1" visible="" material=""></a-entity>');
                 $('#stroke-example').remove()
                 $('#modify-menu').append('<a-entity id="stroke-example" obj-model="obj: ' + obj + '; mtl: ' + mtl + '" position="-7.52 3.12 -3.21" rotation="-32.09 179.91 0" scale="0.2 1.36 0.1" visible="" material=""></a-entity>');
             });
@@ -137,7 +137,7 @@ hoverboardManager = {
             id.addEventListener('mouseenter', function () {
                 succes_sound.play();
                 $('#rubberp').remove();
-                $('#hoverboard').append('<a-entity id="rubberp" collada-model="'+ dae + '" position="' + position +'" rotation="0 180 0" scale="0.57 0.57 0.57"></a-entity>');
+                $('#hoverboard').append('<a-entity class="price" data-price="25" data-part-name="Rubber Parts" id="rubberp" collada-model="'+ dae + '" position="' + position +'" rotation="0 180 0" scale="0.57 0.57 0.57"></a-entity>');
                 $('#rubber-example').remove();
                 $('#modify-menu').append('<a-entity id="rubber-example" collada-model="'+ dae +'" rotation="0 180 0" scale="0.2 0.2 0.2" position="-4.18 2.97 -3.18"></a-entity>');
             });
@@ -205,45 +205,95 @@ hoverboardManager = {
                 }
             });
         },
+        //
+        // saveHoverboard: function (id) {
+        //     id.addEventListener('mouseenter', function () {
+        //         var hoverboard = $('#cloned-hoverboard');
+        //         var cloneId = 1;
+        //         var clonedHoverboard = $('#hoverboard').clone().attr({
+        //             id: 'cloned-board' + cloneId++,
+        //             class: 'cloned-board-class'
+        //         }).insertAfter("#hoverboard");
+        //         if (hoverboard.is(':parent')) {
+        //             $('.cloned-board-class').remove();
+        //             hoverboard.append(clonedHoverboard);
+        //         } else {
+        //             hoverboard.append(clonedHoverboard);
+        //         }
+        //
+        //         setTimeout(function () {
+        //             var $camera = $('#camera');
+        //             var $cameraClass = $('.camera-animation');
+        //             var camera = $camera.attr('rotation');
+        //             var x = camera.x;
+        //             var y = camera.y;
+        //             var z = camera.z;
+        //             if ($camera.is(':parent')) {
+        //                 $cameraClass.remove();
+        //                 $camera.append('<a-animation class="camera-animation" attribute="rotation" from="' + x + ' ' + y + ' ' + z + '" to="0 180 0" dur="5000" direction="alternateReverse"></a-animation>');
+        //             } else {
+        //                 $camera.append('<a-animation class="camera-animation" attribute="rotation" from="' + x + ' ' + y + ' ' + z + '" to="0 180 0" dur="5000" direction="alternateReverse"></a-animation>');
+        //             }
+        //             setTimeout(function () {
+        //                 $('.cloned-board-class').append('<a-animation attribute="rotation" from="0 180 0" to="0 540 0" dur="10000" repeat="indefinite"></a-animation>');
+        //             }, 4500);
+        //         }, 500);
+        //     });
+        // }
 
-        saveHoverboard: function (id) {
-            id.addEventListener('mouseenter', function () {
-                var hoverboard = $('#cloned-hoverboard');
-                var cloneId = 1;
-                var clonedHoverboard = $('#hoverboard').clone().attr({
-                    id: 'cloned-board' + cloneId++,
-                    class: 'cloned-board-class'
-                }).insertAfter("#hoverboard");
-                if (hoverboard.is(':parent')) {
-                    $('.cloned-board-class').remove();
-                    hoverboard.append(clonedHoverboard);
-                } else {
-                    hoverboard.append(clonedHoverboard);
-                }
+    }
+};
 
-                setTimeout(function () {
-                    var $camera = $('#camera');
-                    var $cameraClass = $('.camera-animation');
-                    var camera = $camera.attr('rotation');
-                    var x = camera.x;
-                    var y = camera.y;
-                    var z = camera.z;
-                    if ($camera.is(':parent')) {
-                        $cameraClass.remove();
-                        $camera.append('<a-animation class="camera-animation" attribute="rotation" from="' + x + ' ' + y + ' ' + z + '" to="0 180 0" dur="5000" direction="alternateReverse"></a-animation>');
-                    } else {
-                        $camera.append('<a-animation class="camera-animation" attribute="rotation" from="' + x + ' ' + y + ' ' + z + '" to="0 180 0" dur="5000" direction="alternateReverse"></a-animation>');
-                    }
-                    setTimeout(function () {
-                        $('.cloned-board-class').append('<a-animation attribute="rotation" from="0 180 0" to="0 540 0" dur="10000" repeat="indefinite"></a-animation>');
-                    }, 4500);
-                }, 500);
+var priceManager = {
+    init: function () {
+        priceManager.setListeners();
+    },
+
+    setListeners: function () {
+        var preview = document.getElementById('preview-hoverboard');
+
+        preview.addEventListener('mouseenter', function () {
+            setTimeout(function(){
+                priceManager.functions.websiteCalculation()
+            }, 1000);
+        });
+    },
+
+    functions: {
+        makeArray: function () {
+            var prizes = {};
+            $('.price').each(function () {
+                prizes[$(this).attr('data-part-name')] = $(this).data('price');
             });
-        }
+            return prizes
+        },
 
+        countTotal: function () {
+            var prizeArray = priceManager.functions.makeArray();
+            var sum = 0;
+
+            for (var name in prizeArray) {
+                sum += prizeArray[name];
+            }
+            return sum
+        },
+
+        websiteCalculation: function () {
+            $('.pricing-list').empty();
+
+            var data = priceManager.functions.makeArray();
+            var total = priceManager.functions.countTotal();
+
+            for (var key in data){
+                $('.pricing-list').prepend('<li class="text-left">1 x ' + key + '<span class="text-right li-right-bold">€' + data[key] + '</span></li>');
+            }
+            $('.pricing-list').append('<li>&nbsp;</li>');
+            $('.pricing-list').append('<li class="text-left">TOTAL: <span class="text-right li-right-bold">€' + total + '</span></li>');
+        }
     }
 };
 
 $(document).ready(function () {
     hoverboardManager.init();
+    priceManager.init();
 });

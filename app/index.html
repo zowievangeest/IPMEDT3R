@@ -25,6 +25,13 @@
     <link href="css/style.min.css" rel="stylesheet">
     <!--END - STYLESHEETS-->
 
+    <!--START - SCRIPTS-->
+    <script src="js/main.min.js"></script>
+    <script src="js/aframe.min.js"></script>
+    <script src="js/aframe_functions.js"></script>
+    <script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>
+    <!--END - SCRIPTS-->
+
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -143,15 +150,277 @@
         <div class="container">
             <div class="row-full">
                 <div class="home-center">
-                <iframe id="exampleIframe" class="example__iframe" width="100%" height="100%" src="aframe.html" allowfullscreen="yes" allowvr="yes" scrolling="no">
+                    <a-scene embedded>
+                        <!--Aframe ASSETS-->
+                        <a-assets>
+                            <!--Hoverboard base-->
+                            <a-asset-item id="hoverboard-base-obj" src="./models/hoverboard_base/hoverboard_base.obj"></a-asset-item>
+                            <a-asset-item id="hoverboard-base-mtl" src="./models/hoverboard_base/hoverboard_base.mtl"></a-asset-item>
 
-                </iframe>
+                            <!--Hoverboard stroke none-->
+                            <a-asset-item id="hoverboard-stroke-none-obj" src="./models/hoverboard_stroke_none/hoverboard_stroke_none.obj"></a-asset-item>
+                            <a-asset-item id="hoverboard-stroke-none-mtl" src="./models/hoverboard_stroke_none/hoverboard_stroke_none.mtl"></a-asset-item>
+
+                            <!--Hoverboard stroke blue-->
+                            <a-asset-item id="hoverboard-stroke-blue-obj" src="./models/hoverboard_stroke_blue/hoverboard_stroke_blue.obj"></a-asset-item>
+                            <a-asset-item id="hoverboard-stroke-blue-mtl" src="./models/hoverboard_stroke_blue/hoverboard_stroke_blue.mtl"></a-asset-item>
+
+                            <!--Hoverboard stroke red-->
+                            <a-asset-item id="hoverboard-stroke-red-obj" src="./models/hoverboard_stroke_red/hoverboard_stroke_red.obj"></a-asset-item>
+                            <a-asset-item id="hoverboard-stroke-red-mtl" src="./models/hoverboard_stroke_red/hoverboard_stroke_red.mtl"></a-asset-item>
+
+                            <!--Hoverboard stroke green-->
+                            <a-asset-item id="hoverboard-stroke-green-obj" src="./models/hoverboard_stroke_green/hoverboard_stroke_green.obj"></a-asset-item>
+                            <a-asset-item id="hoverboard-stroke-green-mtl" src="./models/hoverboard_stroke_green/hoverboard_stroke_green.mtl"></a-asset-item>
+
+                            <!--Hoverboard stroke purple-->
+                            <a-asset-item id="hoverboard-stroke-purple-obj" src="./models/hoverboard_stroke_purple/hoverboard_stroke_purple.obj"></a-asset-item>
+                            <a-asset-item id="hoverboard-stroke-purple-mtl" src="./models/hoverboard_stroke_purple/hoverboard_stroke_purple.mtl"></a-asset-item>
+
+                            <!--Hoverboard stroke black-->
+                            <a-asset-item id="hoverboard-stroke-black-obj" src="./models/hoverboard_stroke_black/hoverboard_stroke_black.obj"></a-asset-item>
+                            <a-asset-item id="hoverboard-stroke-black-mtl" src="./models/hoverboard_stroke_black/hoverboard_stroke_black.mtl"></a-asset-item>
+
+                            <!--collada wheel-->
+                            <a-asset-item id="wheel-base-dae" src="./models/wheel_base/wheel_base.dae"></a-asset-item>
+
+                            <!--collada rubber-->
+                            <a-asset-item id="rubber-dae" src="./models/hoverboard_rubber_none/hoverboard_rubber_parts.dae"></a-asset-item>
+                            <a-asset-item id="rubber-dae-black" src="./models/hoverboard_rubber_black/hoverboard_rubber_black.dae"></a-asset-item>
+                            <a-asset-item id="rubber-dae-green" src="./models/hoverboard_rubber_green/hoverboard_rubber_green.dae"></a-asset-item>
+                            <a-asset-item id="rubber-dae-purple" src="./models/hoverboard_rubber_purple/hoverboard_rubber_purple.dae"></a-asset-item>
+                            <a-asset-item id="rubber-dae-green" src="./models/hoverboard_rubber_green/hoverboard_rubber_green.dae"></a-asset-item>
+                            <a-asset-item id="rubber-dae-red" src="./models/hoverboard_rubber_red/hoverboard_rubber_red.dae"></a-asset-item>
+                            <a-asset-item id="rubber-dae-blue" src="./models/hoverboard_rubber_blue/hoverboard_rubber_blue.dae"></a-asset-item>
+
+                            <!--collada stoot-->
+                            <a-asset-item id="stoot-dae" src="./models/hoverboard_stoot/hoverboard_stoot_parts.dae"></a-asset-item>
+
+                            <!--collada billboard-->
+                            <a-asset-item id="billboard-dae" src="./models/billboard/billboard.dae"></a-asset-item>
+                            <a-asset-item id="billboard-dae-2" src="./models/billboard/billboard2.dae"></a-asset-item>
+
+                            <!--Rotation buttons texture-->
+                            <img id="rotationTexRight" src="./img/textures/rotation_icon/rotate_right.png">
+                            <img id="rotationTexLeft" src="./img/textures/rotation_icon/rotate_right.png">
+
+                            <!--length buttons texture-->
+                            <img id="lengthPlus" src="./img/textures/length_icon/length_plus.png">
+                            <img id="lengthMinus" src="./img/textures/length_icon/length_minus.png">
+
+                            <!-- save button texture -->
+                            <img id="save-button-png" src="./img/textures/save_icon/save_button.png">
+
+                            <!--size buttons textures-->
+                            <img id="sizeplus" src="./img/textures/wheel_size_icon/plus.png">
+                            <img id="sizeminus" src="./img/textures/wheel_size_icon/minus.png">
+
+                            <!--closebutton colorpanel-->
+                            <img id="closebtn" src="./img/textures/color_panel/closebtn.png">
+                            <img id="boardicon" src="./img/textures/color_panel/board.png">
+                            <img id="wheelicon" src="./img/textures/color_panel/wheel.png">
+                            <img id="rubbericon" src="./img/textures/color_panel/rubbers.png">
+
+                            <!--Floor texture-->
+                            <img id="floor" src="./img/textures/floor/texture_floor.jpg">
+
+                            <!--Environment textures-->
+                            <img id="stonetexture" src="./img/textures/walls/stone.jpg">
+                            <img id="concretefloor" src="./img/textures/objects/texture_floor_object.jpg">
+                            <img id="chrometexture" src="./img/textures/objects/chrome.jpg">
+                            <img id="plywood" src="./img/textures/objects/plywood.jpg">
+
+                            <!--gif mixin-->
+                            <a-mixin id="gifs" geometry="height:3;depth:0.02;width:3"></a-mixin>
+                            <!--wall mixin-->
+                            <a-mixin id="wallmix" geometry="primitive:box" scale="10 7 1" material="src: #stonetexture; repeat: 6 6"></a-mixin>
+                        </a-assets>
+
+                        <!--Light settings-->
+                        <a-entity id ="light1" light="intensity:1.4;target:null" position="0 10 13.29" visible="true"></a-entity>
+                        <a-entity id="light2" light="intensity:1.4;target:null" position="-23.80 10 -20.16" visible="true"></a-entity>
+
+                        <!--Camera-->
+                        <a-camera id="camera" camera="" position="" rotation="" look-controls="" wasd-controls="" scale="" visible="">
+                            <a-cursor color="white" material="" raycaster="" cursor="" geometry="" position="" rotation="" scale="1 1" visible=""></a-cursor>
+                        </a-camera>
+
+                        <!--Modify menu-->
+                        <a-entity id="modify-menu" position="4.23 0.59 -0.15" rotation="0 0 0" scale="" visible="">
+                            <a-entity id="stroke-text" position="-8.04 3.52 -3.2" bmfont-text="text:Stroke Color;letterSpacing:0.4;color:#ffffff; shader: flat" rotation="" scale="" visible=""></a-entity>
+                            <a-entity id="rubber-text" position="-4.75 3.52 -3.2" bmfont-text="text:Rubber Color;letterSpacing:0.4;color:#ffffff; shader: flat" rotation="" scale="" visible=""></a-entity>
+                            <a-entity id="wheel-text" position="-1.5 3.52 -3.2" bmfont-text="text:Wheel size;letterSpacing:0.4;color:#ffffff; shader: flat" rotation="" scale="" visible=""></a-entity>
+                            <a-entity id="board-text" position="-1.5 1.8 -3.2" bmfont-text="text:Board length;letterSpacing:0.54;color:#ffffff; shader: flat" rotation="" scale="" visible=""></a-entity>
+                            <a-entity id="rubber-example" collada-model="#rubber-dae" rotation="0 180 0" scale="0.2 0.2 0.2" position="-4.18 2.97 -3.18"></a-entity>
+                            <a-entity id="stroke-example" obj-model="obj: #hoverboard-stroke-none-obj; mtl: #hoverboard-stroke-none-mtl" position="-7.52 3.12 -3.21" rotation="-32.09 179.91 0" scale="0.2 1.36 0.1" material=""></a-entity>
+                            <a-entity id="background-color-opener" geometry="primitive:plane" scale="9.72 4 1" position="-4.18 1.77 -3.21" material="color: #000000; opacity: 0.6" rotation="" visible=""></a-entity>
+                            <a-entity id="color-stroke-button" position="-3.23 1.67 -3" geometry="primitive:plane;" scale="0.5 0.5 0.5" material="src: #boardicon; transparent: true" rotation="" visible="false"></a-entity>
+                            <a-entity id="size-wheel-button" position="-4.05 1.67 -2.93" geometry="primitive:plane;" scale="0.5 0.5 0.5" material="src: #wheelicon; transparent: true" rotation="" visible="false"></a-entity>
+                            <a-entity id="color-rubber-button" position="-5.04 1.67 -2.94" geometry="primitive:plane;" scale="0.5 0.5 0.5" material="src: #rubbericon; transparent: true" rotation="" visible="false"></a-entity>
+                        </a-entity>
+
+                        <!--stroke color list-->
+                        <a-entity id="color-stroke-list">
+                            <a-entity id="stroke-blue" position="-4.16 2.72 -3.31" geometry="primitive:circle;radius:0.2" material="color:blue"></a-entity>
+                            <a-entity id="stroke-purple" position="-4.16 2.22 -3.31" geometry="primitive:circle;radius:0.2" material="color:purple"></a-entity>
+                            <a-entity id="stroke-black" position="-4.16 1.72 -3.31" geometry="primitive:circle;radius:0.2" material="color:black"></a-entity>
+                            <a-entity id="stroke-green" position="-4.16 1.22 -3.31" geometry="primitive:circle;radius:0.2" material="color:green"></a-entity>
+                            <a-entity id="stroke-red" position="-4.16 0.72 -3.31" geometry="primitive:circle;radius:0.2" material="color:red"></a-entity>
+                        </a-entity>
+
+                        <!--rubber color list-->
+                        <a-entity id="color-rubber-list" position="3.2  0 0">
+                            <a-entity id="rubber-white" position="-4.16 3.22 -3.31" geometry="primitive:circle;radius:0.2" material="color:white"></a-entity>
+                            <a-entity id="rubber-blue" position="-4.16 2.72 -3.31" geometry="primitive:circle;radius:0.2" material="color:blue"></a-entity>
+                            <a-entity id="rubber-purple" position="-4.16 2.22 -3.31" geometry="primitive:circle;radius:0.2" material="color:purple"></a-entity>
+                            <a-entity id="rubber-black" position="-4.16 1.72 -3.31" geometry="primitive:circle;radius:0.2" material="color:black"></a-entity>
+                            <a-entity id="rubber-green" position="-4.16 1.22 -3.31" geometry="primitive:circle;radius:0.2" material="color:green"></a-entity>
+                            <a-entity id="rubber-red" position="-4.16 0.72 -3.31" geometry="primitive:circle;radius:0.2" material="color:red"></a-entity>
+                        </a-entity>
+
+                        <!--name of colors list-->
+                        <a-entity id="color-name-list" position="0.3 0 0">
+                            <a-entity id="name-white" bmfont-text="text:White;letterSpacing:0.54;color:#ffffff; shader: flat" position="-0.44 3.15 -3.32"></a-entity>
+                            <a-entity id="name-blue" bmfont-text="text:Blue                             Blue;letterSpacing:0.54;color:#ffffff; shader: flat" position="-3.66 2.65 -3.32"></a-entity>
+                            <a-entity id="name-purple" bmfont-text="text:Purple                           Purple;letterSpacing:0.54;color:#ffffff; shader: flat" position="-3.66 2.15 -3.32"></a-entity>
+                            <a-entity id="name-black" bmfont-text="text:Black                            Black;letterSpacing:0.54;color:#ffffff; shader: flat" position="-3.66 1.65 -3.32"></a-entity>
+                            <a-entity id="name-green" bmfont-text="text:Green                            Green;letterSpacing:0.54;color:#ffffff; shader: flat" position="-3.66 1.15 -3.32"></a-entity>
+                            <a-entity id="name-red" bmfont-text="text:Red                              Red;letterSpacing:0.54;color:#ffffff; shader: flat" position="-3.66 0.65 -3.32"></a-entity>
+                        </a-entity>
+
+                        <!--Summary selection-->
+                        <a-entity id="summary-list" position="-2.24 3.01 5.89" rotation="0 180 0">
+                            <a-entity id="summary-background"  geometry="primitive:plane;height:3.04;width:3.02" material="color:black;opacity:0.8"></a-entity>
+                            <a-entity id="summary-text" scale="1.4 1.4 1.4" position="-0.44 1.25 0.01" bmfont-text="text:Summary;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+                            <a-entity id="summary-board-text" scale="1.1 1.1 1.1" position="-1.41 0.83 0.01" bmfont-text="text:Boardtesttest;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+                            <a-entity id="summary-board-price" scale="1.1 1.1 1.1" position="0.85 0.83 0.01" bmfont-text="text:100;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+                            <a-entity id="summary-stroke-text" scale="1.1 1.1 1.1" position="-1.41 0.53 0.01" bmfont-text="text:Stroketesttest;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+                            <a-entity id="summary-stroke-price" scale="1.1 1.1 1.1" position="0.85 0.53 0.01" bmfont-text="text:100;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+                            <a-entity id="summary-rubber-text" scale="1.1 1.1 1.1" position="-1.41 0.21 0.01" bmfont-text="text:Rubbertesttest;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+                            <a-entity id="summary-rubber-price" scale="1.1 1.1 1.1" position="0.85 0.21 0.01" bmfont-text="text:100;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+                            <a-entity id="summary-wheelsize-text" scale="1.1 1.1 1.1" position="-1.41 -0.1 0.01" bmfont-text="text:Wheeltesttest;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+                            <a-entity id="summary-wheel-price" scale="1.1 1.1 1.1" position="0.85 -0.1 0.01" bmfont-text="text:100;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+                            <a-entity id="summary-boardlength-text" scale="1.1 1.1 1.1" position="-1.41 -0.43 0.01" bmfont-text="text:Lengthtesttest;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+                            <a-entity id="summary-length-price" scale="1.1 1.1 1.1" position="0.85 -0.43 0.01" bmfont-text="text:100;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+                            <a-entity id="summary-total-text" scale="1.3 1.3 1.3" position="-1.41 -1.0 0.01" bmfont-text="text:Total:;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+                        </a-entity>
+
+                        <!--Hoverboard base OBJ-->
+                        <a-entity id="hoverboard" position="0 0.9 2.79" visible="">
+                            <!--Hoverboard base OBJ-->
+                            <a-entity class="price" data-price="100" data-part-name="Hoverboard Base" id="hoverboard-base" obj-model="obj: #hoverboard-base-obj; mtl: #hoverboard-base-mtl" position="0 0 0" rotation="0 180 0" scale="1 1 1" visible="" material=""></a-entity>
+                            <!--Hoverboard stroke OBJ-->
+                            <a-entity class="price" data-price="50" data-part-name="Stroke" id="hoverboard-stroke" obj-model="obj: #hoverboard-stroke-none-obj; mtl: #hoverboard-stroke-none-mtl" position="0 0 0" rotation="0 180 0" scale="1 1 1" visible="" material=""></a-entity>
+                            <!--Wheel OBJ-->
+                            <a-entity class="price" data-price="30" data-part-name="Wheel" id="wheel" position="0 -0.78 0">
+                                <a-entity id="wheel-base" collada-model="#wheel-base-dae" rotation="0 90 0" scale="0.8 0.8 0.8" visible="true" material=""></a-entity>
+                            </a-entity>
+                            <a-entity class="price" data-price="20" data-part-name="Protecting Rubbers" id="stootparts" position="0 -0.06 0">
+                                <a-entity id="stootp" collada-model="#stoot-dae" rotation="0 180 0" scale="0.6 0.6 0.6"></a-entity>
+                            </a-entity>
+                            <a-entity class="price" data-price="25" data-part-name="Rubber Parts" id="rubberp" collada-model="#rubber-dae" position="0 -0.2 0" rotation="0 180 0" scale="0.57 0.57 0.57"></a-entity>
+                        </a-entity>
+
+                        <!--Rotation buttons-->
+                        <a-entity id="rotateButtons" position="0 0 4.7">
+                            <a-entity id="rotateRight" position="2.8 0.7 -2.84" scale="0.15 0.15 0.15" geometry="primitive:circle;" material="src:#rotationTexRight;depthTest:true;transparent:true;side:double"></a-entity>
+                            <a-entity id="rotateLeft" position="-2.8 0.7 -2.84" scale="0.15 0.15 0.15" geometry="primitive:circle" rotation="0 180 0" material="transparent:true;src:#rotationTexLeft;visible:true;side:double"></a-entity>
+                        </a-entity>
+
+                        <!--Length buttons-->
+                        <a-entity id="zoomButtons" visible="">
+                            <a-entity id="zoomInButton" position="2.88 1.53 -3.3" scale="0.3 0.3 0.3" geometry="primitive:circle" material="src:#lengthPlus; transparent: true;"></a-entity>
+                            <a-entity id="zoomOutButton" position="3.88 1.53 -3.34" scale="0.3 0.3 0.3" geometry="primitive:circle" material="src:#lengthMinus; transparent: true;"></a-entity>
+                        </a-entity>
+
+                        <!--Wheel size buttons-->
+                        <a-entity id="wheelButtons" visible="">
+                            <a-entity id="sizePlusButton" position="2.88 3.23 -3.3" scale="0.3 0.3 0.3" geometry="primitive:circle" material="src:#lengthPlus; transparent: true;"></a-entity>
+                            <a-entity id="sizeMinusButton" position="3.88 3.23 -3.34" scale="0.3 0.3 0.3" geometry="primitive:circle" material="src:#lengthMinus; transparent: true;"></a-entity>
+                        </a-entity>
+
+                        <!--Environment entities-->
+                        <!--skateobject-->
+                        <a-entity id="skateobject">
+                            <a-entity id="skateobjectslab" geometry="primitive:box" position="-9 0.2 -6.70" rotation="0 45 90" scale="0.45 5 1.6" material="src: #concretefloor; repeat: 2 1"></a-entity>
+                            <a-entity id="skateobjectslab2" geometry="primitive:box" position="-9 .4 -6.70" rotation="0 45 90" scale="0.45 3 1.3" material="src: #concretefloor; repeat: 2 1"></a-entity>
+                            <a-entity id="skateobjectcylinder" position="-9.55 0.83 -6.02" scale="0.1 0.8 0.1" geometry="primitive:cylinder" material="src: #chrometexture"></a-entity>
+                            <a-entity id="skateobjectcylinder2" position="-8.52 0.4 -1.8" scale="0.1 0.8 0.1" geometry="primitive:cylinder" material="src: #chrometexture"></a-entity>
+                            <a-entity id="skateobjectcylinder3" rotation="95.5 13.8 0" position="-9.03 1 -3.91" scale="0.05 4.65 0.05" geometry="primitive:cylinder" material="src: #chrometexture"></a-entity>
+                        </a-entity>
+                        <a-entity id="ramp">
+                            <a-entity id="rampp1" geometry="primitive:box" position="5.9 -0.21 -7.25" rotation="0 45 0" scale="2 2 2" material="src: #plywood"></a-entity>
+                            <a-entity id="rampp2" geometry="primitive:box" position="7.96 -0.58 -5.21" rotation="0 135 10" scale="4.35 2 2" material="src: #plywood"></a-entity>
+                        </a-entity>
+                        <!--billboards-->
+                        <a-entity id="billboard" collada-model="#billboard-dae" position="13.88 0 -3.68" rotation="0 20 0"></a-entity>
+                        <a-entity id="billboard2" collada-model="#billboard-dae-2" position="-15.7 0 -8.8" rotation="0 140 0"></a-entity>
+
+                        <!--walls-->
+                        <a-entity id="gif-wall" mixin="wallmix" position="0 2.4 6.5" ></a-entity>
+                        <!--<a-entity id="wall1" mixin="wallmix" position="-8.7 2.4 2.95" rotation="0 -45 0"></a-entity>-->
+                        <!--<a-entity id="wall2" mixin="wallmix" position="8.7 2.4 2.95" rotation="0 45 0"></a-entity>-->
+                        <!--<a-entity id="wall3" mixin="wallmix" position="12.3 2.4 -5.9" rotation="0 90 0" material="shader:flat; "></a-entity>-->
+                        <!--<a-entity id="wall4" mixin="wallmix" position="-12.3 2.4 -5.9" rotation="0 90 0" material="shader:flat; "></a-entity>-->
+                        <!--<a-entity id="wall5" mixin="wallmix" position="0 2.58 -18.2" material="shader:flat"></a-entity>-->
+                        <!--<a-entity id="wall6" mixin="wallmix" position="0 2.58 -18.2" material="shader:flat"></a-entity>-->
+                        <!--<a-entity id="wall7" mixin="wallmix" position="8.4 2.6 -14.5" material="shader:flat;" rotation="0 135 0"></a-entity>-->
+                        <!--<a-entity id="wall8" mixin="wallmix" position="-8.58 2.45 -14.48" material="shader:flat;" rotation="0 45 0"></a-entity>-->
+
+
+                        <!--Floor base Entity-->
+                        <a-entity id="floor" geometry="mergeTo:null;depth:40;height:0.02;width:40" material="shader:flat;repeat:  40 40;src:./img/textures/floor/texture_floor.jpg"></a-entity>
+
+                        <!-- hoverboard api pictures -->
+                        <a-entity id="hoverboard-pictures" position="0 3 6">
+                            <a-entity id="hoverboard-picture-1" mixin="gifs" position="13.61 3.96 -9.61" scale="1.32 1.3 1" rotation ="0 110 0" material="shader:flat;src: "></a-entity>
+                            <a-entity id="hoverboard-picture-2" mixin="gifs" position="-15.59 3.92 -14.64" scale="1.46 1.26 1" rotation="0 50 0 "material="shader:flat;src: "></a-entity>
+                            <a-entity id="hoverboard-picture-3" mixin="gifs" position="2.36 0 0" material="shader:flat;src: "></a-entity>
+                        </a-entity>
+
+                        <!-- hoverboard save -->
+                        <a-entity id="preview-hoverboard" position="0.13 0.2 -2.27" rotation="0 0 0">
+                            <a-entity id="saveButton" scale="0.8 0.4 0.4" geometry="primitive:plane" material="src:#save-button-png;"></a-entity>
+                        </a-entity>
+
+
+                        </a-entity>
+                        <!--Skybox-->
+                        <a-sky id="sky" color="#73d8ed"></a-sky>
+
+
+                    </a-scene>
                 </div>
             </div>
         </div>
     </div>
 </section>
 <!--END - specifications-->
+<section id="pricing">
+    <div class="container">
+        <div class="col-md-6 col-md-offset-3 col-xs-12">
+            <div class="pricing">
+                <div class="thumbnail">
+                    <img src="img/logo.png">
+                </div>
+                <div class="title">
+                    Hoverboard Pricing
+                </div>
+                <div class="content">
+                    <div class="sub-title">
+                        Starting at €200
+                    </div>
+                    <ul class="pricing-list">
+                    </ul>
+                    <a>
+                        CHECK OUT
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 <!--START - CONTACT-->
 <section id="contact">
@@ -213,10 +482,7 @@
 <a href="#" id="back-to-top" title="Back to top"><i class="fa fa-angle-up"></i></a>
 <!--END - BACK TO TOP-->
 
-<!--START - SCRIPTS-->
-<script src="js/main.min.js"></script>
 <script src="js/functions.js"></script>
-<!--END - SCRIPTS-->
 
 </body>
 <!--END - BODY-->

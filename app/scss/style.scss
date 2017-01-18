@@ -22,6 +22,8 @@ time, mark, audio, video {
 
 $brandPrimary: #458eff;
 $brandSecondary: #3c3c3c;
+$accent: #3498db;
+$accent_hover: #2980b9;
 
 
 /* HTML5 display-role reset for older browsers */
@@ -390,7 +392,7 @@ p {
 #contact {
   width: 100%;
   min-height: 570px;
-  padding-top: 400px;
+  padding-top: 1100px;
 }
 .line-spacer {
   margin-top: 7%;
@@ -491,6 +493,102 @@ footer p {
 /*----------- Margins-----------*/
 .mb-50 {
   margin-bottom: 50px;
+}
+
+/*----------- Price Toggle ------------*/
+.pricing {
+  margin-top: 400px;
+  position: absolute;
+  background: $accent;
+  width: 480px;
+  padding: 40px 0 20px;
+  color: #fff;
+  -webkit-box-shadow: 0 0 3px rgba(0,0,0,.3);
+  -moz-box-shadow: 0 0 3px rgba(0,0,0,.3);
+  box-shadow: 0 0 3px rgba(0,0,0,.3);
+  & .thumbnail {
+    display: block;
+    width: 140px;
+    margin: 0 auto;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    font-size: 36px;
+    line-height: 90px;
+    text-align: center;
+  }
+  & .title {
+    cursor: pointer;
+    background: $accent_hover;
+    margin: 40px 0 0;
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  & .content {
+    display: none;
+    & .sub-title {
+      background: #eee;
+      padding: 10px;
+      color: #666;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+    }
+    & ul {
+      list-style: none;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+      color: #666;
+      font-size: 14px;
+      & li {
+        padding: 10px 20px;
+        &:nth-child(2n) {
+          background: #f3f3f3;
+        }
+        & .fa {
+          width: 16px;
+          margin-right: 10px;
+          text-align: center;
+        }
+        & .fa-check {
+          color: #2ecc71;
+        }
+        & .fa-close {
+          color: #e74c3c;
+        }
+      }
+    }
+    & a {
+      display: block;
+      background: $accent_hover;
+      max-width: 150px;
+      margin: 20px auto 0;
+      padding: 10px 15px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      -webkit-transition: 0.2s linear;
+      -moz-transition: 0.2s linear;
+      -ms-transition: 0.2s linear;
+      -o-transition: 0.2s linear;
+      transition: 0.2s linear;
+      &:hover {
+        background: #34495e; /* IE Fallback */
+        background: rgba(52,73,94,.7);
+      }
+    }
+  }
+}
+
+.li-right-bold {
+  font-weight: 700;
+  float: right;
 }
 
 
