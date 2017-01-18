@@ -296,12 +296,12 @@ var priceManager = {
 
             for (var k in data){
                 if (data.hasOwnProperty(k)) {
-                    $('#summary-list').append('<a-entity id="summary-board-text" scale="1.1 1.1 1.1" position="-1.41 '+ (y - (i * 0.30)) +' 0.01" bmfont-text="text:'+ k +';letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity><a-entity id="summary-board-price" scale="1.1 1.1 1.1" position="0.85 '+ (y - (i * 0.30)) +' 0.01" bmfont-text="text: €'+ data[k] +';letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>')
+                    $('#summary-list').append('<a-entity id="summary-board-text" scale="1.1 1.1 1.1" position="-1.41 '+ (y - (i * 0.30)) +' 0.01" bmfont-text="text:'+ k +';letterSpacing:0.8;color:#ffffff;"></a-entity><a-entity id="summary-board-price" scale="1.1 1.1 1.1" position="0.85 '+ (y - (i * 0.30)) +' 0.01" bmfont-text="text: €'+ data[k] +';letterSpacing:0.8;color:#ffffff;"></a-entity>')
                     i += 1;
                 }
             }
 
-            $('#summary-list').append('<a-entity id="summary-total-text" scale="1.3 1.3 1.3" position="-1.41 -1.0 0.01" bmfont-text="text:Total: €'+ total +';letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>');
+            $('#summary-list').append('<a-entity id="summary-total-text" scale="1.3 1.3 1.3" position="-1.41 -1.0 0.01" bmfont-text="text:Total: €'+ total +';letterSpacing:0.8;color:#ffffff;"></a-entity>');
 
 
             for (var key in data){
@@ -330,9 +330,11 @@ var checkoutManager = {
             setTimeout(function(){
                 succes_sound.play();
                 console.log('checkout activated');
+                $('#cursor').append('<a-entity id="textcursor" bmfont-text="text:Doe je headset af!;letterSpacing:0.4;color:#ffffff;" position="-0.77 0.06 -0.08"></a-entity>');
                 setTimeout(function () {
                     checkoutManager.functions.scrollToDiv('.thumbnail', 1600);
-                }, 400);
+                    $('#textcursor').remove();
+                }, 10000);
             }, 1000);
         });
 

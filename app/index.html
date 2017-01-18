@@ -251,15 +251,17 @@
 
                         <!--Camera-->
                         <a-camera id="camera" camera="" position="" rotation="" look-controls="" wasd-controls="" scale="" visible="">
-                            <a-cursor color="white" material="" raycaster="" cursor="" geometry="" position="" rotation="" scale="1 1" visible=""></a-cursor>
+                            <a-cursor id="cursor" color="white" scale="1 1" visible="">
+
+                            </a-cursor>
                         </a-camera>
 
                         <!--Modify menu-->
                         <a-entity id="modify-menu" position="4.23 0.59 -0.15" rotation="0 0 0" scale="" visible="">
-                            <a-entity id="stroke-text" position="-8.04 3.52 -3.2" bmfont-text="text:Stroke Color;letterSpacing:0.4;color:#ffffff; shader: flat" rotation="" scale="" visible=""></a-entity>
-                            <a-entity id="rubber-text" position="-4.75 3.52 -3.2" bmfont-text="text:Rubber Color;letterSpacing:0.4;color:#ffffff; shader: flat" rotation="" scale="" visible=""></a-entity>
-                            <a-entity id="wheel-text" position="-1.5 3.52 -3.2" bmfont-text="text:Wheel size;letterSpacing:0.4;color:#ffffff; shader: flat" rotation="" scale="" visible=""></a-entity>
-                            <a-entity id="board-text" position="-1.5 1.8 -3.2" bmfont-text="text:Board length;letterSpacing:0.54;color:#ffffff; shader: flat" rotation="" scale="" visible=""></a-entity>
+                            <a-entity id="stroke-text" position="-8.04 3.52 -3.2" bmfont-text="text:Stroke Color;letterSpacing:0.4;color:#ffffff;" rotation="" scale="" visible=""></a-entity>
+                            <a-entity id="rubber-text" position="-4.75 3.52 -3.2" bmfont-text="text:Rubber Color;letterSpacing:0.4;color:#ffffff;" rotation="" scale="" visible=""></a-entity>
+                            <a-entity id="wheel-text" position="-1.5 3.52 -3.2" bmfont-text="text:Wheel size;letterSpacing:0.4;color:#ffffff;" rotation="" scale="" visible=""></a-entity>
+                            <a-entity id="board-text" position="-1.5 1.8 -3.2" bmfont-text="text:Board length;letterSpacing:0.54;color:#ffffff;" rotation="" scale="" visible=""></a-entity>
                             <a-entity id="rubber-example" collada-model="#rubber-dae" rotation="0 180 0" scale="0.2 0.2 0.2" position="-4.18 2.97 -3.18"></a-entity>
                             <a-entity id="stroke-example" obj-model="obj: #hoverboard-stroke-none-obj; mtl: #hoverboard-stroke-none-mtl" position="-7.52 3.12 -3.21" rotation="-32.09 179.91 0" scale="0.2 1.36 0.1" material=""></a-entity>
                             <a-entity id="background-color-opener" geometry="primitive:plane" scale="9.72 4 1" position="-4.18 1.77 -3.21" material="color: #000000; opacity: 0.6" rotation="" visible=""></a-entity>
@@ -289,18 +291,18 @@
 
                         <!--name of colors list-->
                         <a-entity id="color-name-list" position="0.3 0 0">
-                            <a-entity id="name-white" bmfont-text="text:White;letterSpacing:0.54;color:#ffffff; shader: flat" position="-0.44 3.15 -3.32"></a-entity>
-                            <a-entity id="name-blue" bmfont-text="text:Blue                             Blue;letterSpacing:0.54;color:#ffffff; shader: flat" position="-3.66 2.65 -3.32"></a-entity>
-                            <a-entity id="name-purple" bmfont-text="text:Purple                           Purple;letterSpacing:0.54;color:#ffffff; shader: flat" position="-3.66 2.15 -3.32"></a-entity>
-                            <a-entity id="name-black" bmfont-text="text:Black                            Black;letterSpacing:0.54;color:#ffffff; shader: flat" position="-3.66 1.65 -3.32"></a-entity>
-                            <a-entity id="name-green" bmfont-text="text:Green                            Green;letterSpacing:0.54;color:#ffffff; shader: flat" position="-3.66 1.15 -3.32"></a-entity>
-                            <a-entity id="name-red" bmfont-text="text:Red                              Red;letterSpacing:0.54;color:#ffffff; shader: flat" position="-3.66 0.65 -3.32"></a-entity>
+                            <a-entity id="name-white" bmfont-text="text:White;letterSpacing:0.54;color:#ffffff;" position="-0.44 3.15 -3.32"></a-entity>
+                            <a-entity id="name-blue" bmfont-text="text:Blue                             Blue;letterSpacing:0.54;color:#ffffff;" position="-3.66 2.65 -3.32"></a-entity>
+                            <a-entity id="name-purple" bmfont-text="text:Purple                           Purple;letterSpacing:0.54;color:#ffffff;" position="-3.66 2.15 -3.32"></a-entity>
+                            <a-entity id="name-black" bmfont-text="text:Black                            Black;letterSpacing:0.54;color:#ffffff;" position="-3.66 1.65 -3.32"></a-entity>
+                            <a-entity id="name-green" bmfont-text="text:Green                            Green;letterSpacing:0.54;color:#ffffff;" position="-3.66 1.15 -3.32"></a-entity>
+                            <a-entity id="name-red" bmfont-text="text:Red                              Red;letterSpacing:0.54;color:#ffffff;" position="-3.66 0.65 -3.32"></a-entity>
                         </a-entity>
 
                         <!--Summary selection-->
                         <a-entity id="summary-list" position="-2.24 3.01 5.89" rotation="0 180 0">
                             <a-entity id="summary-background"  geometry="primitive:plane;height:3.04;width:3.02" material="color:black;opacity:0.8"></a-entity>
-                            <a-entity id="summary-text" scale="1.4 1.4 1.4" position="-0.44 1.25 0.01" bmfont-text="text:Summary;letterSpacing:0.8;color:#ffffff; shader: flat"></a-entity>
+                            <a-entity id="summary-text" scale="1.4 1.4 1.4" position="-0.44 1.25 0.01" bmfont-text="text:Summary;letterSpacing:0.8;color:#ffffff;"></a-entity>
                         </a-entity>
 
                         <!--Hoverboard base OBJ-->
