@@ -123,13 +123,7 @@ hoverboardManager = {
                 }, 1000);
             });
 
-            id.addEventListener('mouseleave', function () {
-                $($(this)).append('<a-animation id="scaleDown" attribute="scale" from="1.2 1.2 1.2" to="1 1 1" delay="0" dur="500" fill="both" easing="ease-out"></a-animation>');
-                setTimeout(function () {
-                    $('#scaleUp').remove();
-                    $('#scaleDown').remove();
-                }, 700)
-            });
+            hoverboardManager.functions.mouseLeaveAnimation(id, "1.2 1.2 1.2", "1 1 1");
         },
 
         addRubber: function (id, selector, dae, position) {
@@ -144,25 +138,31 @@ hoverboardManager = {
                 }, 1000);
             });
 
-            id.addEventListener('mouseleave', function () {
-                $($(this)).append('<a-animation id="scaleDown" attribute="scale" from="1.2 1.2 1.2" to="1 1 1" delay="0" dur="500" fill="both" easing="ease-out"></a-animation>');
-                setTimeout(function () {
-                    $('#scaleUp').remove();
-                    $('#scaleDown').remove();
-                }, 700)
-            });
+            hoverboardManager.functions.mouseLeaveAnimation(id, "1.2 1.2 1.2", "1 1 1");
         },
 
         zoom: function (id, base_hov, zoomAdd) {
             id.addEventListener('mouseenter', function () {
-                hoverboardManager.functions.controlZoom(zoomAdd, base_hov);
+                $($(this)).append('<a-animation id="scaleUp" attribute="scale" from="0.3 0.3 0.3" to="0.4 0.4 0.4" dur="500" fill="both" easing="ease-in"></a-animation>');
+                setTimeout(function () {
+                    succes_sound.play();
+                    hoverboardManager.functions.controlZoom(zoomAdd, base_hov);
+                }, 1000);
             });
+
+            hoverboardManager.functions.mouseLeaveAnimation(id, "0.4 0.4 0.4", "0.3 0.3 0.3");
         },
 
         adjustSize: function (id, wheel, zoomAddWheel) {
             id.addEventListener('mouseenter', function () {
-                hoverboardManager.functions.controlScale(wheel, zoomAddWheel);
+                $($(this)).append('<a-animation id="scaleUp" attribute="scale" from="0.3 0.3 0.3" to="0.4 0.4 0.4" dur="500" fill="both" easing="ease-in"></a-animation>');
+                setTimeout(function () {
+                    succes_sound.play();
+                    hoverboardManager.functions.controlScale(wheel, zoomAddWheel);
+                }, 1000);
             });
+
+            hoverboardManager.functions.mouseLeaveAnimation(id, "0.4 0.4 0.4", "0.3 0.3 0.3");
         },
 
         controlScale: function (wheel, zoomAddWheel) {
@@ -170,7 +170,6 @@ hoverboardManager = {
             if (zoomvarWheel <= 0.9 && zoomvarWheel >= 0.7)
             {
                 wheel.attr('scale', zoomvarWheel + ' ' + zoomvarWheel + ' ' + zoomvarWheel);
-                console.log(zoomvarWheel)
             }
         },
 
@@ -178,7 +177,6 @@ hoverboardManager = {
             zoomvar += zoomAdd;
             if (zoomvar <= 1.31 && zoomvar >= 0.9) {
                 base_hov.attr('scale', zoomvar, zoomvar, zoomvar);
-                console.log(zoomvar)
             }
         },
 
@@ -215,6 +213,16 @@ hoverboardManager = {
                 }
             });
         },
+
+        mouseLeaveAnimation : function (id, from, to) {
+            id.addEventListener('mouseleave', function () {
+                $($(this)).append('<a-animation id="scaleDown" attribute="scale" from="' + from +'" to="' + to +'" delay="0" dur="500" fill="both" easing="ease-out"></a-animation>');
+                setTimeout(function () {
+                    $('#scaleUp').remove();
+                    $('#scaleDown').remove();
+                }, 700)
+            });
+        }
     }
 };
 
@@ -224,14 +232,17 @@ var priceManager = {
     },
 
     setListeners: function () {
-        var preview = document.getElementById('preview-hoverboard');
+        var preview = document.getElementById('saveButton');
         priceManager.functions.toggleVisible("#checkoutButton", false);
         preview.addEventListener('mouseenter', function () {
+            $($(this)).append('<a-animation id="scaleUp" attribute="scale" from="0.8 0.4 0.4" to="1 0.6 0.6" dur="500" fill="both" easing="ease-in"></a-animation>');
             setTimeout(function(){
+                succes_sound.play();
                 priceManager.functions.websiteCalculation();
-                priceManager.functions.turnCamera();
             }, 1000);
         });
+
+        priceManager.functions.mouseLeaveAnimation(preview, "1 0.6 0.6", "0.8 0.4 0.4");
     },
 
     functions: {
@@ -287,21 +298,14 @@ var priceManager = {
             $(name).attr('visible', bool);
         },
 
-        turnCamera : function () {
-            setTimeout(function () {
-                var $camera = $('#camera');
-                var $cameraClass = $('.camera-animation');
-                var camera = $camera.attr('rotation');
-                var x = camera.x;
-                var y = camera.y;
-                var z = camera.z;
-                if ($camera.is(':parent')) {
-                    $cameraClass.remove();
-                    $camera.append('<a-animation class="camera-animation" attribute="rotation" from="' + x + ' ' + y + ' ' + z + '" to="0 180 0" dur="5000" direction="alternateReverse"></a-animation>');
-                } else {
-                    $camera.append('<a-animation class="camera-animation" attribute="rotation" from="' + x + ' ' + y + ' ' + z + '" to="0 180 0" dur="5000" direction="alternateReverse"></a-animation>');
-                }
-            }, 500);
+        mouseLeaveAnimation : function (id, from, to) {
+            id.addEventListener('mouseleave', function () {
+                $($(this)).append('<a-animation id="scaleDown" attribute="scale" from="' + from +'" to="' + to +'" delay="0" dur="500" fill="both" easing="ease-out"></a-animation>');
+                setTimeout(function () {
+                    $('#scaleUp').remove();
+                    $('#scaleDown').remove();
+                }, 700)
+            });
         }
     }
 };
@@ -314,9 +318,9 @@ var checkoutManager = {
     setListeners: function () {
         var checkout = document.getElementById('checkout-hoverboard');
         checkout.addEventListener('mouseenter', function () {
+            $($(this)).append('<a-animation id="scaleUp" attribute="scale" from="1.6 1.2 1.2" to="1.7 1.3 1.3" dur="500" fill="both" easing="ease-in"></a-animation>');
             setTimeout(function(){
                 succes_sound.play();
-                console.log('checkout activated');
                 $('#cursor').append('<a-entity id="textcursor" bmfont-text="text:Doe je headset af!;letterSpacing:0.4;color:#ffffff;" position="-0.77 0.06 -0.08"></a-entity>');
                 setTimeout(function () {
                     checkoutManager.functions.scrollToDiv('.thumbnail', 1600);
@@ -335,6 +339,16 @@ var checkoutManager = {
             $('html, body').animate({
                 scrollTop: $(id).offset().top + offset
             }, 2000);
+        },
+
+        mouseLeaveAnimation : function (id, from, to) {
+            id.addEventListener('mouseleave', function () {
+                $($(this)).append('<a-animation id="scaleDown" attribute="scale" from="' + from +'" to="' + to +'" delay="0" dur="500" fill="both" easing="ease-out"></a-animation>');
+                setTimeout(function () {
+                    $('#scaleUp').remove();
+                    $('#scaleDown').remove();
+                }, 700)
+            });
         }
     },
 };
