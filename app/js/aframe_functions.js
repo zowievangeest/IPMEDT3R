@@ -4,7 +4,6 @@
 var zoomvar = 1;
 var zoomvarWheel = 0.8;
 
-var hover_button = new Audio('./sounds/hover_sound.mp3');
 var succes_sound = new Audio('./sounds/succes_sound.mp3');
 
 var hoverboardManager;
@@ -22,7 +21,6 @@ hoverboardManager = {
         main_functions: function () {
 
             //hoverboard stroke colors
-            var color_none = document.getElementById('stroke-white');
             var color_blue = document.getElementById('stroke-blue');
             var color_red = document.getElementById('stroke-red');
             var color_green = document.getElementById('stroke-green');
@@ -32,8 +30,6 @@ hoverboardManager = {
             //hoverboard stroke en hoverboard base
             var $hoverboard_stroke = $('#hoverboard-stroke');
             var $hoverboard_base_stroke = $('#board-stroke');
-            var $hoverboard_base = $('#hoverboard-base');
-
 
             //rubber part colors
             var color_none_rubber = document.getElementById('rubber-white');
@@ -54,11 +50,8 @@ hoverboardManager = {
 
             //colorpicker and size vars
             var color_opener_stroke = document.getElementById('color-stroke-button');
-            var color_closer_stroke = document.getElementById('color-stroke-button-close');
             var wheel_size_opener = document.getElementById('size-wheel-button');
-            var wheel_size_closer = document.getElementById('wheel-size-button-close');
             var rubber_color_opener = document.getElementById('color-rubber-button');
-            var rubber_color_closer = document.getElementById('color-rubber-button-close');
 
             // check if panels are toggled else close them
             hoverboardManager.functions.checkTogglePanels(color_opener_stroke, "#color-picker-rubber", '#wheel-size-plane');
@@ -79,14 +72,6 @@ hoverboardManager = {
             var zoomplus = -.05;
             var sizeminWheel = -.05;
             var sizeplusWheel = .05;
-            
-
-
-            // save hoverboard
-            // var saveButton = document.getElementById('save-hoverboard');
-            //
-            // // save button function
-            // hoverboardManager.functions.saveHoverboard(saveButton);
 
             //color functions for strokes
             hoverboardManager.functions.addStroke(color_blue, $hoverboard_stroke, '#hoverboard-stroke-blue-obj', '#hoverboard-stroke-blue-mtl');
@@ -101,7 +86,6 @@ hoverboardManager = {
             hoverboardManager.functions.addRubber(color_red_rubber, $rubber_base, '#rubber-dae-red', '-0.03 0 0');
             hoverboardManager.functions.addRubber(color_green_rubber, $rubber_base, '#rubber-dae-green', '-0.03 0 0');
             hoverboardManager.functions.addRubber(color_purple_rubber, $rubber_base, '#rubber-dae-purple', '-0.03 0 0');
-            hoverboardManager.functions.addRubber(color_none_rubber, $rubber_base, '#rubber-dae', '0 -0.16 0' );
 
             //aanroepen zoomfunctie
             hoverboardManager.functions.zoom(zoomIn, $hoverboard_base_stroke, zoommin);
@@ -129,22 +113,43 @@ hoverboardManager = {
 
         addStroke: function (id, selector, obj, mtl) {
             id.addEventListener('mouseenter', function () {
-                timer = setTimeout
-                succes_sound.play();
-                $('#hoverboard-stroke').remove();
-                $('#board-stroke').append('<a-entity class="price" data-price="50" data-part-name="Stroke" id="hoverboard-stroke" obj-model="obj: ' + obj + '; mtl: ' + mtl + '" position="0 0 0" rotation="0 180 0" scale="1 1 1" visible="" material=""></a-entity>');
-                $('#stroke-example').remove()
-                $('#modify-menu').append('<a-entity id="stroke-example" obj-model="obj: ' + obj + '; mtl: ' + mtl + '" position="-7.52 3.12 -3.21" rotation="-32.09 179.91 0" scale="0.2 1.36 0.1" visible="" material=""></a-entity>');
+                $($(this)).append('<a-animation id="scaleUp" attribute="scale" from="1 1 1" to="1.2 1.2 1.2" dur="500" fill="both" easing="ease-in"></a-animation>');
+                setTimeout(function () {
+                    succes_sound.play();
+                    $('#hoverboard-stroke').remove();
+                    $('#board-stroke').append('<a-entity class="price" data-price="50" data-part-name="Stroke" id="hoverboard-stroke" obj-model="obj: ' + obj + '; mtl: ' + mtl + '" position="0 0 0" rotation="0 180 0" scale="1 1 1" visible="" material=""></a-entity>');
+                    $('#stroke-example').remove()
+                    $('#modify-menu').append('<a-entity id="stroke-example" obj-model="obj: ' + obj + '; mtl: ' + mtl + '" position="-6.9 3.12 -3.21" rotation="-32.09 179.91 0" scale="0.2 1.36 0.1" visible="" material=""></a-entity>');
+                }, 1000);
+            });
+
+            id.addEventListener('mouseleave', function () {
+                $($(this)).append('<a-animation id="scaleDown" attribute="scale" from="1.2 1.2 1.2" to="1 1 1" delay="0" dur="500" fill="both" easing="ease-out"></a-animation>');
+                setTimeout(function () {
+                    $('#scaleUp').remove();
+                    $('#scaleDown').remove();
+                }, 700)
             });
         },
 
         addRubber: function (id, selector, dae, position) {
             id.addEventListener('mouseenter', function () {
-                succes_sound.play();
-                $('#rubberp').remove();
-                $('#hoverboard').append('<a-entity class="price" data-price="25" data-part-name="Rubber Parts" id="rubberp" collada-model="'+ dae + '" position="' + position +'" rotation="0 180 0" scale="0.57 0.57 0.57"></a-entity>');
-                $('#rubber-example').remove();
-                $('#modify-menu').append('<a-entity id="rubber-example" collada-model="'+ dae +'" rotation="0 180 0" scale="0.2 0.2 0.2" position="-4.18 2.97 -3.18"></a-entity>');
+                $($(this)).append('<a-animation id="scaleUp" attribute="scale" from="1 1 1" to="1.2 1.2 1.2" dur="500" fill="both" easing="ease-in"></a-animation>');
+                setTimeout(function () {
+                    succes_sound.play();
+                    $('#rubberp').remove();
+                    $('#hoverboard').append('<a-entity class="price" data-price="25" data-part-name="Rubber Parts" id="rubberp" collada-model="' + dae + '" position="' + position + '" rotation="0 180 0" scale="0.57 0.57 0.57"></a-entity>');
+                    $('#rubber-example').remove();
+                    $('#modify-menu').append('<a-entity id="rubber-example" collada-model="' + dae + '" rotation="0 180 0" scale="0.2 0.2 0.2" position="-3.7 2.97 -3.18"></a-entity>');
+                }, 1000);
+            });
+
+            id.addEventListener('mouseleave', function () {
+                $($(this)).append('<a-animation id="scaleDown" attribute="scale" from="1.2 1.2 1.2" to="1 1 1" delay="0" dur="500" fill="both" easing="ease-out"></a-animation>');
+                setTimeout(function () {
+                    $('#scaleUp').remove();
+                    $('#scaleDown').remove();
+                }, 700)
             });
         },
 
@@ -180,9 +185,9 @@ hoverboardManager = {
         rotationBoard: function (id, boardAn, bool) {
             id.addEventListener('mouseenter', function () {
                 if (bool) {
-                    $(boardAn).append('<a-animation id="rotateAnimationBoard" attribute="rotation" dur="5000" repeat="0" easing="ease-in-out"  from="0 0 0" to="0 180 0" direction="reverse"></a-animation>');
+                    $(boardAn).append('<a-animation id="rotateAnimationBoard" attribute="rotation" dur="5000" repeat="0" easing="ease-in-out" from="0 0 0" to="0 180 0" direction="reverse"></a-animation>');
                 } else {
-                    $(boardAn).append('<a-animation id="rotateAnimationBoard" attribute="rotation" dur="5000" repeat="0" easing="ease-in-out"  from="0 0 0" to="0 180 0" direction=""></a-animation>');
+                    $(boardAn).append('<a-animation id="rotateAnimationBoard" attribute="rotation" dur="5000" repeat="0" easing="ease-in-out" from="0 0 0" to="0 180 0" direction=""></a-animation>');
                 }
                 setTimeout(function () {
                     $('#rotateAnimationBoard').remove();
@@ -210,42 +215,6 @@ hoverboardManager = {
                 }
             });
         },
-        //
-        // saveHoverboard: function (id) {
-        //     id.addEventListener('mouseenter', function () {
-        //         var hoverboard = $('#cloned-hoverboard');
-        //         var cloneId = 1;
-        //         var clonedHoverboard = $('#hoverboard').clone().attr({
-        //             id: 'cloned-board' + cloneId++,
-        //             class: 'cloned-board-class'
-        //         }).insertAfter("#hoverboard");
-        //         if (hoverboard.is(':parent')) {
-        //             $('.cloned-board-class').remove();
-        //             hoverboard.append(clonedHoverboard);
-        //         } else {
-        //             hoverboard.append(clonedHoverboard);
-        //         }
-        //
-        //         setTimeout(function () {
-        //             var $camera = $('#camera');
-        //             var $cameraClass = $('.camera-animation');
-        //             var camera = $camera.attr('rotation');
-        //             var x = camera.x;
-        //             var y = camera.y;
-        //             var z = camera.z;
-        //             if ($camera.is(':parent')) {
-        //                 $cameraClass.remove();
-        //                 $camera.append('<a-animation class="camera-animation" attribute="rotation" from="' + x + ' ' + y + ' ' + z + '" to="0 180 0" dur="5000" direction="alternateReverse"></a-animation>');
-        //             } else {
-        //                 $camera.append('<a-animation class="camera-animation" attribute="rotation" from="' + x + ' ' + y + ' ' + z + '" to="0 180 0" dur="5000" direction="alternateReverse"></a-animation>');
-        //             }
-        //             setTimeout(function () {
-        //                 $('.cloned-board-class').append('<a-animation attribute="rotation" from="0 180 0" to="0 540 0" dur="10000" repeat="indefinite"></a-animation>');
-        //             }, 4500);
-        //         }, 500);
-        //     });
-        // }
-
     }
 };
 
@@ -259,7 +228,8 @@ var priceManager = {
         priceManager.functions.toggleVisible("#checkoutButton", false);
         preview.addEventListener('mouseenter', function () {
             setTimeout(function(){
-                priceManager.functions.websiteCalculation()
+                priceManager.functions.websiteCalculation();
+                priceManager.functions.turnCamera();
             }, 1000);
         });
     },
@@ -315,6 +285,23 @@ var priceManager = {
 
         toggleVisible: function (name, bool) {
             $(name).attr('visible', bool);
+        },
+
+        turnCamera : function () {
+            setTimeout(function () {
+                var $camera = $('#camera');
+                var $cameraClass = $('.camera-animation');
+                var camera = $camera.attr('rotation');
+                var x = camera.x;
+                var y = camera.y;
+                var z = camera.z;
+                if ($camera.is(':parent')) {
+                    $cameraClass.remove();
+                    $camera.append('<a-animation class="camera-animation" attribute="rotation" from="' + x + ' ' + y + ' ' + z + '" to="0 180 0" dur="5000" direction="alternateReverse"></a-animation>');
+                } else {
+                    $camera.append('<a-animation class="camera-animation" attribute="rotation" from="' + x + ' ' + y + ' ' + z + '" to="0 180 0" dur="5000" direction="alternateReverse"></a-animation>');
+                }
+            }, 500);
         }
     }
 };
