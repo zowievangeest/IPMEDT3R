@@ -253,18 +253,15 @@ var priceManager = {
             var prizes = {};
             var color = "";
             $('.price').each(function () {
-                if($(this).attr('data-color') == undefined){
+                if ($(this).attr('data-color') == undefined) {
                     color = "";
-                } else if($(this).attr('data-part-name') == "Stroke") {
+                } else if ($(this).attr('data-part-name') == "Stroke") {
                     color = ' - ' + $(this).attr('data-color');
-                    console.log(color)
-                } else if($(this).attr('data-part-name') == "Rubber Parts") {
+                } else if ($(this).attr('data-part-name') == "Rubber Parts") {
                     color = ' - ' + $(this).attr('data-color');
-                    console.log(color)
                 }
                 prizes[$(this).attr('data-part-name') + color] = $(this).data('price');
             });
-            console.log(prizes);
             return prizes
         },
 
