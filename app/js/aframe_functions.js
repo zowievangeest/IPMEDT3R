@@ -113,12 +113,13 @@ hoverboardManager = {
         addStroke: function (id, selector, obj, mtl) {
             id.addEventListener('mouseenter', function () {
                 var color = $(this).attr('data-color');
+                var price = $(this).attr('data-price');
 
                 $($(this)).append('<a-animation id="scaleUp" attribute="scale" from="1 1 1" to="1.2 1.2 1.2" dur="500" fill="both" easing="ease-in"></a-animation>');
                 setTimeout(function () {
                     succes_sound.play();
                     $('#hoverboard-stroke').remove();
-                    $('#board-stroke').append('<a-entity data-color="' + color + '" class="price" data-price="50" data-part-name="Stroke" id="hoverboard-stroke" obj-model="obj: ' + obj + '; mtl: ' + mtl + '" position="0 0 0" rotation="0 180 0" scale="1 1 1" visible="" material=""></a-entity>');
+                    $('#board-stroke').append('<a-entity data-color="' + color + '" class="price" data-price="' + price + '" data-part-name="Stroke" id="hoverboard-stroke" obj-model="obj: ' + obj + '; mtl: ' + mtl + '" position="0 0 0" rotation="0 180 0" scale="1 1 1" visible="" material=""></a-entity>');
                     $('#stroke-example').remove()
                     $('#modify-menu').append('<a-entity data-color="' + color + '" id="stroke-example" obj-model="obj: ' + obj + '; mtl: ' + mtl + '" position="-6.9 3.12 -3.21" rotation="-32.09 179.91 0" scale="0.2 1.36 0.1" visible="" material=""></a-entity>');
                 }, 1000);
@@ -130,12 +131,13 @@ hoverboardManager = {
         addRubber: function (id, selector, dae, position) {
             id.addEventListener('mouseenter', function () {
                 var color = $(this).attr('data-color');
+                var price = $(this).attr('data-price');
 
                 $($(this)).append('<a-animation id="scaleUp" attribute="scale" from="1 1 1" to="1.2 1.2 1.2" dur="500" fill="both" easing="ease-in"></a-animation>');
                 setTimeout(function () {
                     succes_sound.play();
                     $('#rubberp').remove();
-                    $('#hoverboard').append('<a-entity data-color="' + color + '" class="price" data-price="25" data-part-name="Rubber Parts" id="rubberp" collada-model="' + dae + '" position="' + position + '" rotation="0 180 0" scale="0.57 0.57 0.57"></a-entity>');
+                    $('#hoverboard').append('<a-entity data-color="' + color + '" class="price" data-price="' + price + '" data-part-name="Rubber Parts" id="rubberp" collada-model="' + dae + '" position="' + position + '" rotation="0 180 0" scale="0.57 0.57 0.57"></a-entity>');
                     $('#rubber-example').remove();
                     $('#modify-menu').append('<a-entity data-color="' + color + '" id="rubber-example" collada-model="' + dae + '" rotation="0 180 0" scale="0.2 0.2 0.2" position="-3.7 2.97 -3.18"></a-entity>');
                 }, 1000);
