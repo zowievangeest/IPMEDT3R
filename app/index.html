@@ -273,21 +273,21 @@
 
                         <!--stroke color list-->
                         <a-entity id="color-stroke-list" position="2.69 0.2 0.1">
-                            <a-entity id="stroke-blue" scale="1 1 1" position="-4.16 2.72 -3.31" rotation="0 10 0" geometry="primitive:circle;radius:0.2" material="color:blue"></a-entity>
-                            <a-entity id="stroke-purple" scale="1 1 1" position="-4.16 2.22 -3.31" rotation="0 10 0" geometry="primitive:circle;radius:0.2" material="color:purple"></a-entity>
-                            <a-entity id="stroke-black" scale="1 1 1" position="-4.16 1.72 -3.31" rotation="0 10 0" geometry="primitive:circle;radius:0.2" material="color:black"></a-entity>
-                            <a-entity id="stroke-green" scale="1 1 1" position="-4.16 1.22 -3.31" rotation="0 10 0" geometry="primitive:circle;radius:0.2" material="color:green"></a-entity>
-                            <a-entity id="stroke-red" scale="1 1 1" position="-4.16 0.72 -3.31" rotation="0 10 0" geometry="primitive:circle;radius:0.2" material="color:red"></a-entity>
+                            <a-entity id="stroke-blue" data-color="Blue" scale="1 1 1" position="-4.16 2.72 -3.31" rotation="0 10 0" geometry="primitive:circle;radius:0.2" material="color:blue"></a-entity>
+                            <a-entity id="stroke-purple" data-color="Purple" scale="1 1 1" position="-4.16 2.22 -3.31" rotation="0 10 0" geometry="primitive:circle;radius:0.2" material="color:purple"></a-entity>
+                            <a-entity id="stroke-black" data-color="Black" scale="1 1 1" position="-4.16 1.72 -3.31" rotation="0 10 0" geometry="primitive:circle;radius:0.2" material="color:black"></a-entity>
+                            <a-entity id="stroke-green" data-color="Green" scale="1 1 1" position="-4.16 1.22 -3.31" rotation="0 10 0" geometry="primitive:circle;radius:0.2" material="color:green"></a-entity>
+                            <a-entity id="stroke-red" data-color="Red" scale="1 1 1" position="-4.16 0.72 -3.31" rotation="0 10 0" geometry="primitive:circle;radius:0.2" material="color:red"></a-entity>
 
                         </a-entity>
 
                         <!--rubber color list-->
                         <a-entity id="color-rubber-list" position="5.5 0.2 0.1">
-                            <a-entity id="rubber-blue" position="-4.16 2.72 -3.31" rotation="0 -10 0" geometry="primitive:circle;radius:0.2" material="color:blue"></a-entity>
-                            <a-entity id="rubber-purple" position="-4.16 2.22 -3.31" rotation="0 -10 0" geometry="primitive:circle;radius:0.2" material="color:purple"></a-entity>
-                            <a-entity id="rubber-black" position="-4.16 1.72 -3.31" rotation="0 -10 0" geometry="primitive:circle;radius:0.2" material="color:black"></a-entity>
-                            <a-entity id="rubber-green" position="-4.16 1.22 -3.31" rotation="0 -10 0" geometry="primitive:circle;radius:0.2" material="color:green"></a-entity>
-                            <a-entity id="rubber-red" position="-4.16 0.72 -3.31" rotation="0 -10 0" geometry="primitive:circle;radius:0.2" material="color:red"></a-entity>
+                            <a-entity id="rubber-blue" data-color="Blue" position="-4.16 2.72 -3.31" rotation="0 -10 0" geometry="primitive:circle;radius:0.2" material="color:blue"></a-entity>
+                            <a-entity id="rubber-purple" data-color="Purple" position="-4.16 2.22 -3.31" rotation="0 -10 0" geometry="primitive:circle;radius:0.2" material="color:purple"></a-entity>
+                            <a-entity id="rubber-black" data-color="Black" position="-4.16 1.72 -3.31" rotation="0 -10 0" geometry="primitive:circle;radius:0.2" material="color:black"></a-entity>
+                            <a-entity id="rubber-green" data-color="Green" position="-4.16 1.22 -3.31" rotation="0 -10 0" geometry="primitive:circle;radius:0.2" material="color:green"></a-entity>
+                            <a-entity id="rubber-red" data-color="Red" position="-4.16 0.72 -3.31" rotation="0 -10 0" geometry="primitive:circle;radius:0.2" material="color:red"></a-entity>
                         </a-entity>
 
                         <a-entity id="dividers" position="4.23 0.59 -0.15">
@@ -307,8 +307,11 @@
 
                         <!--Summary selection-->
                         <a-entity id="summary-list" position="-2.24 3.01 5.89" rotation="0 180 0">
-                            <a-entity id="summary-background"  geometry="primitive:plane;height:3.04;width:3.02" material="color:black;opacity:0.8"></a-entity>
+                            <a-entity id="summary-background"  geometry="primitive:plane;height:3.04;width:4.02" material="color:black;opacity:0.8"></a-entity>
                             <a-entity id="summary-text" scale="1.4 1.4 1.4" position="-0.44 1.25 0.01" bmfont-text="text:Summary;letterSpacing:0.8;color:#ffffff;"></a-entity>
+                            <a-entity id="summary-list-items">
+
+                            </a-entity>
                         </a-entity>
 
                         <!--Hoverboard base OBJ-->
