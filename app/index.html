@@ -227,16 +227,21 @@
                             <!--Floor texture-->
                             <img id="floor" src="./img/textures/floor/texture_floor.jpg">
 
+                            <!-- continue button -->
+                            <img id="ctnbtn" src="/img/textures/continuebtn/continue.png">
+
                             <!--Environment textures-->
                             <img id="stonetexture" src="./img/textures/walls/stone.jpg">
                             <img id="concretefloor" src="./img/textures/objects/texture_floor_object.jpg">
                             <img id="chrometexture" src="./img/textures/objects/chrome.jpg">
                             <img id="plywood" src="./img/textures/objects/plywood.jpg">
 
-                            <!--halfpipe dae, obj and mtl-->
+                            <!--halfpipe model-->
                             <a-asset-item id="halfpipe-dae" src="./models/halfpipe/halfpipe.dae"></a-asset-item>
-                            <a-asset-item id="halfpipe-obj" src="./models/halfpipe/halfpipe.obj"></a-asset-item>
-                            <a-asset-item id="halfpipe-mtl" src="./models/halfpipe/halfpipe.mtl"></a-asset-item>
+
+                            <!--tree models -->
+                            <a-asset-item id="tree1-dae" src="./models/trees/tree1.dae"></a-asset-item>
+                            <a-asset-item id="tree2-dae" src="./models/trees/tree2.dae"></a-asset-item>
 
                             <!--sky image-->
                             <img id="sky" src="./img/textures/sky/sky.jpg">
@@ -256,6 +261,11 @@
 
                             </a-cursor>
                         </a-camera>
+
+                        <a-entity id="splash-screen" visible="true">
+                            <a-entity id="splash-bg" position="0 1.58 -2.23" scale="7 3.66 1" geometry="primitive:plane"></a-entity>
+                            <a-entity id="splash-closebtn" position="2.26 0.74 -2.21" scale="0.7 0.7 0.7" geometry="primitive:plane" material="src:#ctnbtn;transparent:true"></a-entity>
+                        </a-entity>
 
                         <!--Modify menu-->
                         <a-entity id="modify-menu" position="4.23 0.59 -0.15" rotation="0 0 0" scale="" visible="">
@@ -278,7 +288,6 @@
                             <a-entity id="stroke-black" data-price="50" data-color="Black" scale="1 1 1" position="-4.16 1.72 -3.31" rotation="0 10 0" geometry="primitive:circle;radius:0.2" material="color:black"></a-entity>
                             <a-entity id="stroke-green" data-price="60" data-color="Green" scale="1 1 1" position="-4.16 1.22 -3.31" rotation="0 10 0" geometry="primitive:circle;radius:0.2" material="color:green"></a-entity>
                             <a-entity id="stroke-red" data-price="55" data-color="Red" scale="1 1 1" position="-4.16 0.72 -3.31" rotation="0 10 0" geometry="primitive:circle;radius:0.2" material="color:red"></a-entity>
-
                         </a-entity>
 
                         <!--rubber color list-->
@@ -290,6 +299,7 @@
                             <a-entity id="rubber-red" data-price="35" data-color="Red" position="-4.16 0.72 -3.31" rotation="0 -10 0" geometry="primitive:circle;radius:0.2" material="color:red"></a-entity>
                         </a-entity>
 
+                        <!--Menu dividers-->
                         <a-entity id="dividers" position="4.23 0.59 -0.15">
                             <a-entity id="divider-1" geometry="primitive:plane" scale="0.05 3.97 1" position="-5.18 1.77 -3.18" material="color: #ffffff; opacity: 1" rotation="" visible=""></a-entity>
                             <a-entity id="divider-2" geometry="primitive:plane" scale="0.05 3.97 1" position="-2.3 1.77 -3.18" material="color: #ffffff; opacity: 1" rotation="" visible=""></a-entity>
@@ -371,6 +381,11 @@
                         <!--halfpipe-->
                         <a-entity id="halfpipe" collada-model="#halfpipe-dae" scale="0.1 0.1 0.1" position="-0.2 0 -10" rotation="0 20 0"></a-entity>
 
+                        <!--trees-->
+                        <a-entity id="tree1" collada-model="#tree1-dae" position="-12 0 -14" scale="2 2 2"></a-entity>
+                        <a-entity id="tree2" collada-model="#tree2-dae" position="8.4 0 -15.5"></a-entity>
+                        <a-entity id="tree3" collada-model="#tree1-dae" position="6.7 0 5.45"></a-entity>
+
                         <!--walls-->
                         <a-entity id="gif-wall" mixin="wallmix" position="0 2.4 6.5" ></a-entity>
 
@@ -388,6 +403,12 @@
 
                         <!-- hoverboard save -->
                         <a-entity id="saveButton" position="0.13 0.3 -2.27" scale="0.8 0.4 0.4" geometry="primitive:plane" material="src:#save-button-png;"></a-entity>
+
+                        <!-- hoverboard save text -->
+                        <a-entity id="savetext" position="-1.54 1.52 -2.26" visible="false">
+                            <a-entity id="save-text" bmfont-text="text:Kijk naar achter voor je hoverboard;letterSpacing:0.54;color:#ffffff;"></a-entity>
+                            <a-entity id="save-bg" geometry="primitive:plane" position="1.7 0.03 -0.04" scale="3.6 0.5 1" material="color:black;opacity:0.8"></a-entity>
+                        </a-entity>
 
                         <!-- hoverboard checkout -->
                         <a-entity id="checkout-hoverboard" position="-2.98 1.85 5.88" rotation="0 180 0" scale="1.6 1.2 1.2">

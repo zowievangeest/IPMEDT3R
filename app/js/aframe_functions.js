@@ -72,6 +72,9 @@ hoverboardManager = {
             var sizeminWheel = -.05;
             var sizeplusWheel = .05;
 
+            //splash screen variable
+            var splashscreenbtn = document.getElementById('splash-closebtn');
+
             //color functions for strokes
             hoverboardManager.functions.addStroke(color_blue, $hoverboard_stroke, '#hoverboard-stroke-blue-obj', '#hoverboard-stroke-blue-mtl');
             hoverboardManager.functions.addStroke(color_red, $hoverboard_stroke, '#hoverboard-stroke-red-obj', '#hoverboard-stroke-red-mtl');
@@ -99,8 +102,21 @@ hoverboardManager = {
             hoverboardManager.functions.rotationBoard(rotate_right, $rotAnBoard, false);
 
             hoverboardManager.functions.getHoverboardImage("hoverboard");
+
+            // aanroepen splashscreen function
+            hoverboardManager.functions.closeSplash(splashscreenbtn)
         },
 
+
+        closeSplash: function(button) {
+            button.addEventListener('mouseenter', function() {
+                $($(this)).append('<a-animation id="scaleUp" attribute="scale" from="0.7 0.7 0.7" to="0.85 0.85 0.85" dur="500" fill="both" easing="ease-in"></a-animation>');
+                setTimeout(function() {
+                    succes_sound.play();
+                    $('#splash-screen').attr('visible', false);
+                }, 1000);
+            });
+    },
 
         checkTogglePanels: function (picker, atr1, atr2) {
             picker.addEventListener('mouseenter', function () {
@@ -242,9 +258,15 @@ var priceManager = {
             $('#summary-list-items').empty();
             $($(this)).append('<a-animation id="scaleUp" attribute="scale" from="0.8 0.4 0.4" to="1 0.6 0.6" dur="500" fill="both" easing="ease-in"></a-animation>');
             setTimeout(function () {
+                $('#savetext').attr('visible', true);
+                setTimeout(function(){
+                    $('#savetext').attr('visible', false);
+                }, 3500);
                 succes_sound.play();
                 priceManager.functions.websiteCalculation();
             }, 1000);
+
+
         });
 
         priceManager.functions.mouseLeaveAnimation(preview, "1 0.6 0.6", "0.8 0.4 0.4");
@@ -334,10 +356,12 @@ var checkoutManager = {
             $($(this)).append('<a-animation id="scaleUp" attribute="scale" from="1.6 1.2 1.2" to="1.7 1.3 1.3" dur="500" fill="both" easing="ease-in"></a-animation>');
             setTimeout(function () {
                 succes_sound.play();
-                $('#cursor').append('<a-entity id="textcursor" bmfont-text="text:Doe je headset af!;letterSpacing:0.4;color:#ffffff;" position="-0.77 0.06 -0.08"></a-entity>');
+                $('#cursor').append('<a-entity id="textcursor" bmfont-text="text:Doe je headset af!;letterSpacing:0.4;color:#ffffff;" position="-0.93 0.06 -0.32"></a-entity>');
+                $('#cursor').append('<a-entity id="textcursor-bg" position="-0.08 0.12 -0.33" scale="1.95 0.34 1" geometry="primitive:plane" material="color:black;opacity:0.8"></a-entity>');
                 setTimeout(function () {
                     checkoutManager.functions.scrollToDiv('.thumbnail', 1600);
                     $('#textcursor').remove();
+                    $('#textcursor-bg').remove();
                 }, 10000);
             }, 1000);
         });
