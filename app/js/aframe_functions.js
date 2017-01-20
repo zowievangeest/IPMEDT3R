@@ -4,6 +4,8 @@
 var zoomvar = 1;
 var zoomvarWheel = 0.8;
 
+var mouse_enter = false;
+
 var succes_sound = new Audio('./sounds/succes_sound.mp3');
 
 var hoverboardManager;
@@ -110,7 +112,7 @@ hoverboardManager = {
 
         closeSplash: function(button) {
             button.addEventListener('mouseenter', function() {
-                $($(this)).append('<a-animation id="scaleUp" attribute="scale" from="0.7 0.7 0.7" to="0.85 0.85 0.85" dur="500" fill="both" easing="ease-in"></a-animation>');
+                $($(this)).append('<a-animation id="scaleUp" attribute="scale" from="1.4 0.5 0.7" to="1.6 0.7 0.7" dur="500" fill="both" easing="ease-in"></a-animation>');
                 setTimeout(function() {
                     succes_sound.play();
                     $('#splash-screen').attr('visible', false);
@@ -132,13 +134,16 @@ hoverboardManager = {
                 var price = $(this).attr('data-price');
 
                 $($(this)).append('<a-animation id="scaleUp" attribute="scale" from="1 1 1" to="1.2 1.2 1.2" dur="500" fill="both" easing="ease-in"></a-animation>');
+                mouse_enter = true
                 setTimeout(function () {
-                    succes_sound.play();
-                    $('#hoverboard-stroke').remove();
-                    $('#board-stroke').append('<a-entity data-color="' + color + '" class="price" data-price="' + price + '" data-part-name="Stroke" id="hoverboard-stroke" obj-model="obj: ' + obj + '; mtl: ' + mtl + '" position="0 0 0" rotation="0 180 0" scale="1 1 1" visible="" material=""></a-entity>');
-                    $('#stroke-example').remove()
-                    $('#modify-menu').append('<a-entity data-color="' + color + '" id="stroke-example" obj-model="obj: ' + obj + '; mtl: ' + mtl + '" position="-6.9 3.12 -3.21" rotation="-32.09 179.91 0" scale="0.2 1.36 0.1" visible="" material=""></a-entity>');
-                }, 1000);
+                    if(mouse_enter == true){
+                        succes_sound.play();
+                        $('#hoverboard-stroke').remove();
+                        $('#board-stroke').append('<a-entity data-color="' + color + '" class="price" data-price="' + price + '" data-part-name="Stroke" id="hoverboard-stroke" obj-model="obj: ' + obj + '; mtl: ' + mtl + '" position="0 0 0" rotation="0 180 0" scale="1 1 1" visible="" material=""></a-entity>');
+                        $('#stroke-example').remove()
+                        $('#modify-menu').append('<a-entity data-color="' + color + '" id="stroke-example" obj-model="obj: ' + obj + '; mtl: ' + mtl + '" position="-6.9 3.12 -3.21" rotation="-32.09 179.91 0" scale="0.2 1.36 0.1" visible="" material=""></a-entity>');
+                    }
+                }, 1500);
             });
 
             hoverboardManager.functions.mouseLeaveAnimation(id, "1.2 1.2 1.2", "1 1 1");
@@ -150,13 +155,16 @@ hoverboardManager = {
                 var price = $(this).attr('data-price');
 
                 $($(this)).append('<a-animation id="scaleUp" attribute="scale" from="1 1 1" to="1.2 1.2 1.2" dur="500" fill="both" easing="ease-in"></a-animation>');
+                mouse_enter = true
                 setTimeout(function () {
-                    succes_sound.play();
-                    $('#rubberp').remove();
-                    $('#hoverboard').append('<a-entity data-color="' + color + '" class="price" data-price="' + price + '" data-part-name="Rubber Parts" id="rubberp" collada-model="' + dae + '" position="' + position + '" rotation="0 180 0" scale="0.57 0.57 0.57"></a-entity>');
-                    $('#rubber-example').remove();
-                    $('#modify-menu').append('<a-entity data-color="' + color + '" id="rubber-example" collada-model="' + dae + '" rotation="0 180 0" scale="0.2 0.2 0.2" position="-3.7 2.97 -3.18"></a-entity>');
-                }, 1000);
+                    if(mouse_enter == true){
+                        succes_sound.play();
+                        $('#rubberp').remove();
+                        $('#hoverboard').append('<a-entity data-color="' + color + '" class="price" data-price="' + price + '" data-part-name="Rubber Parts" id="rubberp" collada-model="' + dae + '" position="' + position + '" rotation="0 180 0" scale="0.57 0.57 0.57"></a-entity>');
+                        $('#rubber-example').remove();
+                        $('#modify-menu').append('<a-entity data-color="' + color + '" id="rubber-example" collada-model="' + dae + '" rotation="0 180 0" scale="0.2 0.2 0.2" position="-3.7 2.97 -3.18"></a-entity>');
+                    }
+                }, 1200);
             });
 
             hoverboardManager.functions.mouseLeaveAnimation(id, "1.2 1.2 1.2", "1 1 1");
@@ -168,7 +176,7 @@ hoverboardManager = {
                 setTimeout(function () {
                     succes_sound.play();
                     hoverboardManager.functions.controlZoom(zoomAdd, base_hov);
-                }, 1000);
+                }, 1200);
             });
 
             hoverboardManager.functions.mouseLeaveAnimation(id, "0.4 0.4 0.4", "0.3 0.3 0.3");
@@ -236,6 +244,7 @@ hoverboardManager = {
 
         mouseLeaveAnimation: function (id, from, to) {
             id.addEventListener('mouseleave', function () {
+                mouse_enter = false;
                 $($(this)).append('<a-animation id="scaleDown" attribute="scale" from="' + from + '" to="' + to + '" delay="0" dur="500" fill="both" easing="ease-out"></a-animation>');
                 setTimeout(function () {
                     $('#scaleUp').remove();
