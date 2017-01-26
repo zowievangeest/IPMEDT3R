@@ -3,7 +3,8 @@
  */
 var zoomvar = 1;
 var zoomvarWheel = 0.8;
-
+var lengthnumber = 140;
+var sizenumber = 30;
 var mouse_enter = false;
 
 var succes_sound = new Audio('./sounds/succes_sound.mp3');
@@ -92,12 +93,12 @@ hoverboardManager = {
             hoverboardManager.functions.addRubber(color_purple_rubber, $rubber_base, '#rubber-dae-purple', '-0.03 0 0');
 
             //aanroepen zoomfunctie
-            hoverboardManager.functions.zoom(zoomIn, $hoverboard_base_stroke, zoommin);
-            hoverboardManager.functions.zoom(zoomOut, $hoverboard_base_stroke, zoomplus);
+            hoverboardManager.functions.zoom(zoomIn, $hoverboard_base_stroke, zoommin, 10);
+            hoverboardManager.functions.zoom(zoomOut, $hoverboard_base_stroke, zoomplus, -10);
 
             //aanroepen wheelsizefunction
-            hoverboardManager.functions.adjustSize(wheelPlus, $wheel, sizeplusWheel);
-            hoverboardManager.functions.adjustSize(wheelMinus, $wheel, sizeminWheel);
+            hoverboardManager.functions.adjustSize(wheelPlus, $wheel, sizeplusWheel, 5);
+            hoverboardManager.functions.adjustSize(wheelMinus, $wheel, sizeminWheel, -5);
 
             // aanroepen rotation functies
             hoverboardManager.functions.rotationBoard(rotate_left, $rotAnBoard, true);
@@ -170,41 +171,47 @@ hoverboardManager = {
             hoverboardManager.functions.mouseLeaveAnimation(id, "1.2 1.2 1.2", "1 1 1");
         },
 
-        zoom: function (id, base_hov, zoomAdd) {
+        zoom: function (id, base_hov, zoomAdd, plusminus) {
             id.addEventListener('mouseenter', function () {
                 $($(this)).append('<a-animation id="scaleUp" attribute="scale" from="0.3 0.3 0.3" to="0.4 0.4 0.4" dur="500" fill="both" easing="ease-in"></a-animation>');
                 setTimeout(function () {
                     succes_sound.play();
-                    hoverboardManager.functions.controlZoom(zoomAdd, base_hov);
+                    hoverboardManager.functions.controlZoom(zoomAdd, base_hov, plusminus);
                 }, 1200);
             });
 
             hoverboardManager.functions.mouseLeaveAnimation(id, "0.4 0.4 0.4", "0.3 0.3 0.3");
         },
 
-        adjustSize: function (id, wheel, zoomAddWheel) {
+        adjustSize: function (id, wheel, zoomAddWheel, plusminus) {
             id.addEventListener('mouseenter', function () {
                 $($(this)).append('<a-animation id="scaleUp" attribute="scale" from="0.3 0.3 0.3" to="0.4 0.4 0.4" dur="500" fill="both" easing="ease-in"></a-animation>');
                 setTimeout(function () {
                     succes_sound.play();
-                    hoverboardManager.functions.controlScale(wheel, zoomAddWheel);
+                    hoverboardManager.functions.controlScale(wheel, zoomAddWheel, plusminus);
                 }, 1000);
             });
 
             hoverboardManager.functions.mouseLeaveAnimation(id, "0.4 0.4 0.4", "0.3 0.3 0.3");
         },
 
-        controlScale: function (wheel, zoomAddWheel) {
+        controlScale: function (wheel, zoomAddWheel, plusminus) {
             zoomvarWheel += zoomAddWheel;
             if (zoomvarWheel <= 0.9 && zoomvarWheel >= 0.7) {
                 wheel.attr('scale', zoomvarWheel + ' ' + zoomvarWheel + ' ' + zoomvarWheel);
+                $('#wheel-size-number').remove();
+                $('#size-numbers').append('<a-entity id="wheel-size-number" bmfont-text="text:'+(sizenumber+plusminus)+' cm;letterSpacing:0.4;color:#ffffff;" position="3.23 3.69 -3.30"></a-entity>');
+                sizenumber += plusminus;
             }
         },
 
-        controlZoom: function (zoomAdd, base_hov) {
+        controlZoom: function (zoomAdd, base_hov, plusminus) {
             zoomvar += zoomAdd;
             if (zoomvar <= 1.31 && zoomvar >= 0.9) {
                 base_hov.attr('scale', zoomvar, zoomvar, zoomvar);
+                $('#board-size-number').remove();
+                $('#size-numbers').append('<a-entity id="board-size-number" bmfont-text="text:' + (lengthnumber+plusminus ) +' cm;letterSpacing:0.4;color:#ffffff;" position="3.11 1.97 -3.30"></a-entity>');
+                lengthnumber += plusminus;
             }
         },
 
