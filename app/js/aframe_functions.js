@@ -1,14 +1,19 @@
 /**
  * Created by Zowie on 12/17/2016.
  */
+
+// aanmaken variabelen die gebruikt worden in de functies
 var zoomvar = 1;
 var zoomvarWheel = 0.8;
 var lengthnumber = 140;
 var sizenumber = 30;
 var mouse_enter = false;
 
+// soundfile voor feedback wanneer naar een object gekeken wordt
 var succes_sound = new Audio('./sounds/succes_sound.mp3');
 
+/* de functies van het hoverboard worden gestored in een variabele welke aan het einde van document wordt aangeroepen
+in de document.ready() functie */
 var hoverboardManager;
 hoverboardManager = {
     init: function () {
@@ -110,7 +115,7 @@ hoverboardManager = {
             hoverboardManager.functions.closeSplash(splashscreenbtn)
         },
 
-
+        // met deze functie wordt het splash/loading screen gesloten wanneer naar de continu button wordt gekeken
         closeSplash: function(button) {
             button.addEventListener('mouseenter', function() {
                 $($(this)).append('<a-animation id="scaleUp" attribute="scale" from="1.4 0.5 0.7" to="1.6 0.7 0.7" dur="500" fill="both" easing="ease-in"></a-animation>');
@@ -129,6 +134,7 @@ hoverboardManager = {
 
         },
 
+        // met deze functie worden verschillende kleuren randen aan het hoverboard toegevoegd
         addStroke: function (id, selector, obj, mtl) {
             id.addEventListener('mouseenter', function () {
                 var color = $(this).attr('data-color');
@@ -138,6 +144,7 @@ hoverboardManager = {
                 mouse_enter = true
                 setTimeout(function () {
                     if(mouse_enter == true){
+                        // bij een mouseenter speelt sound af, wordt oude rand verwijdert en nieuwe toegevoegd, en oude model in menu verwijdert en nieuwe toegevoegd
                         succes_sound.play();
                         $('#hoverboard-stroke').remove();
                         $('#board-stroke').append('<a-entity data-color="' + color + '" class="price" data-price="' + price + '" data-part-name="Stroke" id="hoverboard-stroke" obj-model="obj: ' + obj + '; mtl: ' + mtl + '" position="0 0 0" rotation="0 180 0" scale="1 1 1" visible="" material=""></a-entity>');
@@ -150,6 +157,8 @@ hoverboardManager = {
             hoverboardManager.functions.mouseLeaveAnimation(id, "1.2 1.2 1.2", "1 1 1");
         },
 
+
+        // met deze functie worden verschillende kleuren wielrubbers aan het hoverboard toegevoegd
         addRubber: function (id, selector, dae, position) {
             id.addEventListener('mouseenter', function () {
                 var color = $(this).attr('data-color');
@@ -159,6 +168,7 @@ hoverboardManager = {
                 mouse_enter = true
                 setTimeout(function () {
                     if(mouse_enter == true){
+                        // bij een mouseenter speelt sound af, wordt oude rubberpart verwijdert en nieuwe toegevoegd, en oude model in menu verwijdert en nieuwe toegevoegd
                         succes_sound.play();
                         $('#rubberp').remove();
                         $('#hoverboard').append('<a-entity data-color="' + color + '" class="price" data-price="' + price + '" data-part-name="Rubber Parts" id="rubberp" collada-model="' + dae + '" position="' + position + '" rotation="0 180 0" scale="0.57 0.57 0.57"></a-entity>');
@@ -171,10 +181,17 @@ hoverboardManager = {
             hoverboardManager.functions.mouseLeaveAnimation(id, "1.2 1.2 1.2", "1 1 1");
         },
 
+        /*
+        Hieronder bevinden zich de functies voor het aanpassen van de grote van het wiel,
+        de grote van het hoverboard.
+         */
+
+        //functie voor groter en kleiner maken van het hoverboard
         zoom: function (id, base_hov, zoomAdd, plusminus) {
             id.addEventListener('mouseenter', function () {
                 $($(this)).append('<a-animation id="scaleUp" attribute="scale" from="0.3 0.3 0.3" to="0.4 0.4 0.4" dur="500" fill="both" easing="ease-in"></a-animation>');
                 setTimeout(function () {
+                    // bij mouseenter wordt de succes_sound afgespeeld en een nieuwe functie aangeroepen
                     succes_sound.play();
                     hoverboardManager.functions.controlZoom(zoomAdd, base_hov, plusminus);
                 }, 1200);
@@ -183,10 +200,12 @@ hoverboardManager = {
             hoverboardManager.functions.mouseLeaveAnimation(id, "0.4 0.4 0.4", "0.3 0.3 0.3");
         },
 
+        // functie voor het groter en kleiner maken van het wiel
         adjustSize: function (id, wheel, zoomAddWheel, plusminus) {
             id.addEventListener('mouseenter', function () {
                 $($(this)).append('<a-animation id="scaleUp" attribute="scale" from="0.3 0.3 0.3" to="0.4 0.4 0.4" dur="500" fill="both" easing="ease-in"></a-animation>');
                 setTimeout(function () {
+                    // bij mouseenter wordt succes_sound afgespeeld en de controlScale functie aangeroepen
                     succes_sound.play();
                     hoverboardManager.functions.controlScale(wheel, zoomAddWheel, plusminus);
                 }, 1000);
@@ -195,45 +214,67 @@ hoverboardManager = {
             hoverboardManager.functions.mouseLeaveAnimation(id, "0.4 0.4 0.4", "0.3 0.3 0.3");
         },
 
+        /*
+         Deze functie wordt aangeroepen binnen de adjustsize-functie en zorgt dat de size van
+         het wheel aangepast kan worden. De grote van het wheel wordt opgeslagen
+         in de variabele zoomvarWheel. Zo kan de grote bijgehouden worden.
+         */
         controlScale: function (wheel, zoomAddWheel, plusminus) {
+            // variabele wordt met 0.5 verhoogd of verlaagd
             zoomvarWheel += zoomAddWheel;
             if (zoomvarWheel <= 0.9 && zoomvarWheel >= 0.7) {
+                // de nieuwe scale-waarden worden toegepast op het wheel
                 wheel.attr('scale', zoomvarWheel + ' ' + zoomvarWheel + ' ' + zoomvarWheel);
+                // de nummers op het menu die de grote aangeven worden aangepast
                 $('#wheel-size-number').remove();
                 $('#size-numbers').append('<a-entity id="wheel-size-number" bmfont-text="text:'+(sizenumber+plusminus)+' cm;letterSpacing:0.4;color:#ffffff;" position="3.23 3.69 -3.30"></a-entity>');
                 sizenumber += plusminus;
             }
         },
 
+        /*
+        Deze functie wordt aangeroepen binnen de zoom-functie en zorgt dat de size van
+        het hoverboard aangepast kan worden. De grote van het hoverboard wordt opgeslagen
+        in de variabele zoomvar. Zo kan de grote bijgehouden worden.
+         */
         controlZoom: function (zoomAdd, base_hov, plusminus) {
+            // variabele wordt met 0.5 verhoogd of verlaagd
             zoomvar += zoomAdd;
             if (zoomvar <= 1.31 && zoomvar >= 0.9) {
+                // de nieuwe scale-waarden worden toegepast op het hoverboard
                 base_hov.attr('scale', zoomvar, zoomvar, zoomvar);
+                // de nummers op het menu die de grote aangeven worden aangepast
                 $('#board-size-number').remove();
                 $('#size-numbers').append('<a-entity id="board-size-number" bmfont-text="text:' + (lengthnumber+plusminus ) +' cm;letterSpacing:0.4;color:#ffffff;" position="3.11 1.97 -3.30"></a-entity>');
                 lengthnumber += plusminus;
             }
         },
 
+        // functie voor het roteren van het hoverboard (naar links of naar rechts)
         rotationBoard: function (id, boardAn, bool) {
             id.addEventListener('mouseenter', function () {
+                // de animaties worden toegevoegd aan de klasses
                 if (bool) {
                     $(boardAn).append('<a-animation id="rotateAnimationBoard" attribute="rotation" dur="5000" repeat="0" easing="ease-in-out" from="0 0 0" to="0 180 0" direction="reverse"></a-animation>');
                 } else {
                     $(boardAn).append('<a-animation id="rotateAnimationBoard" attribute="rotation" dur="5000" repeat="0" easing="ease-in-out" from="0 0 0" to="0 180 0" direction=""></a-animation>');
                 }
+                // de animatie van het draaien wordt na 5 seconden weer verwijdert, om te voorkomen dat hij door blijft draaien
                 setTimeout(function () {
                     $('#rotateAnimationBoard').remove();
                 }, 5000);
             });
         },
 
+        // functie voor het ophalen van de video's welke worden weergeven in de VR-omgeving
         getHoverboardImage: function (tag) {
             $.ajax({
+                // de api die we gebruiken
                 url: "http://api.giphy.com/v1/gifs/search?q=" + tag + "&api_key=dc6zaTOxFJmzC",
                 method: "GET", // or GET
                 dataType: "json",
                 success: function (msg) {
+                    // video's worden opgeslaten in variabelen
                     var randomItem1 = msg.data[Math.random() * msg.data.length | 0];
                     var randomItem2 = msg.data[Math.random() * msg.data.length | 0];
                     var randomItem3 = msg.data[Math.random() * msg.data.length | 0];
@@ -242,6 +283,7 @@ hoverboardManager = {
                     var video2 = randomItem2.images.fixed_width.mp4;
                     var video3 = randomItem3.images.fixed_width.mp4;
 
+                    // video's worden toegevoegd aan ID's binnen de html en zo weergeven in de omgeving
                     $('#hoverboard-picture-1').attr('material', 'src :' + video1);
                     $('#hoverboard-picture-2').attr('material', 'src :' + video2);
                     $('#hoverboard-picture-3').attr('material', 'src :' + video3);
@@ -249,6 +291,10 @@ hoverboardManager = {
             });
         },
 
+        /*
+         functie voor animatie die knoppen weer kleiner laat worden zodra er een mouseleave wordt geconstateerd.
+         De mouseenter animaties wordt in de functies zelf toegevoegd.
+        */
         mouseLeaveAnimation: function (id, from, to) {
             id.addEventListener('mouseleave', function () {
                 mouse_enter = false;
@@ -262,6 +308,8 @@ hoverboardManager = {
     }
 };
 
+/* de functies van het prijzensysteem worden gestored in een variabele welke aan het einde van document wordt aangeroepen
+ in de document.ready() functie */
 var priceManager = {
     init: function () {
         priceManager.setListeners();
@@ -361,6 +409,8 @@ var priceManager = {
     }
 };
 
+/* de functies van het prijzensysteem worden gestored in een variabele welke aan het einde van document wordt aangeroepen
+ in de document.ready() functie */
 var checkoutManager = {
     init: function () {
         checkoutManager.setListeners();
