@@ -125,7 +125,7 @@ hoverboardManager = {
                 }, 1000);
             });
     },
-
+        // met deze functie zet je de panelen op niet visible
         checkTogglePanels: function (picker, atr1, atr2) {
             picker.addEventListener('mouseenter', function () {
                 $(atr1).attr('visible', false);
@@ -314,7 +314,7 @@ var priceManager = {
     init: function () {
         priceManager.setListeners();
     },
-
+    // alle listeners die nodig zijn voor het gebruiken van de pricemanager
     setListeners: function () {
         var preview = document.getElementById('saveButton');
         priceManager.functions.toggleVisible("#checkoutButton", false);
@@ -335,8 +335,9 @@ var priceManager = {
 
         priceManager.functions.mouseLeaveAnimation(preview, "1 0.6 0.6", "0.8 0.4 0.4");
     },
-
+    // alle functies met betrekking tot de pricemanager
     functions: {
+        // functie voor het aanmaken van een nieuwe array die de prijzen terug geeft
         makeArray: function () {
             var prizes = {};
             var color = "";
@@ -353,6 +354,7 @@ var priceManager = {
             return prizes
         },
 
+        // totale prijs berekenen aan de hand van de aangemaakte array
         countTotal: function () {
             var prizeArray = priceManager.functions.makeArray();
             var sum = 0;
@@ -362,7 +364,7 @@ var priceManager = {
             }
             return sum
         },
-
+        // Voor op de website willen we ook de prijzen weergeven daarom wordt er met deze functie opnieuw alle prijzen na het opslaan op de website getoond.
         websiteCalculation: function () {
             $('.pricing-list').empty();
 
@@ -392,11 +394,11 @@ var priceManager = {
 
             priceManager.functions.toggleVisible("#checkoutButton", true);
         },
-
+        // functie voor het zichtbaarmaken van bepaalde elementen binnen de website
         toggleVisible: function (name, bool) {
             $(name).attr('visible', bool);
         },
-
+        // als de muis uit de knop is kom er een animatie bij
         mouseLeaveAnimation: function (id, from, to) {
             id.addEventListener('mouseleave', function () {
                 $($(this)).append('<a-animation id="scaleDown" attribute="scale" from="' + from + '" to="' + to + '" delay="0" dur="500" fill="both" easing="ease-out"></a-animation>');
@@ -415,7 +417,7 @@ var checkoutManager = {
     init: function () {
         checkoutManager.setListeners();
     },
-
+    // alle listeners die nodig zijn voor het gebruiken van de checkoutmanager
     setListeners: function () {
         var checkout = document.getElementById('checkout-hoverboard');
         checkout.addEventListener('mouseenter', function () {
@@ -436,14 +438,16 @@ var checkoutManager = {
             checkoutManager.functions.scrollToDiv('.thumbnail', 1500);
         });
     },
-
+    // alle functies die nodig zijn voor de checkout
     functions: {
+        // Als je klaar bent met het VR gedeeldte scrollt die automatisch naar de div
         scrollToDiv: function (id, offset) {
             $('html, body').animate({
                 scrollTop: $(id).offset().top + offset
             }, 2000);
         },
 
+        // voegt animatie toe tijdens het verlaten van de checkoutknop
         mouseLeaveAnimation: function (id, from, to) {
             id.addEventListener('mouseleave', function () {
                 $($(this)).append('<a-animation id="scaleDown" attribute="scale" from="' + from + '" to="' + to + '" delay="0" dur="500" fill="both" easing="ease-out"></a-animation>');
@@ -456,7 +460,9 @@ var checkoutManager = {
     },
 };
 
+// Document ready functies
 $(document).ready(function () {
+    // Hier roepen we alle inits aan als de dom geladen is
     hoverboardManager.init();
     priceManager.init();
     checkoutManager.init();
